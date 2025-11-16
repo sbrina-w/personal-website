@@ -3,6 +3,7 @@ import './App.css';
 import './styles/global.css';
 
 import BackgroundEffect from './components/BackgroundEffect';
+import { BackgroundMusic } from './components/BackgroundMusic';
 import { Navigation } from './components/Navigation';
 import { Hero } from './components/Hero';
 import { Menu } from './components/Menu';
@@ -11,6 +12,7 @@ import { Receipt } from './components/Receipt';
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
 
   const handleMenuItemClick = useCallback((itemId: string) => {
     const element = document.getElementById(itemId);
@@ -30,10 +32,15 @@ function App() {
     setMenuOpen(true);
   }, []);
 
+  const handleToggleMute = useCallback(() => {
+    setIsMuted((prev) => !prev);
+  }, []);
+
   return (
     <div className="app">
       <BackgroundEffect />
-      <Navigation onNavigate={handleNavigate} />
+      <BackgroundMusic isMuted={isMuted} />
+      <Navigation onNavigate={handleNavigate} isMuted={isMuted} onToggleMute={handleToggleMute} />
       <Hero onScroll={handleHeroScroll} />
       {menuOpen && <Menu onMenuItemClick={handleMenuItemClick} />}
       <ContentSections />
