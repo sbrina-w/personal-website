@@ -1,0 +1,145 @@
+.content-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 40px;
+  background: transparent;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.content-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.content-section.odd .content-container {
+  direction: rtl;
+}
+
+.content-section.odd .content-text {
+  direction: ltr;
+}
+
+.content-text {
+  animation: slideInFromLeft 0.8s ease;
+}
+
+.content-title {
+  font-size: 2.8rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #2c2416;
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.content-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.content-body p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #666;
+  text-align: justify;
+}
+
+.content-image-wrapper {
+  background: none;
+  position: relative;
+  animation: slideInFromRight 0.8s ease;
+  will-change: transform;
+}
+
+.content-image-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.content-image {
+  background: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+
+.content-image-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  border-radius: 12px;
+  z-index: 2;
+}
+
+/* Hover effects */
+.content-image-wrapper:hover .content-image {
+  transform: scale(1.03);
+}
+
+/* Parallax effect for text elements */
+.content-text > * {
+  position: relative;
+}
+
+@media (max-width: 1024px) {
+  .content-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .content-section.odd .content-container {
+    direction: ltr;
+  }
+
+  .content-title {
+    font-size: 2.2rem;
+  }
+
+  .content-body p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .content-section {
+    padding: 60px 20px;
+    min-height: auto;
+  }
+
+  .content-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .content-title {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .content-body p {
+    font-size: 0.85rem;
+    text-align: left;
+  }
+
+  .content-image-container {
+    aspect-ratio: 3 / 4;
+  }
+}
