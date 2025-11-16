@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import '../styles/sections.css';
+import { PixelatedImage } from './PixelatedImage';
+import { WatercolorImage } from './WatercolorImage';
 
 export interface SectionContent {
   id: string;
@@ -124,6 +126,7 @@ const ContentSection: React.FC<SectionProps> = ({ section, index }) => {
   }, []);
 
   const isEvenIndex = index % 2 === 0;
+  const usePixelatedEffect = index % 2 === 0;
 
   return (
     <section
@@ -149,7 +152,19 @@ const ContentSection: React.FC<SectionProps> = ({ section, index }) => {
           style={{ transform: `translateY(${scrollY * -0.2}px)` }}
         >
           <div className="content-image-container">
-            <img src={section.image} alt={section.title} className="content-image" />
+            {usePixelatedEffect ? (
+              <PixelatedImage 
+                src={section.image} 
+                alt={section.title}
+                className="content-image"
+              />
+            ) : (
+              <WatercolorImage
+                src={section.image}
+                alt={section.title}
+                className="content-image"
+              />
+            )}
           </div>
         </div>
       </div>

@@ -69,6 +69,7 @@
   aspect-ratio: 3 / 4;
   border-radius: 12px;
   overflow: hidden;
+  background: transparent;
 }
 
 .content-image {
@@ -77,6 +78,14 @@
   height: 100%;
   object-fit: cover;
   transition: transform 0.8s ease;
+}
+
+.pixelated-image-container,
+.watercolor-image-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .content-image-container::before {
@@ -91,7 +100,7 @@
 
 /* Hover effects */
 .content-image-wrapper:hover .content-image {
-  transform: scale(1.03);
+  transform: none;
 }
 
 /* Parallax effect for text elements */
