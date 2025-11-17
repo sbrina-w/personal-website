@@ -6,6 +6,33 @@
   overflow-x: hidden;
 }
 
+.app::before {
+  animation: grain 8s steps(10) infinite;
+  background-image: url('/assets/texture/noise.png');
+  content: '';
+  height: 300%;
+  left: -50%;
+  opacity: 0.3;
+  position: fixed;
+  top: -100%;
+  width: 300%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-2%, -2%); }
+  20% { transform: translate(-2%, 2%); }
+  30% { transform: translate(2%, -2%); }
+  40% { transform: translate(2%, 2%); }
+  50% { transform: translate(-1%, -1%); }
+  60% { transform: translate(-1%, 1%); }
+  70% { transform: translate(1%, -1%); }
+  80% { transform: translate(1%, 1%); }
+  90% { transform: translate(-2%, -2%); }
+}
+
 /* Ensure proper z-stacking */
 section {
   position: relative;
@@ -21,6 +48,14 @@ html {
 body {
   margin: 0;
   padding: 0;
+}
+
+/* WebGL Canvas */
+.webgl {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
 }
 
 /* Selection styling */
