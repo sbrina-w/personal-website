@@ -12,49 +12,13 @@ export interface SectionContent {
 
 export const sectionContent: SectionContent[] = [
   {
-    id: 'experience',
-    title: 'Experience',
-    description: `My professional journey has been filled with exciting opportunities to grow and contribute. I've worked with innovative teams on projects that challenged me to expand my skills in full-stack development, system design, and team collaboration.
-
-Throughout my career, I've developed expertise in building scalable web applications, optimizing performance, and mentoring junior developers. I'm passionate about writing clean, maintainable code and continuously learning new technologies.
-
-Key achievements include:
-• Led the development of a real-time data visualization platform
-• Mentored 3 junior developers on React and Node.js best practices
-• Reduced database query time by 40% through optimization
-• Presented technical talks on modern web architecture`,
-    image: '/illustrations/cake4.png',
-  },
-  {
-    id: 'projects',
-    title: 'Projects',
-    description: `I love turning creative ideas into functional applications. My projects span from small utilities to full-featured platforms, each teaching me something new about problem-solving and user experience design.
-
-Current projects showcase my ability to:
-• Design intuitive user interfaces
-• Build performant backend systems
-• Implement complex algorithms and data structures
-• Create responsive, accessible web experiences
-
-Notable projects include:
-• A collaborative music production platform with real-time sync
-• An AI-powered content recommendation engine
-• A mobile-responsive e-commerce application
-• Several open-source contributions to popular libraries
-
-Each project is a reflection of my commitment to quality and continuous improvement.`,
-    image: '/illustrations/cake5.png',
-  },
-  {
     id: 'about',
     title: 'About',
-    description: `Hi! I'm a passionate software engineering student with a love for creating beautiful, functional digital experiences. My journey into tech started with curiosity about how things work, which evolved into a career dedicated to building solutions that matter.
+    description: `Hi! I'm Sabrina, a passionate Software Engineering student at the University of Waterloo with a love for creating beautiful, functional digital experiences. My journey into tech started with curiosity about how things work, which evolved into building solutions that matter.
 
-I believe great software is a blend of:
-• Strong technical fundamentals
-• Creative problem-solving
-• User-centric design thinking
-• Continuous learning and adaptation
+I believe great software is a blend of strong technical fundamentals, creative problem-solving, user-centric design thinking, and continuous learning. I'm particularly interested in full-stack development, AI applications, and building tools that enhance creativity and productivity.
+
+My experience spans across various domains—from e-commerce platforms at Loblaw Digital serving millions of customers, to data visualization tools at CIGI, to traffic management systems at Miovision. Each role has taught me the importance of writing clean, maintainable code and collaborating effectively with cross-functional teams.
 
 Outside of coding, I'm an artist and coffee enthusiast who believes that attention to detail in code mirrors the care required in other creative pursuits. I'm always excited to explore new technologies, collaborate with talented people, and work on projects that make a positive impact.
 
@@ -73,7 +37,9 @@ My artistic interests include:
 • Motion graphics and animation
 • Interactive installations and experiences
 
-I believe that good design is invisible—it serves the user without demanding attention. My goal is to create interfaces that are not only functional but also bring joy to the people using them.
+I believe that good design is invisible—it serves the user without demanding attention. My goal is to create interfaces that are not only functional but also bring joy to the people using them. The intersection of art and technology is where I find the most inspiration.
+
+Whether it's designing a user interface, creating a visual identity, or building an interactive experience, I approach each project with an artist's eye for detail and a developer's mindset for functionality.
 
 Art and code are two sides of the same creative coin for me.`,
     image: '/illustrations/cake7.png',
@@ -84,22 +50,22 @@ Art and code are two sides of the same creative coin for me.`,
     description: `Beyond coding and design, I have a wide range of interests that fuel my creativity and keep me balanced:
 
 ☕ Coffee Enthusiast
-I'm passionate about coffee—exploring different brewing methods, roasting profiles, and flavor notes. There's something meditative about the craft of making great coffee.
+I'm passionate about coffee—exploring different brewing methods, roasting profiles, and flavor notes. There's something meditative about the craft of making great coffee. I love experimenting with pour-overs, espresso, and cold brew.
 
 🎨 Digital Art & Illustration
-I love creating digital art, from character design to environmental concepts. It's my way of exploring visual storytelling.
+I love creating digital art, from character design to environmental concepts. It's my way of exploring visual storytelling and bringing imaginary worlds to life.
 
 🎮 Gaming
-I'm fascinated by game design, mechanics, and narrative. I enjoy indie games that push creative boundaries.
+I'm fascinated by game design, mechanics, and narrative. I enjoy indie games that push creative boundaries and experiment with new gameplay concepts.
 
 📚 Reading
-I'm an avid reader who loves science fiction, design thinking books, and technical documentation (yes, really!).
+I'm an avid reader who loves science fiction, design thinking books, and technical documentation (yes, really!). Currently exploring books on system design and creative coding.
 
 🚴 Outdoor Activities
-When I'm not at my computer, you'll find me cycling, hiking, or exploring nature—it's where I get my best ideas.
+When I'm not at my computer, you'll find me cycling, hiking, or exploring nature—it's where I get my best ideas and reset my mind.
 
 🎵 Music
-I produce electronic music as a hobby and love the intersection of code and sound design.`,
+I produce electronic music as a hobby and love the intersection of code and sound design. Music production has taught me a lot about pattern recognition and creative problem-solving.`,
     image: '/illustrations/cake8.png',
   },
 ];
@@ -181,7 +147,7 @@ export const ContentSections: React.FC<ContentSectionsProps> = ({
 }) => {
   return (
     <>
-      {sections.slice(0, 5).map((section, index) => (
+      {sections.map((section, index) => (
         <ContentSection key={section.id} section={section} index={index} />
       ))}
     </>

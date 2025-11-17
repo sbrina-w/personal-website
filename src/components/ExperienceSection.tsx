@@ -1,0 +1,184 @@
+import React, { useEffect, useRef, useState } from 'react';
+import '../styles/experience.css';
+
+interface Experience {
+  company: string;
+  role: string;
+  period: string;
+  description: string;
+  accomplishments: string[];
+  logo?: string;
+}
+
+const experiences: Experience[] = [
+  {
+    company: 'Ontario Lottery and Gaming (OLG)',
+    role: 'Data Scientist, Advanced Analytics Team',
+    period: 'May 2025 - Aug 2025',
+    description: 'Working on the Advanced Analytics team, developing machine learning models and GenAI applications to drive data-informed decision-making across OLG\'s operations.',
+    accomplishments: [
+      'Developed retailer clustering models using K-means and spatial data analysis to segment 10,000+ retailers by sales performance, demographics, and location features, enabling dynamic commission models and targeted sales strategies',
+      'Built end-to-end RAG applications including a Cloudera documentation chatbot with full-stack development (data sourcing, embedding pipeline, and web interface) to accelerate internal team knowledge discovery',
+      'Automated AML monitoring workflows using GenAI to parse police reports, extract suspect information, and perform fuzzy matching against OLG patron databases, reducing manual investigation time by 80%',
+      'Maintained sequential recommender systems for internet casino apps, running monthly model validations and generating personalized recommendations to improve user engagement',
+      'Engineered web scrapers to automate salary data collection for hundreds of occupations, eliminating manual research and saving 20+ hours per analysis cycle'
+    ]
+  },
+  {
+    company: 'BrainRidge Consulting',
+    role: 'Full-Stack Software Developer',
+    period: 'Jan 2025 - Apr 2025',
+    description: 'Returned to BrainRidge to expand my technical scope beyond frontend, taking on full-stack responsibilities for the OneDashboard project. I led feature development from requirements gathering through deployment, working with databases, caching layers, and backend services while continuing to refine the user experience.',
+    accomplishments: [
+      'Led end-to-end development of a global search feature with filtered navigation, direct endpoint access, and error-focused queries, improving system navigation efficiency by 3x and reducing time-to-resolution for production issues',
+      'Migrated environment configurations from frontend to database, implementing a dynamic DB-driven model with Oracle DB and building corresponding UI forms for real-time configurability',
+      'Developed endpoint tracking and comparison tooling using Swagger diffing to detect API changes, monitor downstream service health, and maintain up-to-date documentation for 50+ microservice endpoints',
+      'Contributed to AWS migration planning by participating in architecture discussions and learning cloud infrastructure design patterns for large-scale enterprise systems',
+      'Built feature heatmap visualizations and created comprehensive Confluence documentation to communicate technical decisions and system architecture to cross-functional stakeholders'
+    ]
+  },
+  {
+    company: 'BrainRidge Consulting',
+    role: 'Frontend Software Developer',
+    period: 'May 2024 - Aug 2024',
+    description: 'Joined BrainRidge as the sole frontend developer for OneDashboard, an internal monitoring platform for BMO US. Despite having no prior experience with Angular or NestJS, I quickly ramped up and took ownership of the entire frontend, redesigning the UI/UX from the ground up and transforming the project from a proof-of-concept into a production-ready application.',
+    accomplishments: [
+      'Designed and implemented the complete frontend architecture using Angular and TypeScript, creating an intuitive dashboard that monitors health checks, database connections, cache status, and 50+ microservice APIs across BMO US environments',
+      'Integrated real-time data synchronization using Socket.io and NestJS backend services, reducing data refresh latency by 30% and enabling live status updates for critical infrastructure monitoring',
+      'Delivered polished UI/UX that received recognition from senior leadership, resulting in the project being showcased at BMO US townhalls and securing full funding for continued development',
+      'Presented and demoed the platform to an STO and 30+ cross-functional team members from various BMO divisions, effectively communicating technical capabilities and business value',
+      'Earned AWS Cloud Practitioner certification in three days through self-directed learning, demonstrating rapid technical adaptability and commitment to expanding cloud infrastructure knowledge'
+    ]
+  }
+];
+
+interface TimelineNodeProps {
+  isActive: boolean;
+  isPast: boolean;
+  index: number;
+}
+
+const TimelineNode: React.FC<TimelineNodeProps> = ({ isActive, isPast, index }) => {
+  return (
+    <div className={`timeline-node ${isActive ? 'active' : ''} ${isPast ? 'past' : ''}`}>
+      <div className="timeline-circle">
+        <div className="timeline-circle-inner" />
+      </div>
+      {index < experiences.length - 1 && <div className="timeline-line" />}
+    </div>
+  );
+};
+
+interface ExperienceCardProps {
+  experience: Experience;
+  index: number;
+  isVisible: boolean;
+  cardRef: (el: HTMLDivElement | null) => void;
+}
+
+const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience, index, isVisible, cardRef }) => {
+  return (
+    <div 
+      ref={cardRef}
+      className={`experience-card ${isVisible ? 'visible' : ''}`}
+      style={{ animationDelay: `${index * 0.1}s` }}
+    >
+      <div className="experience-header">
+        <div className="experience-title-group">
+          <h3 className="experience-company">{experience.company}</h3>
+          <p className="experience-role">{experience.role}</p>
+        </div>
+        <span className="experience-period">{experience.period}</span>
+      </div>
+      
+      <p className="experience-description">{experience.description}</p>
+      
+      <ul className="experience-accomplishments">
+        {experience.accomplishments.map((item, i) => (
+          <li key={i}>{item}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export const ExperienceSection: React.FC = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [visibleCards, setVisibleCards] = useState<Set<number>>(new Set([0]));
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current || cardRefs.current.length === 0) return;
+
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const activationPoint = scrollY + windowHeight / 2;
+
+      // Find which card is currently aligned with the timeline
+      let newActiveIndex = 0;
+      for (let i = 0; i < cardRefs.current.length; i++) {
+        const card = cardRefs.current[i];
+        if (card) {
+          const cardTop = card.offsetTop + (sectionRef.current?.offsetTop || 0);
+          const cardMiddle = cardTop + card.offsetHeight / 2;
+          
+          if (activationPoint >= cardMiddle) {
+            newActiveIndex = i;
+          }
+        }
+      }
+      
+      setActiveIndex(newActiveIndex);
+
+      // Make cards visible as we scroll
+      const newVisibleCards = new Set<number>();
+      for (let i = 0; i <= newActiveIndex; i++) {
+        newVisibleCards.add(i);
+      }
+      setVisibleCards(newVisibleCards);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial call
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const setCardRef = (index: number) => (el: HTMLDivElement | null) => {
+    cardRefs.current[index] = el;
+  };
+
+  return (
+    <section ref={sectionRef} className="experience-section" id="experience">
+      <div className="experience-container">
+        <h2 className="experience-section-title">Experience</h2>
+        
+        <div className="experience-content">
+          <div className="timeline-wrapper">
+            {experiences.map((_, index) => (
+              <TimelineNode
+                key={index}
+                isActive={index === activeIndex}
+                isPast={index < activeIndex}
+                index={index}
+              />
+            ))}
+          </div>
+
+          <div className="experiences-list">
+            {experiences.map((exp, index) => (
+              <ExperienceCard
+                key={index}
+                experience={exp}
+                index={index}
+                isVisible={visibleCards.has(index)}
+                cardRef={setCardRef(index)}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};

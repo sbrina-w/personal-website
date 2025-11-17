@@ -7,6 +7,8 @@ import { BackgroundMusic } from './components/BackgroundMusic';
 import { Navigation } from './components/Navigation';
 import { Hero } from './components/Hero';
 import { Menu } from './components/Menu';
+import { ExperienceSection } from './components/ExperienceSection';
+import { ProjectsSection } from './components/ProjectsSection';
 import { ContentSections } from './components/ContentSections';
 import { Receipt } from './components/Receipt';
 
@@ -43,6 +45,8 @@ function App() {
       <Navigation onNavigate={handleNavigate} isMuted={isMuted} onToggleMute={handleToggleMute} />
       <Hero onScroll={handleHeroScroll} />
       {menuOpen && <Menu onMenuItemClick={handleMenuItemClick} />}
+      <ExperienceSection />
+      <ProjectsSection />
       <ContentSections />
       <Receipt />
     </div>
