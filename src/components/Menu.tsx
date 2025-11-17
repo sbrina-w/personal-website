@@ -69,8 +69,8 @@ export const Menu: React.FC<MenuProps> = ({ onMenuItemClick, mouseX = 0, mouseY 
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
 
-      const angleX = ((e.clientY - centerY) / rect.height) * 3;
-      const angleY = ((e.clientX - centerX) / rect.width) * -3;
+      const angleX = ((e.clientY - centerY) / rect.height) * 1;
+      const angleY = ((e.clientX - centerX) / rect.width) * -1;
 
       setRotateX(angleX);
       setRotateY(angleY);

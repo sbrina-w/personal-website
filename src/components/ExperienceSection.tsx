@@ -108,7 +108,7 @@ export const ExperienceSection: React.FC = () => {
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const timelineNodesRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [visibleCards, setVisibleCards] = useState<Set<number>>(new Set([0]));
+  const [visibleCards, setVisibleCards] = useState<Set<number>>(new Set());
   const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
@@ -149,10 +149,19 @@ export const ExperienceSection: React.FC = () => {
       
       setActiveIndex(newActiveIndex);
 
-      // Make cards visible as we scroll
+      // Make cards visible earlier - when they're 70% into the viewport
+      const visibilityPoint = scrollY + windowHeight * 0.7;
       const newVisibleCards = new Set<number>();
-      for (let i = 0; i <= newActiveIndex; i++) {
-        newVisibleCards.add(i);
+      
+      for (let i = 0; i < cardRefs.current.length; i++) {
+        const card = cardRefs.current[i];
+        if (card) {
+          const cardTop = card.offsetTop + (section.offsetTop || 0);
+          
+          if (visibilityPoint >= cardTop) {
+            newVisibleCards.add(i);
+          }
+        }
       }
       setVisibleCards(newVisibleCards);
     };
