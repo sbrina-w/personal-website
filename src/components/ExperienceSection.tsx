@@ -60,11 +60,12 @@ interface TimelineNodeProps {
 
 const TimelineNode: React.FC<TimelineNodeProps> = ({ isActive, isPast, index }) => {
   return (
-    <div className={`timeline-node ${isActive ? 'active' : ''} ${isPast ? 'past' : ''}`}>
+    <div 
+      className={`timeline-node ${isActive ? 'active' : ''} ${isPast ? 'past' : ''}`}
+    >
       <div className="timeline-circle">
         <div className="timeline-circle-inner" />
       </div>
-      {index < experiences.length - 1 && <div className="timeline-line" />}
     </div>
   );
 };
@@ -105,23 +106,39 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience, index, isVi
 export const ExperienceSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const timelineNodesRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const [visibleCards, setVisibleCards] = useState<Set<number>>(new Set([0]));
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!sectionRef.current || cardRefs.current.length === 0) return;
+      const section = sectionRef.current;
+      if (!section || cardRefs.current.length === 0) return;
 
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
       const activationPoint = scrollY + windowHeight / 2;
+
+      // Calculate scroll-based progress for timeline first
+      const firstCard = cardRefs.current[0];
+      const lastCard = cardRefs.current[experiences.length - 1];
+      
+      if (firstCard && lastCard) {
+        const firstCardCenter = firstCard.offsetTop + firstCard.offsetHeight / 2 + (section.offsetTop || 0);
+        const lastCardCenter = lastCard.offsetTop + lastCard.offsetHeight / 2 + (section.offsetTop || 0);
+        
+        // Calculate how far the activation point has progressed through the timeline
+        const progress = Math.max(0, Math.min(1, (activationPoint - firstCardCenter) / (lastCardCenter - firstCardCenter)));
+        setScrollProgress(progress);
+      }
 
       // Find which card is currently aligned with the timeline
       let newActiveIndex = 0;
       for (let i = 0; i < cardRefs.current.length; i++) {
         const card = cardRefs.current[i];
         if (card) {
-          const cardTop = card.offsetTop + (sectionRef.current?.offsetTop || 0);
+          const cardTop = card.offsetTop + (section.offsetTop || 0);
           const cardMiddle = cardTop + card.offsetHeight / 2;
           
           if (activationPoint >= cardMiddle) {
@@ -149,21 +166,83 @@ export const ExperienceSection: React.FC = () => {
     cardRefs.current[index] = el;
   };
 
+  const setTimelineNodeRef = (index: number) => (el: HTMLDivElement | null) => {
+    timelineNodesRefs.current[index] = el;
+  };
+
+  // Calculate total timeline height and progress
+  const firstCard = cardRefs.current[0];
+  const lastCard = cardRefs.current[experiences.length - 1];
+  const firstCardCenter = firstCard ? firstCard.offsetTop + firstCard.offsetHeight / 2 : 0;
+  const lastCardCenter = lastCard ? lastCard.offsetTop + lastCard.offsetHeight / 2 : 0;
+  const totalTimelineHeight = lastCardCenter - firstCardCenter;
+  
+  // Use scroll-based progress instead of card index
+  const progressHeight = totalTimelineHeight * scrollProgress;
+
   return (
     <section ref={sectionRef} className="experience-section" id="experience">
+      <img src="/illustrations/cake3.png" alt="" className="desert-decoration desert-left" />
+      <img src="/illustrations/cake5.png" alt="" className="desert-decoration desert-right" />
+      
       <div className="experience-container">
         <h2 className="experience-section-title">Experience</h2>
         
         <div className="experience-content">
           <div className="timeline-wrapper">
-            {experiences.map((_, index) => (
-              <TimelineNode
-                key={index}
-                isActive={index === activeIndex}
-                isPast={index < activeIndex}
-                index={index}
-              />
-            ))}
+            {/* Background timeline track */}
+            <div
+              className="timeline-track"
+              style={{
+                position: 'absolute',
+                top: `${firstCardCenter}px`,
+                left: '50%',
+                transform: 'translateX(-50%)',
+                height: `${totalTimelineHeight}px`,
+                width: '2px',
+              }}
+            />
+            
+            {/* Animated progress line */}
+            <div
+              className="timeline-progress"
+              style={{
+                position: 'absolute',
+                top: `${firstCardCenter}px`,
+                left: '50%',
+                transform: 'translateX(-50%)',
+                height: `${progressHeight}px`,
+                width: '2px',
+              }}
+            />
+            
+            {/* Timeline circles */}
+            {experiences.map((_, index) => {
+              const card = cardRefs.current[index];
+              const cardTop = card ? card.offsetTop : 0;
+              const cardHeight = card ? card.offsetHeight : 0;
+              const cardCenter = cardTop + cardHeight / 2;
+              
+              return (
+                <div
+                  key={index}
+                  ref={setTimelineNodeRef(index)}
+                  style={{
+                    position: 'absolute',
+                    top: `${cardCenter}px`,
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    transition: 'top 0.1s ease-out'
+                  }}
+                >
+                  <TimelineNode
+                    isActive={index === activeIndex}
+                    isPast={index < activeIndex}
+                    index={index}
+                  />
+                </div>
+              );
+            })}
           </div>
 
           <div className="experiences-list">

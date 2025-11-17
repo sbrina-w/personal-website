@@ -5,6 +5,7 @@
   padding: 100px 40px;
   background: transparent;
   z-index: 2;
+  overflow: visible;
 }
 
 .projects-container {
@@ -24,45 +25,35 @@
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   padding: 20px 0;
+  position: relative;
 }
 
 .project-card {
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-radius: 16px;
-  padding: 2rem;
+  background: #ffffff61;
+  backdrop-filter: blur(10px);
   border: 1px solid rgba(212, 165, 116, 0.2);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
-  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-  opacity: 0;
-  transform: translateY(30px);
+  border-radius: 12px;
+  padding: 2rem;
+  cursor: pointer;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
-  cursor: pointer;
-  position: relative;
+  transform-origin: center;
+}
+
+.project-card:hover:not(.expanded) {
+  transform: translateY(-5px);
+  border-color: rgba(212, 165, 116, 0.4);
+  background: rgba(212, 165, 116, 0.08);
 }
 
 .project-card.expanded {
   grid-column: 1 / -1;
   cursor: default;
-  padding: 0;
-  min-height: 600px;
-}
-
-.project-card.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.project-card:not(.expanded):hover {
-  border-color: rgba(212, 165, 116, 0.4);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  transform: translateY(-4px);
 }
 
 .expand-hint {
@@ -87,6 +78,36 @@
   gap: 3rem;
   padding: 3rem;
   min-height: 600px;
+  animation: expandIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes expandIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Collapse animation */
+.project-card:not(.expanded) .project-expanded-content {
+  animation: collapseOut 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes collapseOut {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    max-height: 1000px;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.98);
+    max-height: 0;
+  }
 }
 
 .project-expanded-left {
@@ -433,6 +454,18 @@
 
   .project-accomplishments li {
     font-size: 0.9rem;
+  }
+
+  .projects-section .desert-decoration {
+    width: 100px;
+  }
+
+  .projects-section .desert-left {
+    left: -5%;
+  }
+
+  .projects-section .desert-right {
+    right: -5%;
   }
 }
 

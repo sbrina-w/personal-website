@@ -16,6 +16,21 @@ interface Project {
 
 const projects: Project[] = [
   {
+    name: 'Nudge',
+    year: '2024',
+    description: 'Chrome extension inspired by The Stanley Parable that gamifies productivity through an AI-powered narrator that monitors user activity, delivers witty spoken narration, and enforces focus through intelligent redirects.',
+    fullDescription: 'A Chrome extension inspired by The Stanley Parable that gamifies productivity through an AI-powered narrator that monitors user activity, delivers witty spoken narration, and enforces focus through intelligent redirects. The system combines real-time behavior tracking, screenshot analysis via LLMs, and voice synthesis to create a compelling productivity experience with personality.',
+    detailedAccomplishments: [
+      'Built Chrome extension with Manifest V3 featuring background service worker for task orchestration, content script for mascot injection and activity monitoring (inactivity, typing, profanity detection), and SPA-aware navigation tracking using MutationObserver and history API overrides',
+      'Engineered AI analysis pipeline using Flask backend that receives screenshots and behavioral data, processes context through OpenAI LLMs to generate narrative responses, and produces spoken audio via ElevenLabs TTS with emotion-matched voice delivery',
+      'Implemented behavioral tracking system monitoring LeetCode usage patterns (problem pages, solution viewing, submissions), enforcing smart redirects from distraction sites (Instagram, YouTube, Reddit), and maintaining a "disobedience counter" that drives narrator personality shifts',
+      'Designed animated mascot system with emotion-based state management (neutral, happy, angry, super-angry) using PNG sequence animations synchronized with spoken narration and user actions',
+      'Built React analytics dashboards displaying productivity scores, achievements, recent activity, weekly stats, and todo lists by consuming MongoDB-stored logs from the backend analytics engine'
+    ],
+    techStack: ['Python', 'JavaScript', 'HTML/CSS', 'Flask', 'OpenAI', 'LangChain', 'ElevenLabs', 'MongoDB', 'Chrome Extension API', 'React', 'Vite'],
+    github: 'https://github.com/sbrina-w/nudge'
+  },
+  {
     name: 'Yelp Analysis',
     year: '2024',
     description: 'Production-ready analytics platform transforming thousands of Yelp reviews into actionable business insights through a hybrid ML/LLM pipeline with semantic search, sentiment analysis, and automated topic clustering.',
@@ -134,6 +149,7 @@ interface ProjectCardProps {
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, isExpanded, onToggleExpand }) => {
   const cardRef = useRef<HTMLDivElement>(null);
+  const expandedContentRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
@@ -251,7 +267,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, isExpanded, o
           <div className="expand-hint">Click to expand</div>
         </>
       ) : (
-        <div className="project-expanded-content">
+        <div ref={expandedContentRef} className="project-expanded-content">
           <div className="project-expanded-left">
             <div className="image-carousel">
               <img 
@@ -361,19 +377,45 @@ export const ProjectsSection: React.FC = () => {
     setExpandedIndex(expandedIndex === index ? null : index);
   };
 
+  // Create display order: non-expanded projects fill rows, then expanded project in its own row
+  const renderOrder = () => {
+    if (expandedIndex === null) {
+      return projects.map((project, index) => ({ project, originalIndex: index, isExpanded: false }));
+    }
+
+    const items = [];
+    
+    // Add all non-expanded projects first (they fill the grid naturally)
+    projects.forEach((project, index) => {
+      if (index !== expandedIndex) {
+        items.push({ project, originalIndex: index, isExpanded: false });
+      }
+    });
+    
+    // Add expanded project at the end (it will be in its own row)
+    items.push({ project: projects[expandedIndex], originalIndex: expandedIndex, isExpanded: true });
+    
+    return items;
+  };
+
+  const orderedItems = renderOrder();
+
   return (
     <section className="projects-section" id="projects">
+      <img src="/illustrations/drink2.png" alt="" className="desert-decoration desert-left" />
+      <img src="/illustrations/cake7.png" alt="" className="desert-decoration desert-right" />
+      
       <div className="projects-container">
         <h2 className="projects-section-title">Projects</h2>
         
         <div className="projects-grid">
-          {projects.map((project, index) => (
+          {orderedItems.map((item, displayIndex) => (
             <ProjectCard 
-              key={index} 
-              project={project} 
-              index={index}
-              isExpanded={expandedIndex === index}
-              onToggleExpand={() => handleToggleExpand(index)}
+              key={item.originalIndex}
+              project={item.project} 
+              index={displayIndex}
+              isExpanded={item.isExpanded}
+              onToggleExpand={() => handleToggleExpand(item.originalIndex)}
             />
           ))}
         </div>

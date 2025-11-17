@@ -5,6 +5,28 @@
   padding: 100px 40px;
   background: transparent;
   z-index: 2;
+  overflow: visible;
+}
+
+.desert-decoration {
+  position: absolute;
+  width: 200px;
+  height: auto;
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.desert-left {
+  left: 5%;
+  top: 20%;
+  transform: rotate(-15deg);
+}
+
+.desert-right {
+  right: 5%;
+  bottom: 20%;
+  transform: rotate(15deg);
 }
 
 .experience-container {
@@ -31,12 +53,9 @@
 
 /* Timeline Styles */
 .timeline-wrapper {
-  position: sticky;
-  top: 150px;
-  height: fit-content;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  position: relative;
+  width: 80px;
+  height: 100%;
 }
 
 .timeline-node {
@@ -92,16 +111,56 @@
   background: rgba(245, 241, 232, 0.95);
 }
 
+/* Timeline track (background) */
+.timeline-track {
+  background: linear-gradient(
+    to bottom,
+    rgba(212, 166, 116, 0.803) 0%,
+    rgba(212, 166, 116, 0.813) 3%,
+    rgba(212, 166, 116, 0.822) 5%,
+    rgb(212, 166, 116) 95%,
+    rgb(212, 166, 116) 97%,
+    rgba(212, 166, 116, 0.763) 100%
+  );
+}
+
+/* Timeline progress (animated fill) */
+.timeline-progress {
+  background: linear-gradient(
+    to bottom,
+    rgba(139, 111, 71, 0) 0%,
+    rgba(139, 111, 71, 0.4) 2%,
+    rgba(139, 111, 71, 0.7) 4%,
+    #8b6f47 6%,
+    #b48747 100%
+  );
+  box-shadow: 0 0 10px rgba(139, 111, 71, 0.3);
+}
+
 .timeline-line {
   width: 2px;
-  height: 150px;
-  background: linear-gradient(to bottom, #d4a574 0%, rgba(212, 165, 116, 0.3) 100%);
-  margin: 8px 0;
+  background: linear-gradient(
+    to bottom, 
+    rgba(212, 165, 116, 0) 0%,
+    rgba(212, 165, 116, 0.3) 5%,
+    #d4a574 10%,
+    #d4a574 90%,
+    rgba(212, 165, 116, 0.3) 95%,
+    rgba(212, 165, 116, 0) 100%
+  );
   transition: all 0.4s ease;
 }
 
-.timeline-node.past .timeline-line {
-  background: #8b6f47;
+.timeline-line.past {
+  background: linear-gradient(
+    to bottom, 
+    rgba(139, 111, 71, 0) 0%,
+    rgba(139, 111, 71, 0.5) 5%,
+    #8b6f47 10%,
+    #d4a574 90%,
+    rgba(139, 111, 71, 0.5) 95%,
+    rgba(139, 111, 71, 0) 100%
+  );
 }
 
 @keyframes pulse {
@@ -235,10 +294,6 @@
     font-size: 1.5rem;
   }
 
-  .timeline-line {
-    height: 120px;
-  }
-
   .experiences-list {
     gap: 6rem;
   }
@@ -275,10 +330,6 @@
     height: 26px;
   }
 
-  .timeline-line {
-    height: 100px;
-  }
-
   .experience-card {
     padding: 1.5rem;
   }
@@ -312,5 +363,17 @@
 
   .experiences-list {
     gap: 4rem;
+  }
+
+  .desert-decoration {
+    width: 120px;
+  }
+
+  .desert-left {
+    left: 0%;
+  }
+
+  .desert-right {
+    right: 0%;
   }
 }
