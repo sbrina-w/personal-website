@@ -95,6 +95,9 @@ void main() {
   float t = uTime * uSpeed * 0.6; 
   float distortion = cnoise((normal + t) * uNoiseDensity) * uNoiseStrength;
 
+  // Apply a smoothing function to the distortion
+  distortion = smoothstep(-0.5, 0.5, distortion);
+  
   vec3 pos = position + (normal * distortion);
   float angle = sin(uv.y * uFreq + t) * uAmp * 0.3; 
   pos = rotateY(pos, angle);
