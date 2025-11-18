@@ -224,6 +224,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, isExpanded, o
       onClick={handleCardClick}
       style={gradient && !isExpanded ? {
         background: `
+          #ffffff61,
           radial-gradient(
             circle 300px at ${gradient.x}% ${gradient.y}%,
             rgba(255, 230, 170, 0.45) 0%,
