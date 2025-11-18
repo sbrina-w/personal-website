@@ -152,7 +152,6 @@ export const Menu: React.FC<MenuProps> = ({ onMenuItemClick, mouseX = 0, mouseY 
                         rgba(255, 255, 255, 0.08) 100%
                       ),
                       linear-gradient(
-                        ${angle}deg,
                         rgba(255, 230, 170, 0) 0%,
                         rgba(255, 230, 170, 0.12) 30%,
                         rgba(255, 240, 200, 0.06) 60%,

@@ -6,6 +6,7 @@ uniform float uHue;
 uniform float uAlpha;
 uniform sampler2D uBlurTexture;
 uniform sampler2D uGrainTexture;
+uniform float uIsDarkMode;
 
 // Random function for grain/noise
 float random(vec2 st) {
@@ -52,7 +53,14 @@ void main() {
   float edgeFade = smoothstep(0.0, 0.3, elementMask) * smoothstep(1.0, 0.7, elementMask);
   softGrain *= edgeFade;
   
-  vec3 elementColor = vec3(0.823529, 0.827451, 0.694118);
+  // Light mode color (warm beige/cream)
+  vec3 lightModeColor = vec3(0.823529, 0.827451, 0.694118);
+  
+  // Dark mode color (darker, more muted warm tone)
+  vec3 darkModeColor = vec3(0.45, 0.42, 0.38);
+  
+  // Interpolate between light and dark mode colors
+  vec3 elementColor = mix(lightModeColor, darkModeColor, uIsDarkMode);
   
   // Mix with softer alpha for more transparency
   vec3 color = elementColor;

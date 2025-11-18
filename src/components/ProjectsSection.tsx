@@ -223,20 +223,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, isExpanded, o
       className={`project-card ${isVisible ? 'visible' : ''} ${isExpanded ? 'expanded' : ''}`}
       onClick={handleCardClick}
       style={gradient && !isExpanded ? {
-        background: `
-          #ffffff61,
+        backgroundImage: `
           radial-gradient(
             circle 300px at ${gradient.x}% ${gradient.y}%,
-            rgba(255, 230, 170, 0.45) 0%,
-            rgba(255, 240, 200, 0.28) 40%,
-            rgba(255, 255, 255, 0.08) 100%
-          ),
-          linear-gradient(
-            ${Math.atan2(gradient.y - gradient.prevY, gradient.x - gradient.prevX) * (180 / Math.PI)}deg,
-            rgba(255, 230, 170, 0) 0%,
-            rgba(255, 230, 170, 0.12) 30%,
-            rgba(255, 240, 200, 0.06) 60%,
-            rgba(255, 255, 255, 0) 100%
+            var(--gradient-warm-1) 0%,
+            var(--gradient-warm-2) 40%,
+            var(--gradient-warm-3) 100%
           )
         `,
       } : {}}

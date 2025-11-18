@@ -5,9 +5,11 @@ interface NavigationProps {
   onNavigate: (sectionId: string) => void;
   isMuted: boolean;
   onToggleMute: () => void;
+  isDarkMode: boolean;
+  onToggleTheme: () => void;
 }
 
-export const Navigation: React.FC<NavigationProps> = ({ onNavigate, isMuted, onToggleMute }) => {
+export const Navigation: React.FC<NavigationProps> = ({ onNavigate, isMuted, onToggleMute, isDarkMode, onToggleTheme }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>('');
   const toggleRef = useRef<HTMLButtonElement>(null);
@@ -91,15 +93,40 @@ export const Navigation: React.FC<NavigationProps> = ({ onNavigate, isMuted, onT
           background: `
             radial-gradient(
               circle 400px at ${gradient.x}% ${gradient.y}%,
-              rgba(255, 230, 170, 0.35) 0%,
-              rgba(255, 240, 200, 0.22) 40%,
-              rgba(255, 255, 255, 0.05) 100%
+              var(--gradient-warm-1) 0%,
+              var(--gradient-warm-2) 40%,
+              var(--gradient-warm-3) 100%
             ),
-            rgba(245, 241, 232, 0.85)
+            var(--nav-bg)
           `,
         }}
       >
-        <div className="nav-logo">sabrina wang</div>
+        <div className="nav-left">
+          <button
+            className="theme-toggle"
+            onClick={onToggleTheme}
+            aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+          >
+            {isDarkMode ? (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>
+            ) : (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+            )}
+          </button>
+          <div className="nav-logo">sabrina wang</div>
+        </div>
         
         <div className="nav-right">
           <button

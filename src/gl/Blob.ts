@@ -64,6 +64,7 @@ export default class Blob extends THREE.Object3D {
         uAlpha: { value: 1.0 },
         uBlurTexture: { value: blurTexture },
         uGrainTexture: { value: grainTexture },
+        uIsDarkMode: { value: 0.0 },
       },
       defines: {
         PI: Math.PI

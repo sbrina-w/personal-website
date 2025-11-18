@@ -3,12 +3,58 @@
   --primary-bg: #f5f1e8;
   --secondary-bg: #faf8f3;
   --accent-dark: #2c2416;
-  --accent-light: #8b6f47;
+  --accent: #8b6f47;
+  --accent-light: #d4a574;
   --text-dark: #2c2416;
   --text-light: #666;
-  --border-color: #e0d5c7;
-  --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  --border-color: rgba(212, 165, 116, 0.2);
+  --shadow: 0 8px 24px rgba(139, 111, 71, 0.15);
   --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --card-bg: rgba(255, 255, 255, 0.38);
+  --nav-bg: rgba(245, 241, 232, 0.85);
+  --gradient-warm-1: rgba(255, 230, 170, 0.45);
+  --gradient-warm-2: rgba(255, 240, 200, 0.28);
+  --gradient-warm-3: rgba(255, 255, 255, 0.08);
+  --carousel-bg: rgba(212, 165, 116, 0.1);
+  --carousel-dot-bg: rgba(255, 255, 255, 0.5);
+  --carousel-dot-hover: rgba(255, 255, 255, 0.8);
+  --scrollbar-track: rgba(212, 165, 116, 0.1);
+  --scrollbar-thumb: rgba(139, 111, 71, 0.5);
+  --scrollbar-thumb-hover: rgba(139, 111, 71, 0.7);
+  --accent-shadow: rgba(139, 111, 71, 0.4);
+  --menu-item-bg: linear-gradient(135deg, #f5f1e8 0%, #faf8f3 100%);
+  --tech-tag-bg: rgba(212, 165, 116, 0.15);
+  --tech-tag-border: rgba(212, 165, 116, 0.25);
+  --tech-tag-hover-bg: rgba(212, 165, 116, 0.25);
+}
+
+[data-theme='dark'] {
+  --primary-bg: #1a1a1a;
+  --secondary-bg: #242424;
+  --accent-dark: #e8e4dc;
+  --accent: #b89968;
+  --accent-light: #c9a876;
+  --text-dark: #e8e4dc;
+  --text-light: #a8a8a8;
+  --border-color: rgba(184, 153, 104, 0.25);
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.3);
+  --card-bg: rgba(35, 35, 35, 0.6);
+  --nav-bg: rgba(26, 26, 26, 0.9);
+  --gradient-warm-1: rgba(184, 153, 104, 0.25);
+  --gradient-warm-2: rgba(139, 111, 71, 0.15);
+  --gradient-warm-3: rgba(60, 60, 60, 0.1);
+  --carousel-bg: rgba(60, 60, 60, 0.3);
+  --carousel-dot-bg: rgba(80, 80, 80, 0.5);
+  --carousel-dot-hover: rgba(120, 120, 120, 0.8);
+  --scrollbar-track: rgba(60, 60, 60, 0.3);
+  --scrollbar-thumb: rgba(100, 100, 100, 0.5);
+  --scrollbar-thumb-hover: rgba(120, 120, 120, 0.7);
+  --accent-shadow: rgba(184, 153, 104, 0.4);
+  --menu-item-bg: linear-gradient(135deg, #242424 0%, #2a2a2a 100%);
+  --tech-tag-bg: rgba(184, 153, 104, 0.15);
+  --tech-tag-border: rgba(184, 153, 104, 0.25);
+  --tech-tag-hover-bg: rgba(184, 153, 104, 0.25);
 }
 
 * {

@@ -6,19 +6,51 @@
   height: 70px;
   backdrop-filter: blur(30px) saturate(1.5);
   -webkit-backdrop-filter: blur(30px) saturate(1.5);
-  border-bottom: 1px solid rgba(224, 213, 199, 0.3);
+  border-bottom: 1px solid var(--border-color);
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 2rem;
   z-index: 100;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--shadow-sm);
   transition: background 0.15s ease-out;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-light);
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.theme-toggle:active {
+  transform: scale(0.95);
+}
+
+.theme-toggle svg {
+  display: block;
 }
 
 .nav-logo {
   font-size: 1.2rem;
-  color: #8b6f47;
+  color: var(--accent-light);
   font-weight: 400;
   letter-spacing: 0.5px;
   text-transform: lowercase;
@@ -46,7 +78,7 @@
   border: none;
   padding: 0.5rem 0;
   font-size: 0.95rem;
-  color: #666;
+  color: var(--text-light);
   text-transform: uppercase;
   letter-spacing: 1px;
   transition: color 0.3s ease;
@@ -55,11 +87,11 @@
 }
 
 .nav-link:hover {
-  color: #8b6f47;
+  color: var(--accent-light);
 }
 
 .nav-link.active {
-  color: #8b6f47;
+  color: var(--accent-light);
   font-weight: 600;
 }
 
@@ -70,7 +102,7 @@
   left: 0;
   width: 0;
   height: 2px;
-  background: #d4a574;
+  background: var(--accent-light);
   transition: width 0.3s ease;
 }
 
@@ -92,7 +124,7 @@
 .nav-toggle span {
   width: 25px;
   height: 2.5px;
-  background: #8b6f47;
+  background: var(--accent-light);
   border-radius: 2px;
   transition: all 0.3s ease;
 }
@@ -105,7 +137,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #8b6f47;
+  color: var(--accent-light);
   opacity: 0.7;
   transition: all 0.3s ease;
 }
@@ -185,7 +217,7 @@
   .nav-toggle span {
     width: 25px;
     height: 2.5px;
-    background: #8b6f47;
+    background: var(--accent);
     border-radius: 2px;
     transition: all 0.3s ease;
   }
@@ -234,7 +266,7 @@
 
   .nav-link.active {
     background: linear-gradient(90deg, rgba(212, 165, 116, 0.1) 0%, transparent 100%);
-    border-left: 3px solid #d4a574;
+    border-left: 3px solid var(--accent-light);
     padding-left: calc(1rem - 3px);
   }
 
