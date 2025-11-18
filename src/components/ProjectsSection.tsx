@@ -448,6 +448,7 @@ export const ProjectsSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [cardGradients, setCardGradients] = useState<Record<number, { x: number; y: number; prevX: number; prevY: number }>>({});
   const prevGradientsRef = useRef<Record<number, { x: number; y: number }>>({});
+  const [scrollY, setScrollY] = useState(0);
 
   const handleToggleExpand = (index: number) => {
     setExpandedIndex(expandedIndex === index ? null : index);
@@ -480,10 +481,25 @@ export const ProjectsSection: React.FC = () => {
       setCardGradients(newGradients);
     };
 
+    const handleScroll = () => {
+      if (!section) return;
+      const rect = section.getBoundingClientRect();
+      const sectionTop = rect.top;
+      const sectionHeight = rect.height;
+      const windowHeight = window.innerHeight;
+      
+      // Calculate scroll progress relative to section visibility
+      const scrollProgress = (windowHeight - sectionTop) / (windowHeight + sectionHeight);
+      setScrollY(scrollProgress);
+    };
+
     document.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial call
 
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -554,13 +570,29 @@ export const ProjectsSection: React.FC = () => {
         src="/illustrations/drink2.png"
         alt="Cake Decoration Left"
         className="dessert-decoration"
-        style={{ position: 'absolute', width: '500px', height: '500px', right: '5%', bottom: '10%', transform: 'rotate(15deg)'}}
+        style={{ 
+          position: 'absolute', 
+          width: '500px', 
+          height: '500px', 
+          right: '5%', 
+          bottom: '10%', 
+          transform: `rotate(15deg) translate(${scrollY * 30}px, ${scrollY * -200}px)`,
+          transition: 'transform 0.1s ease-out'
+        }}
       />
       <PixelatedImage
         src="/illustrations/cake7.png"
         alt="Cake Decoration Right"
         className="dessert-decoration"
-        style={{ position: 'absolute', width: '500px', height: '500px', left: '3%', top: '20%'}}
+        style={{ 
+          position: 'absolute', 
+          width: '500px', 
+          height: '500px', 
+          left: '3%', 
+          top: '20%',
+          transform: `translate(${scrollY * -30}px, ${scrollY * -250}px)`,
+          transition: 'transform 0.1s ease-out'
+        }}
       />
       <div className="projects-container">
         <h2 className="projects-section-title">Projects</h2>

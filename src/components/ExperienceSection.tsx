@@ -111,6 +111,7 @@ export const ExperienceSection: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [visibleCards, setVisibleCards] = useState<Set<number>>(new Set());
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -120,6 +121,13 @@ export const ExperienceSection: React.FC = () => {
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
       const activationPoint = scrollY + windowHeight / 2;
+
+      // Calculate parallax scroll progress relative to section visibility
+      const rect = section.getBoundingClientRect();
+      const sectionTop = rect.top;
+      const sectionHeight = rect.height;
+      const parallaxProgress = (windowHeight - sectionTop) / (windowHeight + sectionHeight);
+      setScrollY(parallaxProgress);
 
       // Calculate scroll-based progress for timeline first
       const firstCard = cardRefs.current[0];
@@ -196,13 +204,30 @@ export const ExperienceSection: React.FC = () => {
         src="/illustrations/cake5.png"
         alt="Cake Decoration Left"
         className="dessert-decoration"
-        style={{ position: 'absolute', width: '400px', height: '400px', right: '5%', bottom: '20%', transform: 'rotate(15deg)', opacity: 0.2}}
+        style={{ 
+          position: 'absolute', 
+          width: '400px', 
+          height: '400px', 
+          right: '5%', 
+          bottom: '20%', 
+          transform: `rotate(15deg) translate(${scrollY * 30}px, ${scrollY * -180}px)`,
+          opacity: 0.2,
+          transition: 'transform 0.1s ease-out'
+        }}
       />
       <PixelatedImage
         src="/illustrations/cake3.png"
         alt="Cake Decoration Right"
         className="dessert-decoration"
-        style={{ position: 'absolute', width: '400px', height: '400px', left: '3%', top: '20%', transform: 'rotate(-15deg)'}}
+        style={{ 
+          position: 'absolute', 
+          width: '400px', 
+          height: '400px', 
+          left: '3%', 
+          top: '20%', 
+          transform: `rotate(-15deg) translate(${scrollY * -30}px, ${scrollY * -200}px)`,
+          transition: 'transform 0.1s ease-out'
+        }}
       />
       <div className="experience-container">
         <h2 className="experience-section-title">Experience</h2>
