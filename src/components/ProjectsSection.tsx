@@ -17,21 +17,6 @@ interface Project {
 
 const projects: Project[] = [
   {
-    name: 'Nudge',
-    year: '2024',
-    description: 'Chrome extension inspired by The Stanley Parable that gamifies productivity through an AI-powered narrator that monitors user activity, delivers witty spoken narration, and enforces focus through intelligent redirects.',
-    fullDescription: 'A Chrome extension inspired by The Stanley Parable that gamifies productivity through an AI-powered narrator that monitors user activity, delivers witty spoken narration, and enforces focus through intelligent redirects. The system combines real-time behavior tracking, screenshot analysis via LLMs, and voice synthesis to create a compelling productivity experience with personality.',
-    detailedAccomplishments: [
-      'Built Chrome extension with Manifest V3 featuring background service worker for task orchestration, content script for mascot injection and activity monitoring (inactivity, typing, profanity detection), and SPA-aware navigation tracking using MutationObserver and history API overrides',
-      'Engineered AI analysis pipeline using Flask backend that receives screenshots and behavioral data, processes context through OpenAI LLMs to generate narrative responses, and produces spoken audio via ElevenLabs TTS with emotion-matched voice delivery',
-      'Implemented behavioral tracking system monitoring LeetCode usage patterns (problem pages, solution viewing, submissions), enforcing smart redirects from distraction sites (Instagram, YouTube, Reddit), and maintaining a "disobedience counter" that drives narrator personality shifts',
-      'Designed animated mascot system with emotion-based state management (neutral, happy, angry, super-angry) using PNG sequence animations synchronized with spoken narration and user actions',
-      'Built React analytics dashboards displaying productivity scores, achievements, recent activity, weekly stats, and todo lists by consuming MongoDB-stored logs from the backend analytics engine'
-    ],
-    techStack: ['Python', 'JavaScript', 'HTML/CSS', 'Flask', 'OpenAI', 'LangChain', 'ElevenLabs', 'MongoDB', 'Chrome Extension API', 'React', 'Vite'],
-    github: 'https://github.com/sbrina-w/nudge'
-  },
-  {
     name: 'Yelp Analysis',
     year: '2024',
     description: 'Production-ready analytics platform transforming thousands of Yelp reviews into actionable business insights through a hybrid ML/LLM pipeline with semantic search, sentiment analysis, and automated topic clustering.',
@@ -44,7 +29,8 @@ const projects: Project[] = [
       'Added robustness features including Streamlit caching for instant re-renders, retry/fallback logic for LLM calls, seeded reproducible clustering, and concurrent batch processing for scalable analysis'
     ],
     techStack: ['Streamlit', 'LangChain', 'OpenAI', 'HuggingFace', 'ChromaDB', 'Python', 'Pandas', 'Plotly'],
-    github: 'https://github.com/sbrina-w/yelp-analysis'
+    github: 'https://github.com/sbrina-w/yelp-analysis',
+    liveLink: 'https://yelp-analysis.streamlit.app/'
   },
   {
     name: 'PokePlants',
@@ -59,7 +45,7 @@ const projects: Project[] = [
       'Designed modular architecture with reusable vision pipeline and agent components that can be repurposed for autonomous gameplay, gesture recognition, or interactive prototyping platforms'
     ],
     techStack: ['React', 'Python', 'Flask', 'MongoDB', 'OpenAI', 'OpenCV', 'Arduino', 'Socket.io', 'WebSockets'],
-    github: 'https://github.com/sbrina-w/pokeplants',
+    github: 'https://github.com/FO214/ht6',
     devpost: 'https://devpost.com/software/pokeplants'
   },
   {
@@ -75,8 +61,24 @@ const projects: Project[] = [
       'Won 2 awards at WaffleHacks 2024, including recognition for technical implementation and practical utility for artists and designers'
     ],
     techStack: ['Flutter', 'Dart', 'Python', 'Flask', 'OpenCV', 'SciPy', 'AWS EC2'],
-    github: 'https://github.com/sbrina-w/chroma',
-    devpost: 'https://devpost.com/software/chroma'
+    github: 'https://github.com/sbrina-w/Chroma',
+    devpost: 'https://devpost.com/software/chroma-q3wshr'
+  },
+  {
+    name: 'Nudge',
+    year: '2024',
+    description: 'Chrome extension inspired by The Stanley Parable that gamifies productivity through an AI-powered narrator that monitors user activity, delivers witty spoken narration, and enforces focus through intelligent redirects.',
+    fullDescription: 'A Chrome extension inspired by The Stanley Parable that gamifies productivity through an AI-powered narrator that monitors user activity, delivers witty spoken narration, and enforces focus through intelligent redirects. The system combines real-time behavior tracking, screenshot analysis via LLMs, and voice synthesis to create a compelling productivity experience with personality.',
+    detailedAccomplishments: [
+      'Built Chrome extension with Manifest V3 featuring background service worker for task orchestration, content script for mascot injection and activity monitoring (inactivity, typing, profanity detection), and SPA-aware navigation tracking using MutationObserver and history API overrides',
+      'Engineered AI analysis pipeline using Flask backend that receives screenshots and behavioral data, processes context through OpenAI LLMs to generate narrative responses, and produces spoken audio via ElevenLabs TTS with emotion-matched voice delivery',
+      'Implemented behavioral tracking system monitoring LeetCode usage patterns (problem pages, solution viewing, submissions), enforcing smart redirects from distraction sites (Instagram, YouTube, Reddit), and maintaining a "disobedience counter" that drives narrator personality shifts',
+      'Designed animated mascot system with emotion-based state management (neutral, happy, angry, super-angry) using PNG sequence animations synchronized with spoken narration and user actions',
+      'Built React analytics dashboards displaying productivity scores, achievements, recent activity, weekly stats, and todo lists by consuming MongoDB-stored logs from the backend analytics engine'
+    ],
+    techStack: ['Python', 'JavaScript', 'HTML/CSS', 'Flask', 'OpenAI', 'LangChain', 'ElevenLabs', 'MongoDB', 'Chrome Extension API', 'React', 'Vite'],
+    github: 'https://github.com/sbrina-w/uofthacks12',
+    liveLink: 'https://dorahacks.io/buidl/21709'
   },
   {
     name: 'MoodMinder',
@@ -91,11 +93,11 @@ const projects: Project[] = [
       'Published to Chrome Web Store with Manifest V3 compliance, deployed Flask API on AWS for scalable sentiment processing, and maintained privacy-focused architecture with no external data sharing'
     ],
     techStack: ['Python', 'JavaScript', 'HTML/CSS', 'Flask', 'VADER Sentiment', 'Chrome Extension API', 'AWS'],
-    github: 'https://github.com/sbrina-w/moodminder',
-    liveLink: 'https://chrome.google.com/webstore'
+    github: 'https://github.com/rubylu-05/moodminder',
+    liveLink: 'https://chromewebstore.google.com/detail/moodminder/iobpegidgaikaooclpomdpplcffiablb'
   },
   {
-    name: 'Mini C Compiler',
+    name: 'Mini C (WLP4) Compiler',
     year: '2024',
     description: 'Single-pass code generator translating WLP4 (simplified C-like language) parse trees into executable MIPS assembly with stack-managed function frames and expression evaluation.',
     fullDescription: 'A single-pass code generator that translates WLP4 (a simplified C-like language) parse trees into executable MIPS assembly. The compiler implements stack-managed function frames, expression evaluation with correct pointer/integer semantics, control flow generation, dynamic memory allocation, and runtime support for I/O operations.',
@@ -107,7 +109,6 @@ const projects: Project[] = [
       'Validated compiler correctness by testing against reference MIPS outputs, iterating until behavior matched expected semantics for all language features'
     ],
     techStack: ['C++', 'MIPS Assembly', 'Unix Toolchain'],
-    github: 'https://github.com/sbrina-w/wlp4-compiler'
   },
   {
     name: 'TungTung',
@@ -122,7 +123,7 @@ const projects: Project[] = [
       'Created modern Next.js frontend with TypeScript, modular component architecture, and responsive design patterns for seamless cross-device experience'
     ],
     techStack: ['Next.js', 'TypeScript', 'Java 17', 'Spring Boot', 'MySQL'],
-    github: 'https://github.com/sbrina-w/tungtung'
+    github: 'https://github.com/pahu2353/TungTung'
   },
   {
     name: 'RaiiNet',
@@ -137,7 +138,6 @@ const projects: Project[] = [
       'Added scriptable gameplay support through sequence files for automated testing, with command history logging and nested sequence execution'
     ],
     techStack: ['C++', 'X11/Xwindow', 'Observer Pattern', 'MVC Architecture'],
-    github: 'https://github.com/sbrina-w/rainet'
   }
 ];
 
