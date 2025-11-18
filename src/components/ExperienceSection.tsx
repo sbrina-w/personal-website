@@ -198,8 +198,23 @@ export const ExperienceSection: React.FC = () => {
         <h2 className="experience-section-title">Experience</h2>
         
         <div className="experience-content">
-          <div className="timeline-wrapper">
-            {/* Background timeline track */}
+          <div className="timeline-wrapper" style={{ position: 'relative' }}>
+            {/* Gradient fade-in line above first circle */}
+            <div
+              className="timeline-gradient timeline-gradient-top"
+              style={{
+                position: 'absolute',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                width: '2px',
+                height: '200px',
+                top: `${firstCardCenter - 210}px`,
+                background: 'linear-gradient(to top, #d4a574, rgba(255, 255, 255, 0))',
+                pointerEvents: 'none',
+                zIndex: -1,
+              }}
+            />
+            {/* Timeline track */}
             <div
               className="timeline-track"
               style={{
@@ -211,8 +226,7 @@ export const ExperienceSection: React.FC = () => {
                 width: '2px',
               }}
             />
-            
-            {/* Animated progress line */}
+            {/* Timeline progress */}
             <div
               className="timeline-progress"
               style={{
@@ -224,7 +238,6 @@ export const ExperienceSection: React.FC = () => {
                 width: '2px',
               }}
             />
-            
             {/* Timeline circles */}
             {experiences.map((_, index) => {
               const card = cardRefs.current[index];
@@ -252,8 +265,22 @@ export const ExperienceSection: React.FC = () => {
                 </div>
               );
             })}
+            {/* Gradient fade-out line below last circle */}
+            <div
+              className="timeline-gradient timeline-gradient-bottom"
+              style={{
+                position: 'absolute',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                width: '2px',
+                height: '200px',
+                top: `${lastCardCenter + 10}px`,
+                background: 'linear-gradient(to bottom, #d4a574, rgba(224, 213, 199, 0))',
+                pointerEvents: 'none',
+                zIndex: -1,
+              }}
+            />
           </div>
-
           <div className="experiences-list">
             {experiences.map((exp, index) => (
               <ExperienceCard
