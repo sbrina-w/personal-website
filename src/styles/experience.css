@@ -8,25 +8,10 @@
   overflow: visible;
 }
 
-.desert-decoration {
-  position: absolute;
-  width: 200px;
-  height: auto;
+.dessert-decoration {
   opacity: 0.3;
-  pointer-events: none;
   z-index: 0;
-}
-
-.desert-left {
-  left: 5%;
-  top: 20%;
-  transform: rotate(-15deg);
-}
-
-.desert-right {
-  right: 5%;
-  bottom: 20%;
-  transform: rotate(15deg);
+  pointer-events: auto;
 }
 
 .experience-container {
@@ -365,15 +350,15 @@
     gap: 4rem;
   }
 
-  .desert-decoration {
+  .dessert-decoration {
     width: 120px;
   }
 
-  .desert-left {
+  .dessert-left {
     left: 0%;
   }
 
-  .desert-right {
+  .dessert-right {
     right: 0%;
   }
 }

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import '../styles/experience.css';
+import { PixelatedImage } from './PixelatedImage';
 
 interface Experience {
   company: string;
@@ -191,9 +192,18 @@ export const ExperienceSection: React.FC = () => {
 
   return (
     <section ref={sectionRef} className="experience-section" id="experience">
-      <img src="/illustrations/cake3.png" alt="" className="desert-decoration desert-left" />
-      <img src="/illustrations/cake5.png" alt="" className="desert-decoration desert-right" />
-      
+      <PixelatedImage
+        src="/illustrations/cake5.png"
+        alt="Cake Decoration Left"
+        className="dessert-decoration"
+        style={{ position: 'absolute', width: '400px', height: '400px', right: '5%', bottom: '20%', transform: 'rotate(15deg)', opacity: 0.2}}
+      />
+      <PixelatedImage
+        src="/illustrations/cake3.png"
+        alt="Cake Decoration Right"
+        className="dessert-decoration"
+        style={{ position: 'absolute', width: '400px', height: '400px', left: '3%', top: '20%', transform: 'rotate(-15deg)'}}
+      />
       <div className="experience-container">
         <h2 className="experience-section-title">Experience</h2>
         

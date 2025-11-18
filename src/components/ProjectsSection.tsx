@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 import '../styles/projects.css';
+import { PixelatedImage } from './PixelatedImage';
 
 interface Project {
   name: string;
@@ -493,9 +494,18 @@ export const ProjectsSection: React.FC = () => {
 
   return (
     <section className="projects-section" id="projects">
-      <img src="/illustrations/drink2.png" alt="" className="desert-decoration desert-left" />
-      <img src="/illustrations/cake7.png" alt="" className="desert-decoration desert-right" />
-      
+      <PixelatedImage
+        src="/illustrations/drink2.png"
+        alt="Cake Decoration Left"
+        className="dessert-decoration"
+        style={{ position: 'absolute', width: '500px', height: '500px', right: '5%', bottom: '10%', transform: 'rotate(15deg)'}}
+      />
+      <PixelatedImage
+        src="/illustrations/cake7.png"
+        alt="Cake Decoration Right"
+        className="dessert-decoration"
+        style={{ position: 'absolute', width: '500px', height: '500px', left: '3%', top: '20%'}}
+      />
       <div className="projects-container">
         <h2 className="projects-section-title">Projects</h2>
         

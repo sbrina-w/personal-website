@@ -4,19 +4,20 @@ interface PixelatedImageProps {
   src: string;
   alt: string;
   className?: string;
+  style?: React.CSSProperties;
 }
 
-export const PixelatedImage: React.FC<PixelatedImageProps> = ({ src, alt, className = '' }) => {
+export const PixelatedImage: React.FC<PixelatedImageProps> = ({ src, alt, className = '', style }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const subCanvasRef = useRef<HTMLCanvasElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const factorRef = useRef(1);
   const animationRef = useRef<number | undefined>(undefined);
   const glitchRef = useRef(0);
 
   const hoverFactor = 0.08; // Even lower for more extreme pixelation
   const animationStep = 0.015; // Smoother, slower animation for unpixelation
+  const factorRef = useRef(1);
 
   const draw = (ctx: CanvasRenderingContext2D, subCtx: CanvasRenderingContext2D, canvas: HTMLCanvasElement, subCanvas: HTMLCanvasElement, image: HTMLImageElement) => {
     const factor = factorRef.current;
@@ -154,6 +155,7 @@ export const PixelatedImage: React.FC<PixelatedImageProps> = ({ src, alt, classN
     ctx.globalCompositeOperation = 'source-over';
 
     // Initial draw
+    factorRef.current = 0.2; // small enough to trigger glitch
     draw(ctx, subCtx, canvas, subCanvas, image);
 
     return () => {
@@ -168,7 +170,7 @@ export const PixelatedImage: React.FC<PixelatedImageProps> = ({ src, alt, classN
   }, [isLoaded]);
 
   return (
-    <div className={`pixelated-image-container ${className}`} style={{ position: 'relative', width: '100%', height: '100%' }}>
+    <div className={`pixelated-image-container ${className}`} style={{ position: 'relative', width: '100%', height: '100%' , ...style }}>
       <img
         ref={imageRef}
         src={src}
@@ -180,7 +182,7 @@ export const PixelatedImage: React.FC<PixelatedImageProps> = ({ src, alt, classN
           left: 0,
           width: '100%',
           height: '100%',
-          objectFit: 'cover',
+          objectFit: 'contain',
           transform: 'none', // Ensure no scaling occurs
         }}
       />
