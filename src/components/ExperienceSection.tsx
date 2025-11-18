@@ -12,8 +12,8 @@ interface Experience {
 
 const experiences: Experience[] = [
   {
-    company: 'Ontario Lottery and Gaming (OLG)',
-    role: 'Data Scientist, Advanced Analytics Team',
+    company: 'Data Scientist, Advanced Analytics Team',
+    role: 'Ontario Lottery and Gaming (OLG)',
     period: 'May 2025 - Aug 2025',
     description: 'Working on the Advanced Analytics team, developing machine learning models and GenAI applications to drive data-informed decision-making across OLG\'s operations.',
     accomplishments: [
@@ -25,8 +25,8 @@ const experiences: Experience[] = [
     ]
   },
   {
-    company: 'BrainRidge Consulting',
-    role: 'Full-Stack Software Developer',
+    company: 'Full-Stack Software Developer',
+    role: 'BrainRidge Consulting',
     period: 'Jan 2025 - Apr 2025',
     description: 'Returned to BrainRidge to expand my technical scope beyond frontend, taking on full-stack responsibilities for the OneDashboard project. I led feature development from requirements gathering through deployment, working with databases, caching layers, and backend services while continuing to refine the user experience.',
     accomplishments: [
@@ -38,8 +38,8 @@ const experiences: Experience[] = [
     ]
   },
   {
-    company: 'BrainRidge Consulting',
-    role: 'Frontend Software Developer',
+    company: 'Frontend Software Developer',
+    role: 'BrainRidge Consulting',
     period: 'May 2024 - Aug 2024',
     description: 'Joined BrainRidge as the sole frontend developer for OneDashboard, an internal monitoring platform for BMO US. Despite having no prior experience with Angular or NestJS, I quickly ramped up and took ownership of the entire frontend, redesigning the UI/UX from the ground up and transforming the project from a proof-of-concept into a production-ready application.',
     accomplishments: [
