@@ -147,9 +147,10 @@ interface ProjectCardProps {
   index: number;
   isExpanded: boolean;
   onToggleExpand: () => void;
+  gradient?: { x: number; y: number; prevX: number; prevY: number };
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, isExpanded, onToggleExpand }) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, isExpanded, onToggleExpand, gradient }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const expandedContentRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -221,6 +222,23 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, isExpanded, o
       }}
       className={`project-card ${isVisible ? 'visible' : ''} ${isExpanded ? 'expanded' : ''}`}
       onClick={handleCardClick}
+      style={gradient && !isExpanded ? {
+        background: `
+          radial-gradient(
+            circle 300px at ${gradient.x}% ${gradient.y}%,
+            rgba(255, 230, 170, 0.45) 0%,
+            rgba(255, 240, 200, 0.28) 40%,
+            rgba(255, 255, 255, 0.08) 100%
+          ),
+          linear-gradient(
+            ${Math.atan2(gradient.y - gradient.prevY, gradient.x - gradient.prevX) * (180 / Math.PI)}deg,
+            rgba(255, 230, 170, 0) 0%,
+            rgba(255, 230, 170, 0.12) 30%,
+            rgba(255, 240, 200, 0.06) 60%,
+            rgba(255, 255, 255, 0) 100%
+          )
+        `,
+      } : {}}
     >
       <AnimatePresence mode="wait">
         {!isExpanded ? (
@@ -426,10 +444,47 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, isExpanded, o
 
 export const ProjectsSection: React.FC = () => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [cardGradients, setCardGradients] = useState<Record<number, { x: number; y: number; prevX: number; prevY: number }>>({});
+  const prevGradientsRef = useRef<Record<number, { x: number; y: number }>>({});
 
   const handleToggleExpand = (index: number) => {
     setExpandedIndex(expandedIndex === index ? null : index);
   };
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const cards = section.querySelectorAll('.project-card');
+      const newGradients: Record<number, { x: number; y: number; prevX: number; prevY: number }> = {};
+      
+      cards.forEach((card, index) => {
+        const cardRect = card.getBoundingClientRect();
+        const x = ((e.clientX - cardRect.left) / cardRect.width) * 100;
+        const y = ((e.clientY - cardRect.top) / cardRect.height) * 100;
+        
+        const prev = prevGradientsRef.current[index];
+        newGradients[index] = { 
+          x, 
+          y,
+          prevX: prev?.x ?? x,
+          prevY: prev?.y ?? y
+        };
+        
+        prevGradientsRef.current[index] = { x, y };
+      });
+      
+      setCardGradients(newGradients);
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
 
   // Create display order: fill rows with non-expanded projects, insert expanded at next available row
   const renderOrder = () => {
@@ -493,7 +548,7 @@ export const ProjectsSection: React.FC = () => {
   const orderedItems = renderOrder();
 
   return (
-    <section className="projects-section" id="projects">
+    <section ref={sectionRef} className="projects-section" id="projects">
       <PixelatedImage
         src="/illustrations/drink2.png"
         alt="Cake Decoration Left"
@@ -521,6 +576,7 @@ export const ProjectsSection: React.FC = () => {
                 index={item.originalIndex}
                 isExpanded={item.isExpanded}
                 onToggleExpand={() => handleToggleExpand(item.originalIndex)}
+                gradient={cardGradients[item.originalIndex]}
               />
             ))}
           </motion.div>

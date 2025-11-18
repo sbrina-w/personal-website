@@ -53,7 +53,7 @@
 .project-card:hover:not(.expanded) {
   transform: translateY(-5px);
   border-color: rgba(212, 165, 116, 0.4);
-  background: rgba(212, 165, 116, 0.08);
+  box-shadow: 0 8px 24px rgba(139, 111, 71, 0.15);
 }
 
 .project-card.expanded {
