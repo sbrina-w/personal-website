@@ -38,11 +38,10 @@
   border-radius: 12px;
   padding: 2rem;
   cursor: pointer;
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
   transform-origin: center;
+  min-height: 400px;
 }
 
 .project-card:hover:not(.expanded) {
@@ -56,7 +55,22 @@
   cursor: default;
 }
 
+.card-inner,
+.collapsed-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;  
+  min-height: 0;  
+}
+
+.project-content{
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
 .expand-hint {
+  margin-top: auto;
   font-size: 0.8rem;
   color: #8b6f47;
   font-family: 'Courier New', monospace;
@@ -65,6 +79,7 @@
   border-top: 1px solid rgba(212, 165, 116, 0.2);
   opacity: 0.7;
   transition: opacity 0.3s ease;
+  justify-self: flex-end;
 }
 
 .project-card:hover .expand-hint {
@@ -78,36 +93,6 @@
   gap: 3rem;
   padding: 3rem;
   min-height: 600px;
-  animation: expandIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-@keyframes expandIn {
-  from {
-    opacity: 0;
-    transform: translateY(30px) scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-/* Collapse animation */
-.project-card:not(.expanded) .project-expanded-content {
-  animation: collapseOut 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-@keyframes collapseOut {
-  from {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    max-height: 1000px;
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-20px) scale(0.98);
-    max-height: 0;
-  }
 }
 
 .project-expanded-left {
@@ -342,7 +327,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem;
-  margin-top: auto;
+  margin-bottom: 1rem;
 }
 
 .tech-tag {

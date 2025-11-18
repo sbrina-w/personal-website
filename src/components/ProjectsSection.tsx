@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 import '../styles/projects.css';
 
 interface Project {
@@ -185,6 +186,18 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, isExpanded, o
     }
   }, [isExpanded, placeholderImages.length]);
 
+  // Auto-scroll to center the expanded card
+  useEffect(() => {
+    if (isExpanded && cardRef.current) {
+      setTimeout(() => {
+        cardRef.current?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+      }, 100);
+    }
+  }, [isExpanded]);
+
   const handleCardClick = (e: React.MouseEvent) => {
     // Don't toggle if clicking on a link
     if ((e.target as HTMLElement).closest('a')) {
@@ -194,179 +207,219 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, isExpanded, o
   };
 
   return (
-    <div 
+    <motion.div 
       ref={cardRef}
+      layout
+      transition={{
+        layout: { 
+          type: 'spring', 
+          stiffness: 350, 
+          damping: 35,
+          mass: 0.8
+        }
+      }}
       className={`project-card ${isVisible ? 'visible' : ''} ${isExpanded ? 'expanded' : ''}`}
-      style={{ animationDelay: `${(index % 3) * 0.1}s` }}
       onClick={handleCardClick}
     >
-      {!isExpanded ? (
-        <>
-          <div className="project-card-header">
-            <div className="project-title-group">
-              <h3 className="project-name">{project.name}</h3>
-              <span className="project-year">{project.year}</span>
-            </div>
-            
-            <div className="project-links">
-              {project.github && (
-                <a 
-                  href={project.github} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="project-link"
-                  aria-label="GitHub"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                  </svg>
-                </a>
-              )}
-              {project.devpost && (
-                <a 
-                  href={project.devpost} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="project-link"
-                  aria-label="Devpost"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M6.002 1.61L0 12.004L6.002 22.39h11.996L24 12.004L17.998 1.61zm1.593 4.084h3.947c3.605 0 6.276 1.695 6.276 6.31c0 4.436-3.21 6.302-6.456 6.302H7.595zm2.517 2.449v7.714h1.241c2.646 0 3.862-1.55 3.862-3.861c.009-2.569-1.096-3.853-3.767-3.853z"/>
-                  </svg>
-                </a>
-              )}
-              {project.liveLink && (
-                <a 
-                  href={project.liveLink} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="project-link"
-                  aria-label="Live Demo"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                    <polyline points="15 3 21 3 21 9"></polyline>
-                    <line x1="10" y1="14" x2="21" y2="3"></line>
-                  </svg>
-                </a>
-              )}
-            </div>
-          </div>
+      <AnimatePresence mode="wait">
+        {!isExpanded ? (
+          <motion.div
+            key="collapsed"
+            className="card-inner collapsed-wrapper"
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            layout
+            transition={{
+              layout: { 
+                type: 'tween',
+                duration: 0.5,
+                ease: [0.4, 0, 0.2, 1]
+              }
+            }}
+          >
+            <div className="project-content">
+              <div className="project-card-header">
+                <div className="project-title-group">
+                  <h3 className="project-name">{project.name}</h3>
+                  <span className="project-year">{project.year}</span>
+                </div>
+                
+                <div className="project-links">
+                  {project.github && (
+                    <a 
+                      href={project.github} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="project-link"
+                      aria-label="GitHub"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                      </svg>
+                    </a>
+                  )}
+                  {project.devpost && (
+                    <a 
+                      href={project.devpost} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="project-link"
+                      aria-label="Devpost"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M6.002 1.61L0 12.004L6.002 22.39h11.996L24 12.004L17.998 1.61zm1.593 4.084h3.947c3.605 0 6.276 1.695 6.276 6.31c0 4.436-3.21 6.302-6.456 6.302H7.595zm2.517 2.449v7.714h1.241c2.646 0 3.862-1.55 3.862-3.861c.009-2.569-1.096-3.853-3.767-3.853z"/>
+                      </svg>
+                    </a>
+                  )}
+                  {project.liveLink && (
+                    <a 
+                      href={project.liveLink} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="project-link"
+                      aria-label="Live Demo"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                      </svg>
+                    </a>
+                  )}
+                </div>
+              </div>
 
-          <p className="project-description">{project.description}</p>
+              <p className="project-description">{project.description}</p>
 
-          <div className="project-tech-stack">
-            {project.techStack.map((tech, i) => (
-              <span key={i} className="tech-tag">{tech}</span>
-            ))}
-          </div>
-          
-          <div className="expand-hint">Click to expand</div>
-        </>
-      ) : (
-        <div ref={expandedContentRef} className="project-expanded-content">
-          <div className="project-expanded-left">
-            <div className="image-carousel">
-              <img 
-                src={placeholderImages[currentImageIndex]} 
-                alt={`${project.name} preview ${currentImageIndex + 1}`}
-                className="carousel-image"
-              />
-              <div className="carousel-dots">
-                {placeholderImages.map((_, i) => (
-                  <button
-                    key={i}
-                    className={`carousel-dot ${i === currentImageIndex ? 'active' : ''}`}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setCurrentImageIndex(i);
-                    }}
-                    aria-label={`Go to image ${i + 1}`}
-                  />
+              <div className="project-tech-stack">
+                {project.techStack.map((tech, i) => (
+                  <span key={i} className="tech-tag">{tech}</span>
                 ))}
               </div>
             </div>
-          </div>
-          
-          <div className="project-expanded-right">
-            <div className="project-expanded-header">
-              <div>
-                <h3 className="project-name-expanded">{project.name}</h3>
-                <span className="project-year-expanded">{project.year}</span>
+            
+            <div className="expand-hint">Click to expand</div>
+          </motion.div>
+        ) : (
+          <motion.div 
+            key="expanded"
+            ref={expandedContentRef} 
+            className="project-expanded-content"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            layout
+            transition={{
+              layout: { 
+                type: 'tween',
+                duration: 0.5,
+                ease: [0.4, 0, 0.2, 1]
+              }
+            }}
+          >
+            <div className="project-expanded-left">
+              <div className="image-carousel">
+                <img 
+                  src={placeholderImages[currentImageIndex]} 
+                  alt={`${project.name} preview ${currentImageIndex + 1}`}
+                  className="carousel-image"
+                />
+                <div className="carousel-dots">
+                  {placeholderImages.map((_, i) => (
+                    <button
+                      key={i}
+                      className={`carousel-dot ${i === currentImageIndex ? 'active' : ''}`}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setCurrentImageIndex(i);
+                      }}
+                      aria-label={`Go to image ${i + 1}`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+            
+            <div className="project-expanded-right">
+              <div className="project-expanded-header">
+                <div>
+                  <h3 className="project-name-expanded">{project.name}</h3>
+                  <span className="project-year-expanded">{project.year}</span>
+                </div>
+                
+                <div className="project-links-expanded">
+                  {project.github && (
+                    <a 
+                      href={project.github} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="project-link"
+                      aria-label="GitHub"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                      </svg>
+                    </a>
+                  )}
+                  {project.devpost && (
+                    <a 
+                      href={project.devpost} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="project-link"
+                      aria-label="Devpost"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M6.002 1.61L0 12.004L6.002 22.39h11.996L24 12.004L17.998 1.61zm1.593 4.084h3.947c3.605 0 6.276 1.695 6.276 6.31c0 4.436-3.21 6.302-6.456 6.302H7.595zm2.517 2.449v7.714h1.241c2.646 0 3.862-1.55 3.862-3.861c.009-2.569-1.096-3.853-3.767-3.853z"/>
+                      </svg>
+                    </a>
+                  )}
+                  {project.liveLink && (
+                    <a 
+                      href={project.liveLink} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="project-link"
+                      aria-label="Live Demo"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                      </svg>
+                    </a>
+                  )}
+                </div>
               </div>
               
-              <div className="project-links-expanded">
-                {project.github && (
-                  <a 
-                    href={project.github} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="project-link"
-                    aria-label="GitHub"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                    </svg>
-                  </a>
-                )}
-                {project.devpost && (
-                  <a 
-                    href={project.devpost} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="project-link"
-                    aria-label="Devpost"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M6.002 1.61L0 12.004L6.002 22.39h11.996L24 12.004L17.998 1.61zm1.593 4.084h3.947c3.605 0 6.276 1.695 6.276 6.31c0 4.436-3.21 6.302-6.456 6.302H7.595zm2.517 2.449v7.714h1.241c2.646 0 3.862-1.55 3.862-3.861c.009-2.569-1.096-3.853-3.767-3.853z"/>
-                    </svg>
-                  </a>
-                )}
-                {project.liveLink && (
-                  <a 
-                    href={project.liveLink} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="project-link"
-                    aria-label="Live Demo"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                      <polyline points="15 3 21 3 21 9"></polyline>
-                      <line x1="10" y1="14" x2="21" y2="3"></line>
-                    </svg>
-                  </a>
-                )}
-              </div>
-            </div>
-            
-            <p className="project-full-description">{project.fullDescription || project.description}</p>
-            
-            {project.detailedAccomplishments && project.detailedAccomplishments.length > 0 && (
-              <ul className="project-accomplishments">
-                {project.detailedAccomplishments.map((item, i) => (
-                  <li key={i}>{item}</li>
+              <p className="project-full-description">{project.fullDescription || project.description}</p>
+              
+              {project.detailedAccomplishments && project.detailedAccomplishments.length > 0 && (
+                <ul className="project-accomplishments">
+                  {project.detailedAccomplishments.map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
+                </ul>
+              )}
+              
+              <div className="project-tech-stack-expanded">
+                {project.techStack.map((tech, i) => (
+                  <span key={i} className="tech-tag">{tech}</span>
                 ))}
-              </ul>
-            )}
-            
-            <div className="project-tech-stack-expanded">
-              {project.techStack.map((tech, i) => (
-                <span key={i} className="tech-tag">{tech}</span>
-              ))}
+              </div>
+              
+              <div className="collapse-hint">Click to collapse</div>
             </div>
-            
-            <div className="collapse-hint">Click to collapse</div>
-          </div>
-        </div>
-      )}
-    </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
   );
 };
 
@@ -377,23 +430,61 @@ export const ProjectsSection: React.FC = () => {
     setExpandedIndex(expandedIndex === index ? null : index);
   };
 
-  // Create display order: non-expanded projects fill rows, then expanded project in its own row
+  // Create display order: fill rows with non-expanded projects, insert expanded at next available row
   const renderOrder = () => {
     if (expandedIndex === null) {
-      return projects.map((project, index) => ({ project, originalIndex: index, isExpanded: false }));
+      return projects.map((project, index) => ({ 
+        project, 
+        originalIndex: index, 
+        isExpanded: false,
+        key: `project-${index}`
+      }));
     }
 
     const items = [];
+    const rowSize = 3;
     
-    // Add all non-expanded projects first (they fill the grid naturally)
-    projects.forEach((project, index) => {
-      if (index !== expandedIndex) {
-        items.push({ project, originalIndex: index, isExpanded: false });
+    // Calculate which row the expanded project should appear in
+    // It should appear after the row containing the clicked project
+    const expandedRow = Math.floor(expandedIndex / rowSize);
+    const insertPosition = (expandedRow + 1) * rowSize;
+    
+    // Add all non-expanded projects, inserting expanded project at the right position
+    let nonExpandedCount = 0;
+    
+    for (let i = 0; i < projects.length; i++) {
+      if (i === expandedIndex) {
+        continue; // Skip the expanded project in the first pass
       }
-    });
+      
+      // Check if we've reached the insert position
+      if (nonExpandedCount === insertPosition) {
+        items.push({ 
+          project: projects[expandedIndex], 
+          originalIndex: expandedIndex, 
+          isExpanded: true,
+          key: `project-${expandedIndex}-expanded`
+        });
+      }
+      
+      items.push({ 
+        project: projects[i], 
+        originalIndex: i, 
+        isExpanded: false,
+        key: `project-${i}`
+      });
+      nonExpandedCount++;
+    }
     
-    // Add expanded project at the end (it will be in its own row)
-    items.push({ project: projects[expandedIndex], originalIndex: expandedIndex, isExpanded: true });
+    // If we haven't inserted the expanded project yet, add it at the end
+    if (nonExpandedCount <= insertPosition) {
+      items.push({ 
+        project: projects[expandedIndex], 
+        originalIndex: expandedIndex, 
+        isExpanded: true,
+        key: `project-${expandedIndex}-expanded`
+      });
+    }
     
     return items;
   };
@@ -408,17 +499,22 @@ export const ProjectsSection: React.FC = () => {
       <div className="projects-container">
         <h2 className="projects-section-title">Projects</h2>
         
-        <div className="projects-grid">
-          {orderedItems.map((item, displayIndex) => (
-            <ProjectCard 
-              key={item.originalIndex}
-              project={item.project} 
-              index={displayIndex}
-              isExpanded={item.isExpanded}
-              onToggleExpand={() => handleToggleExpand(item.originalIndex)}
-            />
-          ))}
-        </div>
+        <LayoutGroup>
+          <motion.div 
+            className="projects-grid"
+            layout
+          >
+            {orderedItems.map((item) => (
+              <ProjectCard 
+                key={item.key}
+                project={item.project} 
+                index={item.originalIndex}
+                isExpanded={item.isExpanded}
+                onToggleExpand={() => handleToggleExpand(item.originalIndex)}
+              />
+            ))}
+          </motion.div>
+        </LayoutGroup>
       </div>
     </section>
   );
