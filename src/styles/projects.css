@@ -21,7 +21,7 @@
 
 .projects-section-title {
   font-size: 3rem;
-  font-family: 'Courier New', monospace;
+  /* font-family: 'Courier New', monospace; */
   color: var(--text-dark);
   text-align: center;
   margin-bottom: 4rem;
@@ -191,7 +191,7 @@
 
 .project-name-expanded {
   font-size: 2rem;
-  font-family: 'Courier New', monospace;
+  /* font-family: 'Courier New', monospace; */
   color: var(--text-dark);
   font-weight: 600;
   letter-spacing: 0.5px;
@@ -215,7 +215,7 @@
   font-size: 1.05rem;
   line-height: 1.7;
   color: var(--text-light);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; */
 }
 
 .project-accomplishments {
@@ -233,7 +233,7 @@
   color: var(--text-light);
   padding-left: 1.5rem;
   position: relative;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; */
 }
 
 .project-accomplishments li::before {
@@ -279,7 +279,7 @@
 
 .project-name {
   font-size: 1.5rem;
-  font-family: 'Courier New', monospace;
+  /* font-family: 'Courier New', monospace; */
   color: var(--text-dark);
   font-weight: 600;
   letter-spacing: 0.5px;
@@ -325,7 +325,7 @@
   font-size: 0.95rem;
   line-height: 1.6;
   color: var(--text-light);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; */
   flex: 1;
 }
 
