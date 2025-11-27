@@ -23,7 +23,7 @@ My experience spans across various domains—from e-commerce platforms at Loblaw
 Outside of coding, I'm an artist and coffee enthusiast who believes that attention to detail in code mirrors the care required in other creative pursuits. I'm always excited to explore new technologies, collaborate with talented people, and work on projects that make a positive impact.
 
 Let's connect and create something amazing together!`,
-    image: '/illustrations/cake6.png',
+    image: '/illustrations/desserts1.png',
   },
   {
     id: 'art',

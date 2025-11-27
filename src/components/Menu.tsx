@@ -13,7 +13,7 @@ export const menuItems: MenuItem[] = [
     id: 'experience',
     title: 'Experience',
     description: 'My professional journey and roles',
-    image: '/illustrations/cake1.png',
+    image: '/illustrations/desserts1.png',
   },
   {
     id: 'projects',
