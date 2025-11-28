@@ -19,13 +19,13 @@ export const menuItems: MenuItem[] = [
     id: 'projects',
     title: 'Projects',
     description: 'Work and creations I\'m proud of',
-    image: '/illustrations/cake2.png',
+    image: '/illustrations/desserts2.png',
   },
   {
     id: 'about',
     title: 'About',
     description: 'Get to know me better',
-    image: '/illustrations/cake3.png',
+    image: '/illustrations/desserts3.png',
   },
   {
     id: 'art',

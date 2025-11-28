@@ -42,7 +42,7 @@ I believe that good design is invisible—it serves the user without demanding a
 Whether it's designing a user interface, creating a visual identity, or building an interactive experience, I approach each project with an artist's eye for detail and a developer's mindset for functionality.
 
 Art and code are two sides of the same creative coin for me.`,
-    image: '/illustrations/cake7.png',
+    image: '/illustrations/desserts2.png',
   },
   {
     id: 'hobbies',
@@ -66,7 +66,7 @@ When I'm not at my computer, you'll find me cycling, hiking, or exploring nature
 
 🎵 Music
 I produce electronic music as a hobby and love the intersection of code and sound design. Music production has taught me a lot about pattern recognition and creative problem-solving.`,
-    image: '/illustrations/cake8.png',
+    image: '/illustrations/desserts3.png',
   },
 ];
 
@@ -125,7 +125,7 @@ const ContentSection: React.FC<SectionProps> = ({ section, index }) => {
                 className="content-image"
               />
             ) : (
-              <WatercolorImage
+              <PixelatedImage
                 src={section.image}
                 alt={section.title}
                 className="content-image"
