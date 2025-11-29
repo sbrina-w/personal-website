@@ -29,7 +29,7 @@ const experiences: Experience[] = [
     company: 'Full-Stack Software Developer',
     role: 'BrainRidge Consulting',
     period: 'Jan 2025 - Apr 2025',
-    description: 'Returned to BrainRidge to expand my technical scope beyond frontend, taking on full-stack responsibilities for the OneDashboard project. I led feature development from requirements gathering through deployment, working with databases, caching layers, and backend services while continuing to refine the user experience.',
+    description: 'Returned to BrainRidge Consulting to expand my technical scope beyond frontend, taking on full-stack responsibilities for the OneDashboard project. Led feature development from requirements gathering through deployment, working with databases, caching layers, and backend services while continuing to refine the user experience.',
     accomplishments: [
       'Led end-to-end development of a global search feature with filtered navigation, direct endpoint access, and error-focused queries, improving system navigation efficiency by 3x and reducing time-to-resolution for production issues',
       'Migrated environment configurations from frontend to database, implementing a dynamic DB-driven model with Oracle DB and building corresponding UI forms for real-time configurability',
@@ -45,9 +45,6 @@ const experiences: Experience[] = [
     description: 'Joined BrainRidge as the sole frontend developer for OneDashboard, an internal monitoring platform for BMO US. Despite having no prior experience with Angular or NestJS, I quickly ramped up and took ownership of the entire frontend, redesigning the UI/UX from the ground up and transforming the project from a proof-of-concept into a production-ready application.',
     accomplishments: [
       'Designed and implemented the complete frontend architecture using Angular and TypeScript, creating an intuitive dashboard that monitors health checks, database connections, cache status, and 50+ microservice APIs across BMO US environments',
-      'Integrated real-time data synchronization using Socket.io and NestJS backend services, reducing data refresh latency by 30% and enabling live status updates for critical infrastructure monitoring',
-      'Delivered polished UI/UX that received recognition from senior leadership, resulting in the project being showcased at BMO US townhalls and securing full funding for continued development',
-      'Presented and demoed the platform to an STO and 30+ cross-functional team members from various BMO divisions, effectively communicating technical capabilities and business value',
       'Earned AWS Cloud Practitioner certification in three days through self-directed learning, demonstrating rapid technical adaptability and commitment to expanding cloud infrastructure knowledge'
     ]
   }

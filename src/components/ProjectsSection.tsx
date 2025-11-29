@@ -20,8 +20,8 @@ const projects: Project[] = [
   {
     name: 'Yelp Analysis',
     year: '2024',
-    description: 'Production-ready analytics platform transforming thousands of Yelp reviews into actionable business insights through a hybrid ML/LLM pipeline with semantic search, sentiment analysis, and automated topic clustering.',
-    fullDescription: 'A production-ready analytics platform that transforms thousands of Yelp reviews into actionable business insights through a hybrid ML/LLM pipeline. The system processes review data end-to-end—from ingestion and preprocessing to semantic search, sentiment analysis, and automated topic clustering—enabling restaurant owners to discover root causes, prioritize fixes, and monitor impact without reading every review manually.',
+    description: 'Analytics platform transforming thousands of Yelp reviews into actionable business insights through a hybrid ML/LLM pipeline with semantic search, sentiment analysis, and automated topic clustering.',
+    fullDescription: 'An analytics platform that transforms thousands of Yelp reviews into actionable business insights through a hybrid ML/LLM pipeline. The system processes review data end-to-end from ingestion and preprocessing to semantic search, sentiment analysis, and automated topic clustering—enabling restaurant owners to discover root causes, prioritize fixes, and monitor impact without reading every review manually.',
     detailedAccomplishments: [
       'Engineered semantic search and embeddings pipeline using SentenceTransformers and ChromaDB with persistent vector storage, enabling sub-second natural-language retrieval across 5,000+ reviews with sentiment and location filters',
       'Implemented hybrid NLP architecture combining local HuggingFace models for sentiment classification and summarization with LangChain/OpenAI chains for structured review analysis (issue type, priority, actionable summaries)',

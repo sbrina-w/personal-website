@@ -8,7 +8,7 @@ export interface MenuItem {
   image: string;
 }
 
-export const menuItems: MenuItem[] = [
+const menuItems: MenuItem[] = [
   {
     id: 'experience',
     title: 'Experience',

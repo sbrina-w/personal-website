@@ -163,7 +163,7 @@
 .experiences-list {
   display: flex;
   flex-direction: column;
-  gap: 8rem;
+  gap: 6rem;
   padding-top: 0;
 }
 
@@ -204,11 +204,11 @@
 }
 
 .experience-company {
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   /* font-family: 'Courier New', monospace; */
   color: var(--text-dark);
   margin-bottom: 0.4rem;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.5px;
 }
 
