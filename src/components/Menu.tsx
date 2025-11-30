@@ -43,7 +43,7 @@ const menuItems: MenuItem[] = [
     id: 'contact',
     title: 'Contact',
     description: 'Let\'s connect and chat',
-    image: '/illustrations/drink3.png',
+    image: '/illustrations/mochi-bunny.png',
   },
 ];
 

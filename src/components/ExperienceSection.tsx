@@ -213,7 +213,7 @@ export const ExperienceSection: React.FC = () => {
         }}
       />
       <PixelatedImage
-        src="/illustrations/matcha-cookie.png"
+        src="/illustrations/mochi-bunny.png"
         alt="Cake Decoration Right"
         className="dessert-decoration"
         style={{ 
