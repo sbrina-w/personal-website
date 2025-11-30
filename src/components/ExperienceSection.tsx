@@ -213,16 +213,16 @@ export const ExperienceSection: React.FC = () => {
         }}
       />
       <PixelatedImage
-        src="/illustrations/cake3.png"
+        src="/illustrations/matcha-cookie.png"
         alt="Cake Decoration Right"
         className="dessert-decoration"
         style={{ 
           position: 'absolute', 
-          width: '400px', 
-          height: '400px', 
-          left: '3%', 
+          width: '600px', 
+          height: '600px', 
+          left: '0%', 
           top: '20%', 
-          transform: `rotate(-15deg) translate(${scrollY * -30}px, ${scrollY * -200}px)`,
+          transform: `rotate(-8deg) translate(${scrollY * -30}px, ${scrollY * -200}px)`,
           transition: 'transform 0.1s ease-out'
         }}
       />

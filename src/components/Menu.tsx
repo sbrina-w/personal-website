@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import '../styles/menu.css';
 
-export interface MenuItem {
+interface MenuItem {
   id: string;
   title: string;
   description: string;
@@ -13,31 +13,31 @@ const menuItems: MenuItem[] = [
     id: 'experience',
     title: 'Experience',
     description: 'My professional journey and roles',
-    image: '/illustrations/desserts1.png',
+    image: '/illustrations/fig-cake.png',
   },
   {
     id: 'projects',
     title: 'Projects',
     description: 'Work and creations I\'m proud of',
-    image: '/illustrations/desserts2.png',
+    image: '/illustrations/roll-cake.png',
   },
   {
     id: 'about',
     title: 'About',
     description: 'Get to know me better',
-    image: '/illustrations/desserts3.png',
+    image: '/illustrations/strawberry-tart.png',
   },
   {
     id: 'art',
     title: 'Art',
     description: 'My artistic explorations',
-    image: '/illustrations/drink1.png',
+    image: '/illustrations/matcha-basque.png',
   },
   {
     id: 'hobbies',
     title: 'Hobbies',
     description: 'What I love doing in my free time',
-    image: '/illustrations/drink2.png',
+    image: '/illustrations/matcha-cookie.png',
   },
   {
     id: 'contact',

@@ -19,12 +19,12 @@
 }
 
 .hero-title {
-  font-size: 8.5rem;
+  font-size: 4rem;
   letter-spacing: -0.02em;
-  color: var(--text-dark);
+  color: var(--accent);
   margin-bottom: 1rem;
   animation: fadeInUp 1s ease 0.2s backwards;
-  font-family: "Helonik";
+  font-family: "Mosseta";
   line-height: 1.1;
 }
 

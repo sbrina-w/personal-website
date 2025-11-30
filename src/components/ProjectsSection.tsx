@@ -573,14 +573,14 @@ export const ProjectsSection: React.FC = () => {
         }}
       />
       <PixelatedImage
-        src="/illustrations/cake7.png"
+        src="/illustrations/matcha-cookie.png"
         alt="Cake Decoration Right"
         className="dessert-decoration"
         style={{ 
           position: 'absolute', 
-          width: '500px', 
-          height: '500px', 
-          left: '3%', 
+          width: '600px', 
+          height: '600px', 
+          left: '0%', 
           top: '20%',
           transform: `translate(${scrollY * -30}px, ${scrollY * -250}px)`,
           transition: 'transform 0.1s ease-out'

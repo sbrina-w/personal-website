@@ -2,14 +2,14 @@ import React, { useEffect, useRef, useState } from 'react';
 import '../styles/sections.css';
 import { PixelatedImage } from './PixelatedImage';
 
-export interface SectionContent {
+interface SectionContent {
   id: string;
   title: string;
   description: string;
   image: string;
 }
 
-export const sectionContent: SectionContent[] = [
+const sectionContent: SectionContent[] = [
   {
     id: 'about',
     title: 'About',
@@ -22,7 +22,7 @@ My experience spans across various domains—from e-commerce platforms at Loblaw
 Outside of coding, I'm an artist and coffee enthusiast who believes that attention to detail in code mirrors the care required in other creative pursuits. I'm always excited to explore new technologies, collaborate with talented people, and work on projects that make a positive impact.
 
 Let's connect and create something amazing together!`,
-    image: '/illustrations/desserts1.png',
+    image: '/illustrations/fig-cake.png',
   },
   {
     id: 'art',
@@ -41,7 +41,7 @@ I believe that good design is invisible—it serves the user without demanding a
 Whether it's designing a user interface, creating a visual identity, or building an interactive experience, I approach each project with an artist's eye for detail and a developer's mindset for functionality.
 
 Art and code are two sides of the same creative coin for me.`,
-    image: '/illustrations/desserts2.png',
+    image: '/illustrations/roll-cake.png',
   },
   {
     id: 'hobbies',
@@ -65,7 +65,7 @@ When I'm not at my computer, you'll find me cycling, hiking, or exploring nature
 
 🎵 Music
 I produce electronic music as a hobby and love the intersection of code and sound design. Music production has taught me a lot about pattern recognition and creative problem-solving.`,
-    image: '/illustrations/desserts3.png',
+    image: '/illustrations/strawberry-tart.png',
   },
 ];
 
