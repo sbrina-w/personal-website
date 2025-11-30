@@ -18,7 +18,7 @@ export default defineConfig({
       exclude: undefined,
       warnDuplicatedImports: true,
       defaultExtension: 'glsl',
-      compress: false,
+      compress: true,
       watch: true,
       root: '/'
     })
@@ -29,6 +29,15 @@ export default defineConfig({
   },
   build: {
     outDir: 'build',
-    sourcemap: true,
+    sourcemap: false,
+    minify: 'terser',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'three': ['three'],
+          'react-three': ['@react-three/fiber', '@react-three/drei'],
+        }
+      }
+    }
   },
 });
