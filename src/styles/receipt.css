@@ -27,7 +27,7 @@
   box-shadow: 
     0 2px 10px rgba(0, 0, 0, 0.08),
     0 8px 30px rgba(0, 0, 0, 0.12);
-  font-family: 'Courier New', monospace;
+  font-family: 'Fake Receipt', monospace;
   font-size: 13px;
   line-height: 1.6;
   position: relative;
@@ -165,7 +165,7 @@
 
 .receipt-header h2 {
   font-size: 20px;
-  font-family: 'Courier New', monospace;
+  font-family: 'Fake Receipt', monospace;
   color: var(--grey-brown);;
   margin: 0 0 5px;
   letter-spacing: 1px;
@@ -175,7 +175,7 @@
 
 .receipt-tagline {
   font-size: 11px;
-  color: #888;
+  color: var(--text-light);
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 400;
@@ -222,8 +222,8 @@
 
 .receipt-item-name {
   color: var(--grey-brown);;
-  font-weight: 600;
-  font-size: 12px;
+  font-weight: 500;
+  font-size: 11px;
   letter-spacing: 0.3px;
   flex-shrink: 0;
 }
@@ -245,11 +245,11 @@
 
 .receipt-section-title {
   font-size: 13px;
-  font-family: 'Courier New', monospace;
+  font-family: 'Fake Receipt', monospace;
   color: var(--grey-brown);;
   margin: 0 0 15px;
   letter-spacing: 1px;
-  font-weight: 700;
+  font-weight: 500;
   text-transform: uppercase;
   text-align: center;
 }
@@ -268,16 +268,16 @@
 
 .receipt-contact-label {
   color: var(--grey-brown);
-  font-weight: 600;
+  font-weight: 400;
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .receipt-contact-value {
-  color: var(--grey-brown);;
+  color: var(--text-light);;
   text-decoration: none;
-  font-size: 12px;
+  font-size: 11px;
   transition: all 0.2s ease;
 }
 
@@ -307,13 +307,13 @@
   color: var(--text-light);
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .form-group input,
 .form-group textarea {
-  font-family: 'Courier New', monospace;
-  font-size: 12px;
+  font-family: 'Fake Receipt', monospace;
+  font-size: 10px;
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 2px;
@@ -336,9 +336,9 @@
 }
 
 .receipt-submit-btn {
-  font-family: 'Courier New', monospace;
+  font-family: 'Fake Receipt', monospace;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
   padding: 12px 24px;
@@ -374,16 +374,16 @@
 }
 
 .receipt-thank-you {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--grey-brown);;
   margin: 0 0 8px;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.5px;
 }
 
 .receipt-footer-text {
   font-size: 10px;
-  color: #888;
+  color: var(--text-light);
   font-style: italic;
   margin: 0;
   letter-spacing: 0.3px;
@@ -444,4 +444,41 @@
     flex-direction: column;
     gap: 4px;
   }
+}
+
+[data-theme='dark'] .receipt-paper {
+  background: transparent;
+  border: 1px solid var(--accent-light);
+  box-shadow: 
+    0 2px 10px rgba(0, 0, 0, 0.3),
+    0 8px 30px rgba(0, 0, 0, 0.4),
+    0 0 0 1px var(--accent-light);
+}
+
+[data-theme='dark'] .receipt-paper::before {
+  opacity: 0.1;
+}
+
+[data-theme='dark'] .receipt-submit {
+  background: var(--accent-light);
+  color: var(--primary-bg);
+  border: 1px solid var(--accent-light);
+}
+
+[data-theme='dark'] .receipt-submit:hover {
+  background: transparent;
+  color: var(--accent-light);
+}
+
+[data-theme='dark'] textarea,
+[data-theme='dark'] input {
+  border-color: var(--accent-light);
+  background: transparent;
+  color: var(--grey-yellow);
+}
+
+[data-theme='dark'] textarea:focus,
+[data-theme='dark'] input:focus {
+  border-color: var(--accent-light);
+  box-shadow: 0 0 0 2px rgba(201, 168, 118, 0.2);
 }

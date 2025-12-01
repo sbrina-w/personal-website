@@ -39,6 +39,8 @@
   --accent-light: #c9a876;
   --text-dark: #e8e4dc;
   --text-light: #a8a8a8;
+  --grey-yellow: #c5c278;
+  --grey-brown: #c9a876;
   --border-color: rgba(184, 153, 104, 0.25);
   --shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
   --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.3);
@@ -201,6 +203,14 @@ html, body {
 @font-face {
   font-family: 'Helonik';
   src: url('/assets/fonts/HelonikExtended-BoldDemo.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Fake Receipt';
+  src: url('/assets/fonts/Fake Receipt.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
