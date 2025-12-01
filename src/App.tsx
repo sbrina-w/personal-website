@@ -79,8 +79,7 @@ function AppContent() {
         isDarkMode={isDarkMode}
         onToggleTheme={toggleTheme}
       />
-      <Hero onScroll={handleHeroScroll} />
-      {menuOpen && <Menu onMenuItemClick={handleMenuItemClick} />}
+      <Hero onScroll={handleHeroScroll} onMenuItemClick={handleMenuItemClick} />
       <ExperienceSection />
       <ProjectsSection />
       <ContentSections />

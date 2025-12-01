@@ -92,7 +92,7 @@ vec3 rotateY(vec3 v, float angle) {
 void main() {
   vUv = uv;
   
-  float t = uTime * uSpeed * 0.6; 
+  float t = uTime * uSpeed * 0.45; 
   float distortion = cnoise((normal + t) * uNoiseDensity) * uNoiseStrength;
 
   // Apply a smoothing function to the distortion

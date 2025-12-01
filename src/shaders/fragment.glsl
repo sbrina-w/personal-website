@@ -36,7 +36,7 @@ void main() {
   float noiseValue = noise(vUv * noiseScale);
   
   // Create soft, fading edges with wide smooth transition
-  float threshold = 0.5 - abs(distort) * 0.2;
+  float threshold = 0.6 - abs(distort) * 0.2;
   float elementMask = smoothstep(threshold - 0.35, threshold + 0.35, noiseValue);
   
   vec2 grainUv = vUv * 60.0;

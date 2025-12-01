@@ -43,30 +43,6 @@ Whether it's designing a user interface, creating a visual identity, or building
 Art and code are two sides of the same creative coin for me.`,
     image: '/illustrations/roll-cake.png',
   },
-  {
-    id: 'hobbies',
-    title: 'Hobbies',
-    description: `Beyond coding and design, I have a wide range of interests that fuel my creativity and keep me balanced:
-
-☕ Coffee Enthusiast
-I'm passionate about coffee—exploring different brewing methods, roasting profiles, and flavor notes. There's something meditative about the craft of making great coffee. I love experimenting with pour-overs, espresso, and cold brew.
-
-🎨 Digital Art & Illustration
-I love creating digital art, from character design to environmental concepts. It's my way of exploring visual storytelling and bringing imaginary worlds to life.
-
-🎮 Gaming
-I'm fascinated by game design, mechanics, and narrative. I enjoy indie games that push creative boundaries and experiment with new gameplay concepts.
-
-📚 Reading
-I'm an avid reader who loves science fiction, design thinking books, and technical documentation (yes, really!). Currently exploring books on system design and creative coding.
-
-🚴 Outdoor Activities
-When I'm not at my computer, you'll find me cycling, hiking, or exploring nature—it's where I get my best ideas and reset my mind.
-
-🎵 Music
-I produce electronic music as a hobby and love the intersection of code and sound design. Music production has taught me a lot about pattern recognition and creative problem-solving.`,
-    image: '/illustrations/strawberry-tart.png',
-  },
 ];
 
 interface SectionProps {

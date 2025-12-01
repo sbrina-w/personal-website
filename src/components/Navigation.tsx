@@ -18,7 +18,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onNavigate, isMuted, onT
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['experience', 'projects', 'about', 'art', 'hobbies', 'contact'];
+      const sections = ['experience', 'projects', 'about', 'art', 'contact'];
       let current = '';
 
       for (const sectionId of sections) {
@@ -70,7 +70,6 @@ export const Navigation: React.FC<NavigationProps> = ({ onNavigate, isMuted, onT
     { id: 'projects', label: 'Projects' },
     { id: 'about', label: 'About' },
     { id: 'art', label: 'Art' },
-    { id: 'hobbies', label: 'Hobbies' },
     { id: 'contact', label: 'Contact' },
   ];
 
@@ -125,7 +124,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onNavigate, isMuted, onT
               </svg>
             )}
           </button>
-          <div className="nav-logo">sabrina wang</div>
+          {/* <div className="nav-logo">sabrina wang</div> */}
         </div>
         
         <div className="nav-right">
