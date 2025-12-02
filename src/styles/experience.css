@@ -6,7 +6,7 @@
   background: transparent;
   z-index: 2;
   overflow: visible;
-  margin-top: 100px;
+  margin-top: 80px;
 }
 
 .dessert-decoration {
@@ -21,7 +21,7 @@
 }
 
 .experience-section-title {
-  font-size: 1.7rem;
+  font-size: 2rem;
   color: var(--grey-brown);
   text-align: center;
   margin-bottom: 4rem;

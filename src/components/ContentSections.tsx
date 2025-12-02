@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import '../styles/sections.css';
 import { PixelatedImage } from './PixelatedImage';
+import { InfiniteCarousel } from './InfiniteCarousel';
 
 interface SectionContent {
   id: string;
@@ -8,6 +9,17 @@ interface SectionContent {
   description: string;
   image: string;
 }
+
+const artImages = [
+  '/illustrations/art/birthday-card.png',
+  '/illustrations/art/birthday-card3.png',
+  '/illustrations/art/christmas-card.png',
+  '/illustrations/art/christmas-card2.png',
+  '/illustrations/art/hands.png',
+  '/illustrations/art/pen1.png',
+  '/illustrations/art/pen3.png',
+  '/illustrations/art/pen4.png',
+];
 
 const sectionContent: SectionContent[] = [
   {
@@ -22,7 +34,7 @@ My experience spans across various domains—from e-commerce platforms at Loblaw
 Outside of coding, I'm an artist and coffee enthusiast who believes that attention to detail in code mirrors the care required in other creative pursuits. I'm always excited to explore new technologies, collaborate with talented people, and work on projects that make a positive impact.
 
 Let's connect and create something amazing together!`,
-    image: '/illustrations/fig-cake.png',
+    image: '/illustrations/strawberry-tart-cropped.png',
   },
   {
     id: 'art',
@@ -41,7 +53,7 @@ I believe that good design is invisible—it serves the user without demanding a
 Whether it's designing a user interface, creating a visual identity, or building an interactive experience, I approach each project with an artist's eye for detail and a developer's mindset for functionality.
 
 Art and code are two sides of the same creative coin for me.`,
-    image: '/illustrations/roll-cake.png',
+    image: '/illustrations/matcha-basque-cropped.png',
   },
 ];
 
@@ -74,29 +86,34 @@ const ContentSection: React.FC<SectionProps> = ({ section, index }) => {
       className={`content-section ${isEvenIndex ? 'even' : 'odd'}`}
       id={section.id}
     >
-      <div className="content-container">
-        <div
-          className="content-text"
-          style={{ transform: `translateY(${scrollY * 0.3}px)` }}
-        >
-          <h2 className="content-title">{section.title}</h2>
-          <div className="content-body">
-            {section.description.split('\n\n').map((paragraph, i) => (
-              <p key={i}>{paragraph}</p>
-            ))}
+      <div className="section-wrapper">
+        <div className="content-container">
+          <div
+            className="content-text"
+            style={{ transform: `translateY(${scrollY * 0.3}px)` }}
+          >
+            <h2 className="content-title">{section.title}</h2>
+            <div className="content-body">
+              {section.description.split('\n\n').map((paragraph, i) => (
+                <p key={i}>{paragraph}</p>
+              ))}
+            </div>
+            {section.id === 'art' && (
+              <InfiniteCarousel images={artImages} />
+            )}
           </div>
-        </div>
 
-        <div
-          className="content-image-wrapper"
-          style={{ transform: `translateY(${scrollY * -0.2}px)` }}
-        >
-          <div className="content-image-container">
-            <PixelatedImage
-              src={section.image}
-              alt={section.title}
-              className="content-image"
-            />
+          <div
+            className="content-image-wrapper"
+            style={{ transform: `translateY(${scrollY * -0.2}px)` }}
+          >
+            <div className="content-image-container">
+              <PixelatedImage
+                src={section.image}
+                alt={section.title}
+                className="content-image"
+              />
+            </div>
           </div>
         </div>
       </div>

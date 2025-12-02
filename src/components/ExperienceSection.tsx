@@ -198,8 +198,8 @@ export const ExperienceSection: React.FC = () => {
   return (
     <section ref={sectionRef} className="experience-section" id="experience">
       <PixelatedImage
-        src="/illustrations/cake5.png"
-        alt="Cake Decoration Left"
+        src="/illustrations/fig-cake-cropped.png"
+        alt="Cake Decoration Right"
         className="dessert-decoration"
         style={{ 
           position: 'absolute', 
@@ -214,7 +214,7 @@ export const ExperienceSection: React.FC = () => {
       />
       <PixelatedImage
         src="/illustrations/mochi-bunny.png"
-        alt="Cake Decoration Right"
+        alt="Cake Decoration Left"
         className="dessert-decoration"
         style={{ 
           position: 'absolute', 

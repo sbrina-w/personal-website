@@ -694,14 +694,14 @@ export const ProjectsSection: React.FC = () => {
   return (
     <section ref={sectionRef} className="projects-section" id="projects">
       <PixelatedImage
-        src="/illustrations/drink2.png"
-        alt="Cake Decoration Left"
+        src="/illustrations/roll-cake-cropped.png"
+        alt="Cake Decoration Right"
         className="dessert-decoration"
         style={{ 
           position: 'absolute', 
-          width: '500px', 
-          height: '500px', 
-          right: '5%', 
+          width: '380px', 
+          height: '380px', 
+          right: '8%', 
           bottom: '10%', 
           transform: `rotate(15deg) translate(${scrollY * 30}px, ${scrollY * -200}px)`,
           transition: 'transform 0.1s ease-out'
@@ -709,7 +709,7 @@ export const ProjectsSection: React.FC = () => {
       />
       <PixelatedImage
         src="/illustrations/matcha-cookie.png"
-        alt="Cake Decoration Right"
+        alt="Cake Decoration Left"
         className="dessert-decoration"
         style={{ 
           position: 'absolute', 
