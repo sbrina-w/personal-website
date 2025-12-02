@@ -22,7 +22,7 @@ const experiences: Experience[] = [
       'Built end-to-end RAG applications including a Cloudera documentation chatbot with full-stack development (data sourcing, embedding pipeline, and web interface) to accelerate internal team knowledge discovery',
       'Automated AML monitoring workflows using GenAI to parse police reports, extract suspect information, and perform fuzzy matching against OLG patron databases, reducing manual investigation time by 80%',
       'Maintained sequential recommender systems for internet casino apps, running monthly model validations and generating personalized recommendations to improve user engagement',
-      'Engineered web scrapers to automate salary data collection for hundreds of occupations, eliminating manual research and saving 20+ hours per analysis cycle'
+      'Engineered web scrapers to automate salary data collection for hundreds of occupations, eliminating manual research and saving 10+ hours per analysis cycle'
     ]
   },
   {
@@ -31,9 +31,9 @@ const experiences: Experience[] = [
     period: 'Jan 2025 - Apr 2025',
     description: 'Returned to BrainRidge Consulting to expand my technical scope beyond frontend, taking on full-stack responsibilities for the OneDashboard project. Led feature development from requirements gathering through deployment, working with databases, caching layers, and backend services while continuing to refine the user experience.',
     accomplishments: [
-      'Led end-to-end development of a global search feature with filtered navigation, direct endpoint access, and error-focused queries, improving system navigation efficiency by 3x and reducing time-to-resolution for production issues',
-      'Migrated environment configurations from frontend to database, implementing a dynamic DB-driven model with Oracle DB and building corresponding UI forms for real-time configurability',
-      'Developed endpoint tracking and comparison tooling using Swagger diffing to detect API changes, monitor downstream service health, and maintain up-to-date documentation for 50+ microservice endpoints',
+      'Led end-to-end development of a global search feature with filtered navigation, direct endpoint access, and error-focused queries, significantly improving system navigation efficiency and reducing time-to-resolution for production issues',
+      'Migrated environment configurations from the frontend codebase into the database, building reactive UI forms enabling real-time configurability with client-side form validation, input sanitization, conditional field rendering and a clean UX to safely onboard new applications and configurations',
+      'Developed endpoint tracking and comparison tooling using diffing from Swagger to detect API changes, monitor downstream service health, and maintain up-to-date documentation for microservice endpoints',
       'Contributed to AWS migration planning by participating in architecture discussions and learning cloud infrastructure design patterns for large-scale enterprise systems',
       'Built feature heatmap visualizations and created comprehensive Confluence documentation to communicate technical decisions and system architecture to cross-functional stakeholders'
     ]
@@ -42,9 +42,9 @@ const experiences: Experience[] = [
     company: 'Frontend Software Developer',
     role: 'BrainRidge Consulting',
     period: 'May 2024 - Aug 2024',
-    description: 'Joined BrainRidge as the sole frontend developer for OneDashboard, an internal monitoring platform for BMO US. Despite having no prior experience with Angular or NestJS, I quickly ramped up and took ownership of the entire frontend, redesigning the UI/UX from the ground up and transforming the project from a proof-of-concept into a production-ready application.',
+    description: 'Joined BrainRidge Consulting as a frontend developer for OneDashboard, an internal monitoring platform for BMO US. Despite having no prior experience with Angular or NestJS, I quickly ramped up and took ownership of the entire frontend, designing and implementing the UI/UX from the ground up.',
     accomplishments: [
-      'Designed and implemented the complete frontend architecture using Angular and TypeScript, creating an intuitive dashboard that monitors health checks, database connections, cache status, and 50+ microservice APIs across BMO US environments',
+      'Designed and implemented the frontend architecture using Angular and TypeScript, creating an intuitive dashboard that monitors health checks, database connections, cache status, and 50+ microservice APIs across BMO US lower environments',
       'Earned AWS Cloud Practitioner certification in three days through self-directed learning, demonstrating rapid technical adaptability and commitment to expanding cloud infrastructure knowledge'
     ]
   }

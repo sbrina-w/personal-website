@@ -3,6 +3,16 @@ import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 import '../styles/projects.css';
 import { PixelatedImage } from './PixelatedImage';
 
+const parseBoldText = (text: string) => {
+  const parts = text.split(/(\*\*.*?\*\*)/g);
+  return parts.map((part, index) => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      return <strong key={index}>{part.slice(2, -2)}</strong>;
+    }
+    return part;
+  });
+};
+
 interface Project {
   name: string;
   year: string;
@@ -22,11 +32,11 @@ const projects: Project[] = [
     name: 'Yelp Analysis',
     year: '2024',
     description: 'Analytics platform transforming thousands of Yelp reviews into actionable business insights through a hybrid ML/LLM pipeline with semantic search, sentiment analysis, and automated topic clustering.',
-    fullDescription: 'An analytics platform that transforms thousands of Yelp reviews into actionable business insights through a hybrid ML/LLM pipeline. The system processes review data end-to-end from ingestion and preprocessing to semantic search, sentiment analysis, and automated topic clustering—enabling restaurant owners to discover root causes, prioritize fixes, and monitor impact without reading every review manually.',
+    fullDescription: 'An analytics platform that transforms thousands of Yelp reviews into actionable business insights through a hybrid ML/LLM pipeline. The system processes review data end-to-end from ingestion and preprocessing to semantic search, sentiment analysis, and automated topic clustering, enabling restaurant owners to discover root causes, prioritize fixes, and monitor impact without reading every review manually.',
     detailedAccomplishments: [
       'Engineered semantic search and embeddings pipeline using SentenceTransformers and ChromaDB with persistent vector storage, enabling sub-second natural-language retrieval across 5,000+ reviews with sentiment and location filters',
       'Implemented hybrid NLP architecture combining local HuggingFace models for sentiment classification and summarization with LangChain/OpenAI chains for structured review analysis (issue type, priority, actionable summaries)',
-      'Built automated topic clustering system using KMeans, PCA visualization, and GPT-based cluster labeling to surface recurring themes by restaurant, city, and time, reducing manual topic analysis effort by 90%',
+      'Built automated topic clustering system using KMeans, PCA visualization, and GPT-based cluster labeling to surface recurring themes by restaurant, city, and time',
       'Designed multi-persona Streamlit interface (Restaurant Explorer, Business Owner, Data Analyst) with interactive dashboards, Folium maps, trend charts, and priority issue triage workflows to drive faster operational decisions',
       'Added robustness features including Streamlit caching for instant re-renders, retry/fallback logic for LLM calls, seeded reproducible clustering, and concurrent batch processing for scalable analysis'
     ],
@@ -34,9 +44,9 @@ const projects: Project[] = [
     github: 'https://github.com/sbrina-w/yelp-analysis',
     liveLink: 'https://yelp-analysis.streamlit.app/',
     images: [
-      '/assets/project-visuals/yelp1.png',
-      '/assets/project-visuals/yelp2.png',
       '/assets/project-visuals/yelp3.png',
+      '/assets/project-visuals/yelp2.png',
+      '/assets/project-visuals/yelp1.png',
       '/assets/project-visuals/yelp4.png',
       '/assets/project-visuals/yelp5.png',
       '/assets/project-visuals/yelp6.png'
@@ -45,14 +55,12 @@ const projects: Project[] = [
   {
     name: 'PokePlants',
     year: '2024',
-    description: 'Interactive mixed-reality prototype bridging web, hardware, and AI to create a Pokémon-style plant care game. Won 1st place at Hack the 6ix 2024, Toronto\'s largest summer hackathon.',
-    fullDescription: 'An interactive mixed-reality prototype that bridges web, hardware, and AI to create a Pokémon-style plant care game. Players interact through a polished React frontend while physical Arduino sensors and computer vision influence game state in real-time, demonstrating full-stack IoT engineering and modular AI/vision components suitable for robotics, interactive installations, or automated systems.',
+    description: 'Interactive mixed-reality hackathon project bridging web, hardware, and AI to create a Pokémon-style plant care game. Won 1st place at Hack the 6ix 2024, Toronto\'s largest summer hackathon.',
+    fullDescription: 'An interactive mixed-reality hackathon project that bridges web, hardware, and AI to create a Pokémon-style plant care game. Players interact through a polished React frontend while physical Arduino sensors and computer vision influence game state in real-time. Our team of four won **1st place** at Hack the 6ix 2024, Toronto\'s largest summer hackathon.',
     detailedAccomplishments: [
-      'Built real-time multiplayer game architecture using React frontend with WebSocket-based communication to Python/Flask backend, enabling sub-second synchronization for responsive local and multiplayer gameplay',
-      'Integrated Arduino sensor pipeline with serial data ingestion (read_serial.py) and webcam capture (webcam.py) to stream moisture levels, light exposure, and visual plant health data into game mechanics',
-      'Implemented computer vision and AI orchestration using OpenCV for image processing and OpenAI/LangChain for plant identification and deficiency detection, with modular agent.py for extensible automation behaviors',
-      'Won 1st place at Hack the 6ix 2024, Toronto\'s largest summer hackathon, by demonstrating a compelling mixed-reality experience that combines physical interactions with digital gameplay',
-      'Designed modular architecture with reusable vision pipeline and agent components that can be repurposed for autonomous gameplay, gesture recognition, or interactive prototyping platforms'
+      'Built real-time multiplayer game architecture using React frontend with WebSocket-based communication to Python/Flask backend, enabling synchronization for responsive local and multiplayer gameplay',
+      'Arduino sensor pipeline with serial data ingestion and webcam capture to stream moisture levels, light exposure, and visual plant health data into game mechanics',
+      'Computer vision using OpenCV for image processing and OpenAI/LangChain for plant identification and deficiency detection (ex. blight, yellowing, wilting etc.)',
     ],
     techStack: ['React', 'Python', 'Flask', 'MongoDB', 'OpenAI', 'OpenCV', 'Arduino', 'Socket.io', 'WebSockets'],
     github: 'https://github.com/FO214/ht6',
@@ -60,6 +68,7 @@ const projects: Project[] = [
     images: [
       '/assets/project-visuals/pokeplants-cover.png',
       '/assets/project-visuals/pokeplants-battle.png',
+      '/assets/project-visuals/pokeplants-arduino.png',
       '/assets/project-visuals/pokeplants-plantdex.png',
       '/assets/project-visuals/pokeplants-tech.png'
     ]
@@ -67,14 +76,13 @@ const projects: Project[] = [
   {
     name: 'Chroma',
     year: '2024',
-    description: 'Cross-platform color assistant helping artists extract colors from photos and compute optimal paint mixing ratios. Won 2 awards at WaffleHacks 2024.',
-    fullDescription: 'A cross-platform color assistant that helps artists extract colors from photos or swatches and compute optimal paint mixing ratios to reproduce target colors. The Flutter app handles camera workflows and palette management, while the Flask backend performs OpenCV-based image segmentation and SciPy-based numerical optimization to calculate precise mixing formulas.',
+    description: 'Mobile app color assistant helping artists extract colors from photos and compute optimal paint mixing ratios. Won 2 awards at WaffleHacks 2024.',
+    fullDescription: 'A mobile app color assistant that helps artists extract colors from photos or swatches and compute optimal paint mixing ratios to reproduce target colors. The Flutter app handles camera workflows and palette management, while the Flask backend performs OpenCV-based image segmentation and SciPy-based numerical optimization to calculate precise mixing formulas. Developed with my teammate for WaffleHacks 2024.',
     detailedAccomplishments: [
       'Engineered computer vision pipeline using OpenCV for adaptive thresholding, contour detection, and mean RGB extraction from color swatches, enabling accurate palette digitization from photos or uploaded images',
       'Implemented constrained optimization solver using SciPy\'s minimize function to compute optimal paint mixing ratios with non-negative constraints, achieving 99% accuracy when validated against online color mixers',
       'Built full-stack architecture with Flutter frontend (iOS, Android, Windows, Linux, macOS) communicating with Flask backend via REST APIs for image upload and mixing calculations',
-      'Designed persistent palette system using SharedPreferences for local storage, flutter_colorpicker for interactive editing, and backend color extraction endpoints to support custom user workflows',
-      'Won 2 awards at WaffleHacks 2024, including recognition for technical implementation and practical utility for artists and designers'
+      'Awarded honorable mention for community and beginner hacks categories for WaffleHacks2024'
     ],
     techStack: ['Flutter', 'Dart', 'Python', 'Flask', 'OpenCV', 'SciPy', 'AWS EC2'],
     github: 'https://github.com/sbrina-w/Chroma',
@@ -90,31 +98,30 @@ const projects: Project[] = [
     name: 'Nudge',
     year: '2024',
     description: 'Chrome extension inspired by The Stanley Parable that gamifies productivity through an AI-powered narrator that monitors user activity, delivers witty spoken narration, and enforces focus through intelligent redirects.',
-    fullDescription: 'A Chrome extension inspired by The Stanley Parable that gamifies productivity through an AI-powered narrator that monitors user activity, delivers witty spoken narration, and enforces focus through intelligent redirects. The system combines real-time behavior tracking, screenshot analysis via LLMs, and voice synthesis to create a compelling productivity experience with personality.',
+    fullDescription: 'A Chrome extension inspired by The Stanley Parable that gamifies productivity through an AI-powered narrator that monitors user activity, delivers witty spoken narration, and enforces focus through intelligent redirects. The system combines real-time behavior tracking, screenshot analysis via LLMs, and voice synthesis to create a compelling productivity experience with personality. Submission for UoftHacks 12.',
     detailedAccomplishments: [
-      'Built Chrome extension with Manifest V3 featuring background service worker for task orchestration, content script for mascot injection and activity monitoring (inactivity, typing, profanity detection), and SPA-aware navigation tracking using MutationObserver and history API overrides',
-      'Engineered AI analysis pipeline using Flask backend that receives screenshots and behavioral data, processes context through OpenAI LLMs to generate narrative responses, and produces spoken audio via ElevenLabs TTS with emotion-matched voice delivery',
-      'Implemented behavioral tracking system monitoring LeetCode usage patterns (problem pages, solution viewing, submissions), enforcing smart redirects from distraction sites (Instagram, YouTube, Reddit), and maintaining a "disobedience counter" that drives narrator personality shifts',
-      'Designed animated mascot system with emotion-based state management (neutral, happy, angry, super-angry) using PNG sequence animations synchronized with spoken narration and user actions',
-      'Built React analytics dashboards displaying productivity scores, achievements, recent activity, weekly stats, and todo lists by consuming MongoDB-stored logs from the backend analytics engine'
+      'AI analysis pipeline using Flask backend that receives screenshots and behavioral data from activity monitoring (inactivity, typing, profanity detection), processes context through OpenAI LLMs to generate narrative responses and produces spoken audio via ElevenLabs TTS with emotion-matched voice delivery cloned from the game',
+      'Implemented behavioral tracking system monitoring LeetCode usage patterns (problem pages, solution viewing, submissions), enforcing smart redirects from distraction sites (Instagram, YouTube, Reddit) and maintaining a "disobedience counter" that drives narrator personality shifts',
+      'Drew animated mascot system with emotion-based state management (neutral, happy, angry, super-angry) using PNG sequence animations synchronized with spoken narration and user actions',
     ],
     techStack: ['Python', 'JavaScript', 'HTML/CSS', 'Flask', 'OpenAI', 'LangChain', 'ElevenLabs', 'MongoDB', 'Chrome Extension API', 'React', 'Vite'],
     github: 'https://github.com/sbrina-w/uofthacks12',
     liveLink: 'https://dorahacks.io/buidl/21709',
     images: [
       '/assets/project-visuals/nudge-happy.gif',
-      '/assets/project-visuals/nudge-angry.gif'
+      '/assets/project-visuals/nudge-angry.gif',
+      '/assets/project-visuals/nudge-extension.png',
+      '/assets/project-visuals/nudge-dashboard.png',
     ]
   },
   {
     name: 'MoodMinder',
     year: '2024',
     description: 'Chrome extension that enhances Reddit browsing by filtering negative comments using NLP-based sentiment analysis. Published to Chrome Web Store with ~70% reduction in negative content exposure.',
-    fullDescription: 'A Chrome extension that enhances Reddit browsing by filtering negative comments using NLP-based sentiment analysis. The tool leverages VADER to evaluate emotional tone and offers flexible filtering modes (blur or hide), promoting healthier online interactions while prioritizing user privacy through local processing.',
+    fullDescription: 'A Chrome extension that enhances Reddit browsing by filtering negative comments using NLP-based sentiment analysis. The tool leverages VADER to evaluate emotional tone and offers flexible filtering modes (blur or hide), promoting healthier online interactions while prioritizing user privacy through local processing. Co-developed with a teammate.',
     detailedAccomplishments: [
       'Implemented real-time sentiment analysis using VADER library via Flask backend, scoring Reddit comments for toxicity and flagging negative content for user-configurable filtering',
       'Built dynamic content monitoring system using MutationObserver to detect new comments as they load, extract text content, and apply filtering rules without page refreshes',
-      'Designed user-friendly popup interface with toggle controls for blur/hide modes, persistent state management via Chrome Storage API, and browser notifications to encourage consistent usage',
       'Achieved ~70% reduction in negative content exposure based on sentiment threshold tuning, improving browsing experience for users seeking more mindful online engagement',
       'Published to Chrome Web Store with Manifest V3 compliance, deployed Flask API on AWS for scalable sentiment processing, and maintained privacy-focused architecture with no external data sharing'
     ],
@@ -137,7 +144,7 @@ const projects: Project[] = [
       'Designed stack frame layout with calling conventions for multi-procedure programs, managing register preservation, parameter passing, and return values across function boundaries',
       'Implemented type-aware expression code generation supporting integer and pointer semantics, including pointer arithmetic with automatic word-size scaling, address-of/dereference operators, and array indexing',
       'Built control flow generation for if/else and while constructs using generated labels and conditional branches, ensuring correct jump targets and loop behavior',
-      'Integrated external MERL libraries (alloc.merl, print.merl) through proper linking and calling conventions, handling edge cases like NULL dereference crashes, failed allocations, and NULL-safe delete operations'
+      'Integrated external MERL libraries through proper linking and calling conventions, handling edge cases like NULL dereference crashes, failed allocations, and NULL-safe delete operations'
     ],
     techStack: ['C++', 'MIPS Assembly'],
   },
@@ -145,15 +152,13 @@ const projects: Project[] = [
     name: 'TungTung',
     year: '2025',
     description: 'Full-stack service marketplace platform connecting users with local service providers. Features authentication, multi-category listings, task assignment workflows, and review systems.',
-    fullDescription: 'A full-stack service marketplace platform connecting users with local service providers. The application features user authentication, multi-category service listings, task assignment workflows, review systems, and a modern responsive frontend powered by a robust Spring Boot REST API.',
+    fullDescription: 'A full-stack service marketplace platform connecting users with local service providers. The application features user authentication, multi-category service listings, task assignment workflows, review systems. Group project for CS348 Database course at UWaterloo.',
     detailedAccomplishments: [
-      'Built scalable backend architecture using Java 17 Spring Boot with RESTful APIs for user management, service listings, task assignments, reviews, and earnings tracking',
-      'Designed MySQL database schema supporting users, categories, listings, assignments, and reviews, with JavaFaker-based data generation for realistic testing across diverse user behaviors',
+      'Designed MySQL database schema and E/R diagram supporting users, categories, listings, assignments, and reviews',
       'Implemented multi-category filtering system allowing users to search and filter service listings by multiple criteria simultaneously, improving discoverability and user experience',
-      'Developed real-time status tracking for task assignments (Taken, Completed) with automated workflows for task claiming, completion verification, and review submission',
-      'Created modern Next.js frontend with TypeScript, modular component architecture, and responsive design patterns for seamless cross-device experience'
+      'Real-time status tracking for task assignments (Taken, Completed) with automated workflows for task claiming, completion verification, and review submission',
     ],
-    techStack: ['Next.js', 'TypeScript', 'Java 17', 'Spring Boot', 'MySQL'],
+    techStack: ['Next.js', 'TypeScript', 'Java', 'MySQL'],
     github: 'https://github.com/pahu2353/TungTung',
     images: [
       '/assets/project-visuals/tungtung-intro.png',
@@ -166,13 +171,13 @@ const projects: Project[] = [
     name: 'RaiiNet',
     year: '2025',
     description: 'Stratego-like strategy game implementing link movement, battles, and special abilities with both text-based and X11 graphical interfaces using advanced C++ design patterns.',
-    fullDescription: 'A network/board strategy game implementing link movement, battles, and special abilities with both text-based and X11 graphical interfaces. The project demonstrates advanced C++ design patterns, low-level graphics integration on Linux, and clean separation of concerns through MVC architecture.',
+    fullDescription: 'A network/board strategy game implementing link movement, battles, and special abilities with both text-based and X11 graphical interfaces. The project demonstrates advanced C++ design patterns, low-level graphics integration on Linux, and clean separation of concerns through MVC architecture. Group project for CS247 Object Oriented Programming course.',
     detailedAccomplishments: [
       'Implemented MVC architecture with GameModel for state/rules enforcement, GameController for CLI command parsing and execution, and GraphicsDisplay as Observer for X11 rendering',
-      'Built Observer/Subject pattern to propagate game state changes (GameStart, LinkMoved, DownloadOccurred, TurnEnded, GameOver, AbilityUsed) from model to view layer',
-      'Designed pluggable ability system supporting 8+ ability types (LinkBoost, Firewall, Download, Scan, Polarize, Exchange, GoLater, Hijack) with usage tracking and validation',
+      'Observer/Subject pattern to propagate game state changes from model to view layer',
+      'Pluggable ability system supporting 8+ ability types (LinkBoost, Firewall, Download, Scan, Polarize, Exchange, GoLater, Hijack) with usage tracking and validation',
       'Integrated X11 graphics rendering using Xwindow wrapper with off-screen Pixmaps for double buffering and per-player perspectives to hide opponent information',
-      'Added scriptable gameplay support through sequence files for automated testing, with command history logging and nested sequence execution'
+      'Scriptable gameplay support through sequence files for automated testing, with command history logging and nested sequence execution'
     ],
     techStack: ['C++', 'X11/Xwindow', 'Observer Pattern', 'MVC Architecture'],
     images: ['/assets/project-visuals/raiinet-gameplay.png']
@@ -540,7 +545,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, isExpanded, o
                 </div>
               </div>
               
-              <p className="project-full-description">{project.fullDescription || project.description}</p>
+              <p className="project-full-description">{parseBoldText(project.fullDescription || project.description)}</p>
               
               {project.detailedAccomplishments && project.detailedAccomplishments.length > 0 && (
                 <ul className="project-accomplishments">
