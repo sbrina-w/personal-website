@@ -14,6 +14,7 @@ interface Project {
   devpost?: string;
   liveLink?: string;
   image?: string;
+  images?: string[];
 }
 
 const projects: Project[] = [
@@ -31,23 +32,37 @@ const projects: Project[] = [
     ],
     techStack: ['Streamlit', 'LangChain', 'OpenAI', 'HuggingFace', 'ChromaDB', 'Python', 'Pandas', 'Plotly'],
     github: 'https://github.com/sbrina-w/yelp-analysis',
-    liveLink: 'https://yelp-analysis.streamlit.app/'
+    liveLink: 'https://yelp-analysis.streamlit.app/',
+    images: [
+      '/assets/project-visuals/yelp1.png',
+      '/assets/project-visuals/yelp2.png',
+      '/assets/project-visuals/yelp3.png',
+      '/assets/project-visuals/yelp4.png',
+      '/assets/project-visuals/yelp5.png',
+      '/assets/project-visuals/yelp6.png'
+    ]
   },
   {
     name: 'PokePlants',
     year: '2024',
-    description: 'Interactive mixed-reality prototype bridging web, hardware, and AI to create a Pokémon-style plant care game. Won 1st place at Hack the 6ix 2024, Toronto\'s largest hackathon.',
+    description: 'Interactive mixed-reality prototype bridging web, hardware, and AI to create a Pokémon-style plant care game. Won 1st place at Hack the 6ix 2024, Toronto\'s largest summer hackathon.',
     fullDescription: 'An interactive mixed-reality prototype that bridges web, hardware, and AI to create a Pokémon-style plant care game. Players interact through a polished React frontend while physical Arduino sensors and computer vision influence game state in real-time, demonstrating full-stack IoT engineering and modular AI/vision components suitable for robotics, interactive installations, or automated systems.',
     detailedAccomplishments: [
       'Built real-time multiplayer game architecture using React frontend with WebSocket-based communication to Python/Flask backend, enabling sub-second synchronization for responsive local and multiplayer gameplay',
       'Integrated Arduino sensor pipeline with serial data ingestion (read_serial.py) and webcam capture (webcam.py) to stream moisture levels, light exposure, and visual plant health data into game mechanics',
       'Implemented computer vision and AI orchestration using OpenCV for image processing and OpenAI/LangChain for plant identification and deficiency detection, with modular agent.py for extensible automation behaviors',
-      'Won 1st place at Hack the 6ix 2024, Toronto\'s largest hackathon, by demonstrating a compelling mixed-reality experience that combines physical interactions with digital gameplay',
+      'Won 1st place at Hack the 6ix 2024, Toronto\'s largest summer hackathon, by demonstrating a compelling mixed-reality experience that combines physical interactions with digital gameplay',
       'Designed modular architecture with reusable vision pipeline and agent components that can be repurposed for autonomous gameplay, gesture recognition, or interactive prototyping platforms'
     ],
     techStack: ['React', 'Python', 'Flask', 'MongoDB', 'OpenAI', 'OpenCV', 'Arduino', 'Socket.io', 'WebSockets'],
     github: 'https://github.com/FO214/ht6',
-    devpost: 'https://devpost.com/software/pokeplants'
+    devpost: 'https://devpost.com/software/pokeplants',
+    images: [
+      '/assets/project-visuals/pokeplants-cover.png',
+      '/assets/project-visuals/pokeplants-battle.png',
+      '/assets/project-visuals/pokeplants-plantdex.png',
+      '/assets/project-visuals/pokeplants-tech.png'
+    ]
   },
   {
     name: 'Chroma',
@@ -63,7 +78,13 @@ const projects: Project[] = [
     ],
     techStack: ['Flutter', 'Dart', 'Python', 'Flask', 'OpenCV', 'SciPy', 'AWS EC2'],
     github: 'https://github.com/sbrina-w/Chroma',
-    devpost: 'https://devpost.com/software/chroma-q3wshr'
+    devpost: 'https://devpost.com/software/chroma-q3wshr',
+    images: [
+      '/assets/project-visuals/chroma-get-color.mp4',
+      '/assets/project-visuals/chroma-calculate.mp4',
+      '/assets/project-visuals/chroma-verify.mp4',
+      '/assets/project-visuals/chroma-verify2.mp4'
+    ]
   },
   {
     name: 'Nudge',
@@ -79,7 +100,11 @@ const projects: Project[] = [
     ],
     techStack: ['Python', 'JavaScript', 'HTML/CSS', 'Flask', 'OpenAI', 'LangChain', 'ElevenLabs', 'MongoDB', 'Chrome Extension API', 'React', 'Vite'],
     github: 'https://github.com/sbrina-w/uofthacks12',
-    liveLink: 'https://dorahacks.io/buidl/21709'
+    liveLink: 'https://dorahacks.io/buidl/21709',
+    images: [
+      '/assets/project-visuals/nudge-happy.gif',
+      '/assets/project-visuals/nudge-angry.gif'
+    ]
   },
   {
     name: 'MoodMinder',
@@ -95,21 +120,26 @@ const projects: Project[] = [
     ],
     techStack: ['Python', 'JavaScript', 'HTML/CSS', 'Flask', 'VADER Sentiment', 'Chrome Extension API', 'AWS'],
     github: 'https://github.com/rubylu-05/moodminder',
-    liveLink: 'https://chromewebstore.google.com/detail/moodminder/iobpegidgaikaooclpomdpplcffiablb'
+    liveLink: 'https://chromewebstore.google.com/detail/moodminder/iobpegidgaikaooclpomdpplcffiablb',
+    images: [
+      '/assets/project-visuals/moodminder-demo.mov',
+      '/assets/project-visuals/moodminder-blur.png',
+      '/assets/project-visuals/moodminder-hide.png',
+      '/assets/project-visuals/moodminder-off.png'
+    ]
   },
   {
     name: 'Mini C (WLP4) Compiler',
     year: '2024',
-    description: 'Single-pass code generator translating WLP4 (simplified C-like language) parse trees into executable MIPS assembly with stack-managed function frames and expression evaluation.',
-    fullDescription: 'A single-pass code generator that translates WLP4 (a simplified C-like language) parse trees into executable MIPS assembly. The compiler implements stack-managed function frames, expression evaluation with correct pointer/integer semantics, control flow generation, dynamic memory allocation, and runtime support for I/O operations.',
+    description: 'A multi-stage code generator that translates WLP4 (a subset of C) parse trees into executable MIPS assembly.',
+    fullDescription: 'A multi-stage code generator that translates WLP4 (a subset of C) parse trees into executable MIPS assembly. The compiler handles procedure calls, pointer operations, control flow, and dynamic memory allocation while interfacing with external runtime libraries.',
     detailedAccomplishments: [
-      'Designed stack frame layout and symbol table mapping to produce correct addressing for function parameters, local variables, and temporary values across nested scopes',
-      'Implemented expression code generation including binary operations, pointer arithmetic, array indexing, dynamic allocation (new/delete), and function call conventions with proper register usage',
+      'Designed stack frame layout with calling conventions for multi-procedure programs, managing register preservation, parameter passing, and return values across function boundaries',
+      'Implemented type-aware expression code generation supporting integer and pointer semantics, including pointer arithmetic with automatic word-size scaling, address-of/dereference operators, and array indexing',
       'Built control flow generation for if/else and while constructs using generated labels and conditional branches, ensuring correct jump targets and loop behavior',
-      'Integrated runtime support hooks for heap allocation (alloc.merl), I/O operations (print.merl), and error handling for allocation failures and invalid memory operations',
-      'Validated compiler correctness by testing against reference MIPS outputs, iterating until behavior matched expected semantics for all language features'
+      'Integrated external MERL libraries (alloc.merl, print.merl) through proper linking and calling conventions, handling edge cases like NULL dereference crashes, failed allocations, and NULL-safe delete operations'
     ],
-    techStack: ['C++', 'MIPS Assembly', 'Unix Toolchain'],
+    techStack: ['C++', 'MIPS Assembly'],
   },
   {
     name: 'TungTung',
@@ -124,7 +154,13 @@ const projects: Project[] = [
       'Created modern Next.js frontend with TypeScript, modular component architecture, and responsive design patterns for seamless cross-device experience'
     ],
     techStack: ['Next.js', 'TypeScript', 'Java 17', 'Spring Boot', 'MySQL'],
-    github: 'https://github.com/pahu2353/TungTung'
+    github: 'https://github.com/pahu2353/TungTung',
+    images: [
+      '/assets/project-visuals/tungtung-intro.png',
+      '/assets/project-visuals/tungtung-listings.png',
+      '/assets/project-visuals/tungtung-graph.png',
+      '/assets/project-visuals/tungtung-profile.png'
+    ]
   },
   {
     name: 'RaiiNet',
@@ -139,6 +175,7 @@ const projects: Project[] = [
       'Added scriptable gameplay support through sequence files for automated testing, with command history logging and nested sequence execution'
     ],
     techStack: ['C++', 'X11/Xwindow', 'Observer Pattern', 'MVC Architecture'],
+    images: ['/assets/project-visuals/raiinet-gameplay.png']
   }
 ];
 
@@ -153,14 +190,12 @@ interface ProjectCardProps {
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, isExpanded, onToggleExpand, gradient }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const expandedContentRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isZoomed, setIsZoomed] = useState(false);
   
-  const placeholderImages = [
-    '/assets/texture/blur.webp',
-    '/assets/texture/grain.webp',
-    '/assets/texture/noise.jpeg'
-  ];
+  const projectImages = project.images || [];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -180,13 +215,47 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, isExpanded, o
   }, []);
 
   useEffect(() => {
-    if (isExpanded) {
-      const interval = setInterval(() => {
-        setCurrentImageIndex((prev) => (prev + 1) % placeholderImages.length);
-      }, 3000);
-      return () => clearInterval(interval);
+    if (isExpanded && projectImages.length > 1) {
+      const currentMedia = projectImages[currentImageIndex];
+      const isVideo = currentMedia.endsWith('.mp4') || currentMedia.endsWith('.mov');
+      
+      if (isVideo && videoRef.current) {
+        const video = videoRef.current;
+        
+        const startAutoAdvance = () => {
+          const duration = (video.duration * 1000) || 5000; // Fallback to 5 seconds
+          const timeout = setTimeout(() => {
+            setCurrentImageIndex((prev) => (prev + 1) % projectImages.length);
+          }, duration);
+          
+          return timeout;
+        };
+        
+        // Wait for metadata to be loaded
+        if (video.duration) {
+          const timeout = startAutoAdvance();
+          return () => clearTimeout(timeout);
+        } else {
+          const handleLoadedMetadata = () => {
+            const timeout = startAutoAdvance();
+            video.removeEventListener('loadedmetadata', handleLoadedMetadata);
+          };
+          video.addEventListener('loadedmetadata', handleLoadedMetadata);
+          
+          return () => {
+            video.removeEventListener('loadedmetadata', handleLoadedMetadata);
+          };
+        }
+      } else {
+        // For images and gifs, use 3 second interval
+        const timeout = setTimeout(() => {
+          setCurrentImageIndex((prev) => (prev + 1) % projectImages.length);
+        }, 3000);
+        
+        return () => clearTimeout(timeout);
+      }
     }
-  }, [isExpanded, placeholderImages.length]);
+  }, [isExpanded, projectImages.length, currentImageIndex, projectImages]);
 
   // Auto-scroll to center the expanded card
   useEffect(() => {
@@ -206,6 +275,21 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, isExpanded, o
       return;
     }
     onToggleExpand();
+  };
+
+  const handlePrevImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentImageIndex((prev) => (prev - 1 + projectImages.length) % projectImages.length);
+  };
+
+  const handleNextImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentImageIndex((prev) => (prev + 1) % projectImages.length);
+  };
+
+  const handleImageClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsZoomed(!isZoomed);
   };
 
   return (
@@ -332,28 +416,74 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, isExpanded, o
               }
             }}
           >
-            <div className="project-expanded-left">
-              <div className="image-carousel">
-                <img 
-                  src={placeholderImages[currentImageIndex]} 
-                  alt={`${project.name} preview ${currentImageIndex + 1}`}
-                  className="carousel-image"
-                />
-                <div className="carousel-dots">
-                  {placeholderImages.map((_, i) => (
-                    <button
-                      key={i}
-                      className={`carousel-dot ${i === currentImageIndex ? 'active' : ''}`}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setCurrentImageIndex(i);
-                      }}
-                      aria-label={`Go to image ${i + 1}`}
+            {projectImages.length > 0 && (
+              <div className="project-expanded-left">
+                <span className="project-decorative-text">⟢ ⟢ ⟢ ⟢ ⟢ ⟢</span>
+                <div className="image-carousel">
+                  {projectImages[currentImageIndex].endsWith('.mp4') || projectImages[currentImageIndex].endsWith('.mov') ? (
+                    <video 
+                      ref={videoRef}
+                      src={projectImages[currentImageIndex]} 
+                      className={`carousel-image ${isZoomed ? 'zoomed' : ''}`}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      onClick={handleImageClick}
                     />
-                  ))}
+                  ) : projectImages[currentImageIndex].endsWith('.gif') ? (
+                    <img 
+                      src={projectImages[currentImageIndex]} 
+                      alt={`${project.name} preview ${currentImageIndex + 1}`}
+                      className={`carousel-image ${isZoomed ? 'zoomed' : ''}`}
+                      onClick={handleImageClick}
+                    />
+                  ) : (
+                    <img 
+                      src={projectImages[currentImageIndex]} 
+                      alt={`${project.name} preview ${currentImageIndex + 1}`}
+                      className={`carousel-image ${isZoomed ? 'zoomed' : ''}`}
+                      onClick={handleImageClick}
+                    />
+                  )}
+                  {projectImages.length > 1 && (
+                    <>
+                      <button 
+                        className="carousel-arrow carousel-arrow-left" 
+                        onClick={handlePrevImage}
+                        aria-label="Previous image"
+                      >
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M15 18l-6-6 6-6"/>
+                        </svg>
+                      </button>
+                      <button 
+                        className="carousel-arrow carousel-arrow-right" 
+                        onClick={handleNextImage}
+                        aria-label="Next image"
+                      >
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M9 18l6-6-6-6"/>
+                        </svg>
+                      </button>
+                    </>
+                  )}
+                  <div className="carousel-dots">
+                    {projectImages.map((_, i) => (
+                      <button
+                        key={i}
+                        className={`carousel-dot ${i === currentImageIndex ? 'active' : ''}`}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setCurrentImageIndex(i);
+                        }}
+                        aria-label={`Go to image ${i + 1}`}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
             
             <div className="project-expanded-right">
               <div className="project-expanded-header">
@@ -368,7 +498,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, isExpanded, o
                       href={project.github} 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="project-link"
+                      className="project-link-expanded"
                       aria-label="GitHub"
                       onClick={(e) => e.stopPropagation()}
                     >
@@ -382,7 +512,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, isExpanded, o
                       href={project.devpost} 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="project-link"
+                      className="project-link-expanded"
                       aria-label="Devpost"
                       onClick={(e) => e.stopPropagation()}
                     >
@@ -396,7 +526,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, isExpanded, o
                       href={project.liveLink} 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="project-link"
+                      className="project-link-expanded"
                       aria-label="Live Demo"
                       onClick={(e) => e.stopPropagation()}
                     >

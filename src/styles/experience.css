@@ -206,7 +206,7 @@
 .experience-company {
   font-size: 1.7rem;
   /* font-family: 'Courier New', monospace; */
-  color: var(--grey-brown);
+  color: var(--text-dark);
   margin-bottom: -0.4rem;
   font-weight: 500;
   letter-spacing: 0.5px;
@@ -222,10 +222,10 @@
 
 .experience-period {
   font-size: 0.9rem;
-  color: var(--text-light);
+  color: var(--grey-brown);
   font-family: 'Courier New', monospace;
   white-space: nowrap;
-  background: var(--carousel-bg);
+  background: #c5c3782e;
   padding: 0.4rem 1rem;
   border-radius: 20px;
 }
