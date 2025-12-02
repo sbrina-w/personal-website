@@ -65,6 +65,9 @@ interface SectionProps {
 const ContentSection: React.FC<SectionProps> = ({ section, index }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollY, setScrollY] = useState(0);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const [showVideo, setShowVideo] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -76,6 +79,38 @@ const ContentSection: React.FC<SectionProps> = ({ section, index }) => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleMouseEnter = () => {
+    if (section.id !== 'art') return;
+    
+    hoverTimeoutRef.current = setTimeout(() => {
+      setShowVideo(true);
+      if (videoRef.current) {
+        videoRef.current.play();
+      }
+    }, 1000);
+  };
+
+  const handleMouseLeave = () => {
+    if (section.id !== 'art') return;
+    
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
+    
+    setShowVideo(false);
+    if (videoRef.current) {
+      videoRef.current.pause();
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      if (hoverTimeoutRef.current) {
+        clearTimeout(hoverTimeoutRef.current);
+      }
+    };
   }, []);
 
   const isEvenIndex = index % 2 === 0;
@@ -106,6 +141,8 @@ const ContentSection: React.FC<SectionProps> = ({ section, index }) => {
           <div
             className="content-image-wrapper"
             style={{ transform: `translateY(${scrollY * -0.2}px)` }}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
             <div className="content-image-container">
               <PixelatedImage
@@ -113,6 +150,17 @@ const ContentSection: React.FC<SectionProps> = ({ section, index }) => {
                 alt={section.title}
                 className="content-image"
               />
+              {section.id === 'art' && (
+                <video
+                  ref={videoRef}
+                  src="/illustrations/desserts-speedpaint.mp4"
+                  className="content-video-overlay"
+                  style={{ opacity: showVideo ? 1 : 0 }}
+                  loop
+                  muted
+                  playsInline
+                />
+              )}
             </div>
           </div>
         </div>
