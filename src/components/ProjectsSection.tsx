@@ -193,7 +193,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, isExpanded, o
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isZoomed, setIsZoomed] = useState(false);
   
   const projectImages = project.images || [];
 
@@ -287,9 +286,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, isExpanded, o
     setCurrentImageIndex((prev) => (prev + 1) % projectImages.length);
   };
 
-  const handleImageClick = (e: React.MouseEvent) => {
+  const handleImageClick = (e: React.MouseEvent, imageUrl: string) => {
     e.stopPropagation();
-    setIsZoomed(!isZoomed);
+    window.open(imageUrl, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -419,31 +418,32 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, isExpanded, o
             {projectImages.length > 0 && (
               <div className="project-expanded-left">
                 <span className="project-decorative-text">⟢ ⟢ ⟢ ⟢ ⟢ ⟢</span>
+                <span className="project-decorative-slashes">/ / / / / / / /</span>
                 <div className="image-carousel">
                   {projectImages[currentImageIndex].endsWith('.mp4') || projectImages[currentImageIndex].endsWith('.mov') ? (
                     <video 
                       ref={videoRef}
                       src={projectImages[currentImageIndex]} 
-                      className={`carousel-image ${isZoomed ? 'zoomed' : ''}`}
+                      className="carousel-image"
                       autoPlay
                       loop
                       muted
                       playsInline
-                      onClick={handleImageClick}
+                      onClick={(e) => handleImageClick(e, projectImages[currentImageIndex])}
                     />
                   ) : projectImages[currentImageIndex].endsWith('.gif') ? (
                     <img 
                       src={projectImages[currentImageIndex]} 
                       alt={`${project.name} preview ${currentImageIndex + 1}`}
-                      className={`carousel-image ${isZoomed ? 'zoomed' : ''}`}
-                      onClick={handleImageClick}
+                      className="carousel-image"
+                      onClick={(e) => handleImageClick(e, projectImages[currentImageIndex])}
                     />
                   ) : (
                     <img 
                       src={projectImages[currentImageIndex]} 
                       alt={`${project.name} preview ${currentImageIndex + 1}`}
-                      className={`carousel-image ${isZoomed ? 'zoomed' : ''}`}
-                      onClick={handleImageClick}
+                      className="carousel-image"
+                      onClick={(e) => handleImageClick(e, projectImages[currentImageIndex])}
                     />
                   )}
                   {projectImages.length > 1 && (
