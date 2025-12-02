@@ -1,7 +1,7 @@
 .content-section {
   position: relative;
   width: 100%;
-  min-height: 100vh;
+  min-height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,7 +9,6 @@
   background: transparent;
   overflow: hidden;
   z-index: 2;
-  margin-bottom: 50px;
 }
 
 .section-wrapper {

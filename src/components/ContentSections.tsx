@@ -68,17 +68,43 @@ const ContentSection: React.FC<SectionProps> = ({ section, index }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const [showVideo, setShowVideo] = useState(false);
+  const targetScrollYRef = useRef(0);
+  const currentScrollYRef = useRef(0);
+  const rafRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
     const handleScroll = () => {
       if (!containerRef.current) return;
       const rect = containerRef.current.getBoundingClientRect();
       const elementScrolled = -rect.top;
-      setScrollY(Math.max(0, elementScrolled));
+      targetScrollYRef.current = Math.max(0, elementScrolled);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const smoothScroll = () => {
+      // Lerp (linear interpolation) for smooth animation
+      const lerp = (start: number, end: number, factor: number) => {
+        return start + (end - start) * factor;
+      };
+
+      currentScrollYRef.current = lerp(
+        currentScrollYRef.current,
+        targetScrollYRef.current,
+        0.1 // Smoothing factor (0.1 = smooth, higher = faster)
+      );
+
+      setScrollY(currentScrollYRef.current);
+      rafRef.current = requestAnimationFrame(smoothScroll);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    rafRef.current = requestAnimationFrame(smoothScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
+    };
   }, []);
 
   const handleMouseEnter = () => {
@@ -125,7 +151,7 @@ const ContentSection: React.FC<SectionProps> = ({ section, index }) => {
         <div className="content-container">
           <div
             className="content-text"
-            style={{ transform: `translateY(${scrollY * 0.3}px)` }}
+            style={{ transform: `translateY(${scrollY * 0.2}px)` }}
           >
             <h2 className="content-title">{section.title}</h2>
             <div className="content-body">
@@ -140,7 +166,7 @@ const ContentSection: React.FC<SectionProps> = ({ section, index }) => {
 
           <div
             className="content-image-wrapper"
-            style={{ transform: `translateY(${scrollY * -0.2}px)` }}
+            style={{ transform: `translateY(${scrollY * -0.15}px)` }}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
