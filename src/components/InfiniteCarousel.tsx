@@ -23,6 +23,13 @@ export const InfiniteCarousel: React.FC<InfiniteCarouselProps> = ({ images }) =>
     scrollerContent.forEach((item) => {
       const duplicatedItem = item.cloneNode(true) as HTMLElement;
       duplicatedItem.setAttribute('aria-hidden', 'true');
+      
+      // Add click handler to duplicated item
+      const imgSrc = duplicatedItem.querySelector('img')?.src;
+      if (imgSrc) {
+        duplicatedItem.addEventListener('click', () => window.open(imgSrc, '_blank'));
+      }
+      
       inner.appendChild(duplicatedItem);
     });
 
@@ -70,7 +77,11 @@ export const InfiniteCarousel: React.FC<InfiniteCarouselProps> = ({ images }) =>
     >
       <div className="carousel-scroller-inner" ref={innerRef}>
         {images.map((image, index) => (
-          <div key={index} className="carousel-item-infinite">
+          <div 
+            key={index} 
+            className="carousel-item-infinite"
+            onClick={() => window.open(image, '_blank')}
+          >
             <img src={image} alt={`Art ${index + 1}`} />
           </div>
         ))}

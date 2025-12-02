@@ -155,7 +155,7 @@ export const PixelatedImage: React.FC<PixelatedImageProps> = ({ src, alt, classN
     ctx.globalCompositeOperation = 'source-over';
 
     // Initial draw
-    factorRef.current = 0.2; // small enough to trigger glitch
+    factorRef.current = 1; 
     draw(ctx, subCtx, canvas, subCanvas, image);
 
     return () => {

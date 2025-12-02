@@ -19,6 +19,12 @@ const artImages = [
   '/illustrations/art/pen1.png',
   '/illustrations/art/pen3.png',
   '/illustrations/art/pen4.png',
+  '/illustrations/fig-cake.png',
+  '/illustrations/roll-cake.png',
+  '/illustrations/strawberry-tart.png',
+  '/illustrations/matcha-basque.png',
+  '/illustrations/matcha-cookie.png',
+  '/illustrations/mochi-bunny.png',
 ];
 
 const sectionContent: SectionContent[] = [
@@ -39,20 +45,14 @@ Let's connect and create something amazing together!`,
   {
     id: 'art',
     title: 'Art',
-    description: `Art and design are integral parts of my creative process. I explore various mediums including digital illustration, UI/UX design, and creative coding to express ideas and push the boundaries of what's possible in web design.
+    description: `I love drawing in my free time and recently I've been exploring how to integrate it into software development. I've been really enjoying learning 
+glsl and three.js to create interactive and animated graphics like the background you see right now! 
 
-My artistic interests include:
-• Digital illustration and graphic design
-• Creative coding and generative art
-• UI/UX design exploring beautiful interactions
-• Motion graphics and animation
-• Interactive installations and experiences
+Below you will find some of my traditional and digital art works. Feel free to click on any piece to view it in full size :)
+All the illustrations you see on this page are hand-drawn by me in clip studio paint. As a café lover and general dessert enthusiast + baker I had so much fun creating these (and also got very hungry). 
 
-I believe that good design is invisible—it serves the user without demanding attention. My goal is to create interfaces that are not only functional but also bring joy to the people using them. The intersection of art and technology is where I find the most inspiration.
-
-Whether it's designing a user interface, creating a visual identity, or building an interactive experience, I approach each project with an artist's eye for detail and a developer's mindset for functionality.
-
-Art and code are two sides of the same creative coin for me.`,
+I love experimenting with new art mediums and I've tried many from oil painting, wood carving, sculpting to graphite but I always come back to watercolor. Recently I've been making watercolor cards for birthdays and holidays, especially after getting some metallic watercolors.
+`,
     image: '/illustrations/matcha-basque-cropped.png',
   },
 ];
@@ -162,6 +162,9 @@ const ContentSection: React.FC<SectionProps> = ({ section, index }) => {
                 />
               )}
             </div>
+            {section.id === 'art' && (
+              <span className="hover-hint">⟢  ↑ hover over me! ⟢ </span>
+            )}
           </div>
         </div>
       </div>

@@ -121,6 +121,22 @@
   z-index: 3;
 }
 
+/* Hover hint */
+.hover-hint {
+  display: block;
+  text-align: center;
+  margin-top: 0.75rem;
+  border: 1px solid var(--accent-light);
+  border-radius: 50px;
+  width: fit-content;
+  justify-self: center;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.85rem;
+  color: var(--grey-brown);
+  font-style: italic;
+  direction: ltr;
+}
+
 /* Parallax effect for text elements */
 .content-text > * {
   position: relative;
