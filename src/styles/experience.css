@@ -352,6 +352,8 @@
 
 @media (max-width: 768px) {
   .experience-section {
+    margin-top: 40px;
+    margin-bottom: 30;
     min-height: auto;
   }
 

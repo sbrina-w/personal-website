@@ -398,3 +398,27 @@
     display: none;
   }
 }
+
+@media (max-width: 480px) {
+  #art .content-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    direction: ltr;
+    margin-bottom: 0;
+  }
+
+  #art .content-text {
+    width: 100%;
+    order: 1;
+  }
+
+  #art .content-image-wrapper {
+    width: 70%;
+    order: 2;
+  }
+
+  #art .content-image-container {
+    width: 100%;
+  }
+}

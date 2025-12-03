@@ -435,9 +435,8 @@
 }
 
 @media (max-width: 480px) {
-  .receipt-item {
-    flex-direction: column;
-    gap: 4px;
+  .receipt-section {
+    padding-top: 0;
   }
 
   .receipt-item-price {

@@ -66,6 +66,16 @@ const ContentSection: React.FC<SectionProps> = ({ section, index }) => {
   const targetScrollYRef = useRef(0);
   const currentScrollYRef = useRef(0);
   const rafRef = useRef<number | undefined>(undefined);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 480);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -203,7 +213,7 @@ const ContentSection: React.FC<SectionProps> = ({ section, index }) => {
           <div
             className="content-image-wrapper"
             style={{ 
-              transform: Math.abs(scrollY) > 1 ? `translateY(${scrollY * -0.15}px)` : 'translateY(0px)'
+              transform: (Math.abs(scrollY) > 1 && !(isMobile && section.id === 'art')) ? `translateY(${scrollY * -0.15}px)` : 'translateY(0px)'
             }}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
@@ -227,7 +237,9 @@ const ContentSection: React.FC<SectionProps> = ({ section, index }) => {
               )}
             </div>
             {section.id === 'art' && (
-              <span className="hover-hint">⟢  ↑ hover over me! ⟢ </span>
+              <span className="hover-hint">
+                {isMobile ? '⟢  ↑ click on me! ⟢ ' : '⟢  ↑ hover over me! ⟢ '}
+              </span>
             )}
           </div>
         </div>

@@ -576,6 +576,17 @@ export const ProjectsSection: React.FC = () => {
   const [cardGradients, setCardGradients] = useState<Record<number, { x: number; y: number; prevX: number; prevY: number }>>({});
   const prevGradientsRef = useRef<Record<number, { x: number; y: number }>>({});
   const [scrollY, setScrollY] = useState(0);
+  const [showAllProjects, setShowAllProjects] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const handleToggleExpand = (index: number) => {
     setExpandedIndex(expandedIndex === index ? null : index);
@@ -632,12 +643,14 @@ export const ProjectsSection: React.FC = () => {
 
   // Create display order: fill rows with non-expanded projects, insert expanded at next available row
   const renderOrder = () => {
+    const projectsToDisplay = isMobile && !showAllProjects ? projects.slice(0, 4) : projects;
+    
     if (expandedIndex === null) {
-      return projects.map((project, index) => ({ 
+      return projectsToDisplay.map((project, index) => ({ 
         project, 
-        originalIndex: index, 
+        originalIndex: projects.indexOf(project), 
         isExpanded: false,
-        key: `project-${index}`
+        key: `project-${projects.indexOf(project)}`
       }));
     }
 
@@ -652,8 +665,9 @@ export const ProjectsSection: React.FC = () => {
     // Add all non-expanded projects, inserting expanded project at the right position
     let nonExpandedCount = 0;
     
-    for (let i = 0; i < projects.length; i++) {
-      if (i === expandedIndex) {
+    for (let i = 0; i < projectsToDisplay.length; i++) {
+      const projectIndex = projects.indexOf(projectsToDisplay[i]);
+      if (projectIndex === expandedIndex) {
         continue; // Skip the expanded project in the first pass
       }
       
@@ -668,10 +682,10 @@ export const ProjectsSection: React.FC = () => {
       }
       
       items.push({ 
-        project: projects[i], 
-        originalIndex: i, 
+        project: projectsToDisplay[i], 
+        originalIndex: projectIndex, 
         isExpanded: false,
-        key: `project-${i}`
+        key: `project-${projectIndex}`
       });
       nonExpandedCount++;
     }
@@ -741,6 +755,15 @@ export const ProjectsSection: React.FC = () => {
             ))}
           </motion.div>
         </LayoutGroup>
+
+        {isMobile && !showAllProjects && projects.length > 4 && (
+          <button 
+            className="show-more-projects-btn"
+            onClick={() => setShowAllProjects(true)}
+          >
+           ⟢ show more projects ({projects.length - 4} more) ⟢
+          </button>
+        )}
       </div>
     </section>
   );

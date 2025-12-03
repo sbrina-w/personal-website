@@ -37,6 +37,28 @@
   position: relative;
 }
 
+.show-more-projects-btn {
+  background: none;
+  display: block;
+  text-align: center;
+  margin-top: 0.75rem;
+  border: 1px solid var(--accent-light);
+  border-radius: 50px;
+  width: fit-content;
+  justify-self: center;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.85rem;
+  color: var(--grey-brown);
+  font-style: italic;
+  font-family: 'Satoshi', 'Segoe UI', sans-serif;
+}
+
+.show-more-projects-btn:hover {
+  border-color: var(--accent-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
 .project-card {
   background: var(--card-bg);
   backdrop-filter: blur(10px);
@@ -609,6 +631,7 @@
 @media (max-width: 480px) {
   .projects-section {
     padding: 60px 16px;
+    margin-bottom: 30px;
   }
 
   .project-card {
