@@ -159,7 +159,7 @@ export const Hero: React.FC<HeroProps> = ({ onScroll, onMenuItemClick }) => {
           </div>
           
           <div className="hero-footer-right">
-            <p className="hero-footer-text">Last updated: 11.30.2025</p>
+            <p className="hero-footer-text">Last updated: 12.03.2025</p>
           </div>
         </div>
       </div>
