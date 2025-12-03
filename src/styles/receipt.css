@@ -22,8 +22,8 @@
 
 .receipt-paper {
   width: 100%;
-  background: #ffffff;
   padding: 0;
+  background: #ffffff;
   border-radius: 2px;
   box-shadow: 
     0 2px 10px rgba(0, 0, 0, 0.08),
@@ -35,7 +35,9 @@
   animation: slideInUp 0.8s ease;
   will-change: transform;
   z-index: 12;
-  overflow: visible;
+  overflow: visible !important;
+  backdrop-filter: none;
+  box-shadow: none;
   clip-path: polygon(
     0% 0%,
     2% 1%,
@@ -111,7 +113,7 @@
     5% 98%,
     2% 99%,
     0% 98%
-  );
+  ) !important;
 }
 
 .receipt-paper::before {
@@ -451,7 +453,6 @@
 
 [data-theme='dark'] .receipt-paper {
   background: #1a1a1aa0;
-  backdrop-filter: blur(2px);
   border: 1px solid var(--accent-light);
   box-shadow: 
     0 2px 10px rgba(0, 0, 0, 0.3),

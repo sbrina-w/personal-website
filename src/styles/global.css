@@ -129,80 +129,8 @@ html, body {
 }
 
 @font-face {
-  font-family: 'Erode';
-  src: url('/assets/fonts/Erode-Regular.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Erode';
-  src: url('/assets/fonts/Erode-Light.otf') format('opentype');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Erode';
-  src: url('/assets/fonts/Erode-Medium.otf') format('opentype');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Erode';
-  src: url('/assets/fonts/Erode-Semibold.otf') format('opentype');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Erode';
-  src: url('/assets/fonts/Erode-Bold.otf') format('opentype');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Mosseta';
-  src: url('/assets/fonts/Mosseta-Regular.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
   font-family: 'Where is my coffee cup';
   src: url('/assets/fonts/Where is my coffee cup.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Zaslia';
-  src: url('/assets/fonts/Zaslia.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'CofFEe Sackful Stamp';
-  src: url('/assets/fonts/zai_CofFEeSackfulStamp.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Helonik';
-  src: url('/assets/fonts/HelonikExtended-BoldDemo.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
