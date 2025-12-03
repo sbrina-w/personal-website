@@ -2,12 +2,11 @@
   position: relative;
   width: 100%;
   min-height: 100vh;
-  padding: 50px 40px;
-  padding-top: 10px;
+  padding: 100px 40px;
   background: transparent;
   z-index: 2;
   overflow: visible;
-  margin-bottom: 30px;
+  margin-bottom: 100px;
 }
 
 .projects-container {

@@ -33,7 +33,7 @@ const experiences: Experience[] = [
     accomplishments: [
       'Led end-to-end development of a global search feature with filtered navigation, direct endpoint access, and error-focused queries, significantly improving system navigation efficiency and reducing time-to-resolution for production issues',
       'Migrated environment configurations from the frontend codebase into the database, building reactive UI forms enabling real-time configurability with client-side form validation, input sanitization, conditional field rendering and a clean UX to safely onboard new applications and configurations',
-      'Developed endpoint tracking and comparison tooling using diffing from Swagger to detect API changes, monitor downstream service health, and maintain up-to-date documentation for microservice endpoints',
+      'Developed endpoint tracking and comparison tool to detect API changes, monitor downstream service health, and maintain up-to-date documentation for microservice endpoints',
       'Contributed to AWS migration planning by participating in architecture discussions and learning cloud infrastructure design patterns for large-scale enterprise systems',
       'Built feature heatmap visualizations and created comprehensive Confluence documentation to communicate technical decisions and system architecture to cross-functional stakeholders'
     ]
@@ -76,6 +76,10 @@ interface ExperienceCardProps {
 }
 
 const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience, index, isVisible, cardRef }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const showExpandButton = experience.accomplishments.length > 2;
+  const displayedAccomplishments = isExpanded ? experience.accomplishments : experience.accomplishments.slice(0, 2);
+
   return (
     <div 
       ref={cardRef}
@@ -93,10 +97,30 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience, index, isVi
       <p className="experience-description">{experience.description}</p>
       
       <ul className="experience-accomplishments">
-        {experience.accomplishments.map((item, i) => (
+        {displayedAccomplishments.map((item, i) => (
           <li key={i}>{item}</li>
         ))}
       </ul>
+      
+      {showExpandButton && (
+        <button 
+          className="expand-button"
+          onClick={() => setIsExpanded(!isExpanded)}
+          aria-label={isExpanded ? "Show less" : "Show more"}
+        >
+          <svg 
+            width="20" 
+            height="20" 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            stroke="currentColor" 
+            strokeWidth="2"
+            className={isExpanded ? 'rotated' : ''}
+          >
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+      )}
     </div>
   );
 };

@@ -1,12 +1,12 @@
 .experience-section {
   position: relative;
   width: 100%;
-  min-height: 200vh;
+  min-height: 100vh;
   padding: 100px 40px;
   background: transparent;
   z-index: 2;
   overflow: visible;
-  margin-top: 100px;
+  margin: 100px 0px;
 }
 
 .dessert-decoration {
@@ -262,6 +262,45 @@
   left: 0;
   color: var(--accent-light);
   font-weight: bold;
+}
+
+.expand-button {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background: var(--card-bg);
+  border: 1px solid var(--grey-yellow);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--grey-yellow);
+  z-index: 10;
+}
+
+.expand-button:hover {
+  background: var(--accent-light);
+  border: 1px solid var(--accent-light);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(139, 111, 71, 0.3);
+}
+
+.expand-button svg {
+  transition: transform 0.3s ease;
+}
+
+.expand-button svg.rotated {
+  transform: rotate(180deg);
+}
+
+.experience-card {
+  position: relative;
+  padding-bottom: 3rem;
 }
 
 /* Responsive */

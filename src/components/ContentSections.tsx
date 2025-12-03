@@ -145,10 +145,7 @@ const ContentSection: React.FC<SectionProps> = ({ section, index }) => {
     >
       <div className="section-wrapper">
         <div className="content-container">
-          <div
-            className="content-text"
-            style={{ transform: `translateY(${scrollY * 0.2}px)` }}
-          >
+          <div className="content-text">
             <h2 className="content-title">{section.title}</h2>
             {section.id === 'about' ? (
               <div className="about-content">
@@ -179,10 +176,9 @@ const ContentSection: React.FC<SectionProps> = ({ section, index }) => {
                 {section.description.split('\n\n').map((paragraph, i) => (
                   <p key={i}>{paragraph}</p>
                 ))}
+                <p className="divider" style={{fontSize: "1.2rem", color: "var(--grey-yellow)", letterSpacing: "0.3em"}}>⟢ ⟢ ⟢ ⟢ ⟢ ⟢</p>
               </div>
             )}
-            <br></br>
-            <p className="about-divider">⟢ ⟢ ⟢ ⟢ ⟢ ⟢</p>
             {section.id === 'art' && (
               <InfiniteCarousel images={artImages} />
             )}
