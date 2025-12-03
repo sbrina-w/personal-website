@@ -30,16 +30,8 @@ const artImages = [
 const sectionContent: SectionContent[] = [
   {
     id: 'about',
-    title: 'About',
-    description: `Hi! I'm Sabrina, a passionate Software Engineering student at the University of Waterloo with a love for creating beautiful, functional digital experiences. My journey into tech started with curiosity about how things work, which evolved into building solutions that matter.
-
-I believe great software is a blend of strong technical fundamentals, creative problem-solving, user-centric design thinking, and continuous learning. I'm particularly interested in full-stack development, AI applications, and building tools that enhance creativity and productivity.
-
-My experience spans across various domains—from e-commerce platforms at Loblaw Digital serving millions of customers, to data visualization tools at CIGI, to traffic management systems at Miovision. Each role has taught me the importance of writing clean, maintainable code and collaborating effectively with cross-functional teams.
-
-Outside of coding, I'm an artist and coffee enthusiast who believes that attention to detail in code mirrors the care required in other creative pursuits. I'm always excited to explore new technologies, collaborate with talented people, and work on projects that make a positive impact.
-
-Let's connect and create something amazing together!`,
+    title: 'About Me',
+    description: ``,
     image: '/illustrations/strawberry-tart-cropped.png',
   },
   {
@@ -56,6 +48,9 @@ I love experimenting with new art mediums and I've tried many from oil painting,
     image: '/illustrations/matcha-basque-cropped.png',
   },
 ];
+
+export const aboutSection = sectionContent.filter(s => s.id === 'about');
+export const artSection = sectionContent.filter(s => s.id === 'art');
 
 interface SectionProps {
   section: SectionContent;
@@ -140,11 +135,12 @@ const ContentSection: React.FC<SectionProps> = ({ section, index }) => {
   }, []);
 
   const isEvenIndex = index % 2 === 0;
+  const isOddLayout = section.id === 'art' ? true : !isEvenIndex;
 
   return (
     <section
       ref={containerRef}
-      className={`content-section ${isEvenIndex ? 'even' : 'odd'}`}
+      className={`content-section ${isOddLayout ? 'odd' : 'even'}`}
       id={section.id}
     >
       <div className="section-wrapper">
@@ -154,11 +150,39 @@ const ContentSection: React.FC<SectionProps> = ({ section, index }) => {
             style={{ transform: `translateY(${scrollY * 0.2}px)` }}
           >
             <h2 className="content-title">{section.title}</h2>
-            <div className="content-body">
-              {section.description.split('\n\n').map((paragraph, i) => (
-                <p key={i}>{paragraph}</p>
-              ))}
-            </div>
+            {section.id === 'about' ? (
+              <div className="about-content">
+                <div className="about-top">
+                  <div className="about-polaroid">
+                    <img src="/illustrations/polaroid.png" alt="Sabrina" />
+                  </div>
+                  <div className="about-top-text">
+                    <p>Hi! I'm Sabrina, a passionate <strong><em>Software Engineering</em></strong> student at the <strong>University of Waterloo</strong> with a love for creating beautiful, functional digital experiences. My journey into tech started with curiosity about how things work, which evolved into building solutions that matter.</p>
+                    <p>I love software engineering since there's always so many new things to learn and explore. Currently, I'm particularly interested in full-stack development, AI applications, and building tools that help people be more creative and productive. I'm also heading to <strong>Singapore</strong> this winter for an <strong>exchange</strong> term at SUTD to dive deeper into machine learning!</p>
+                    <p>Thanks for checking out my portfolio :)</p>
+                  </div>
+                </div>
+                <div className="about-bottom">
+                  <p className="about-divider">⟢ ⟢ ⟢ ⟢ ⟢ ⟢</p>
+                  <p className="about-section-title">Outside of coding, you'll find me:</p>
+                  <ul className="about-list">
+                    <li>drawing and painting (watercolor is my favorite medium)</li>
+                    <li>baking and recipe testing (recent favorites: cherry cheesecake tarts, strawberry mochi, pistachio macarons)</li>
+                    <li>cafe hopping and perfecting my home cafe setup</li>
+                    <li>reading historical fiction, fantasy, asian literature and manga</li>
+                    <li>planning my next travel adventure</li>
+                  </ul>
+                </div>
+              </div>
+            ) : (
+              <div className="content-body">
+                {section.description.split('\n\n').map((paragraph, i) => (
+                  <p key={i}>{paragraph}</p>
+                ))}
+              </div>
+            )}
+            <br></br>
+            <p className="about-divider">⟢ ⟢ ⟢ ⟢ ⟢ ⟢</p>
             {section.id === 'art' && (
               <InfiniteCarousel images={artImages} />
             )}

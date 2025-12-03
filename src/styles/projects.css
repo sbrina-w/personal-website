@@ -7,6 +7,7 @@
   background: transparent;
   z-index: 2;
   overflow: visible;
+  margin-bottom: 30px;
 }
 
 .projects-container {

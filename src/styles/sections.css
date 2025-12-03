@@ -25,6 +25,10 @@
   width: 100%;
 }
 
+#about .content-container {
+  gap: 5rem;
+}
+
 .content-section.odd .content-container {
   direction: rtl;
 }
@@ -59,6 +63,91 @@
   line-height: 1.7;
   color: var(--text-light);
   text-align: justify;
+}
+
+/* About section specific styles */
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.about-top {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.about-polaroid {
+  flex-shrink: 0;
+}
+
+.about-polaroid img {
+  width: 280px;
+  height: auto;
+  display: block;
+}
+
+.about-top-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.about-top-text p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-light);
+  text-align: justify;
+}
+
+.about-top-text strong {
+  font-weight: 600;
+  color: var(--grey-brown);
+}
+
+.about-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.about-divider {
+  font-size: 1.2rem;
+  color: var(--grey-yellow);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.3em;
+}
+
+.about-section-title {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.about-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.about-list li {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-light);
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.about-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0.5rem;
+  color: var(--grey-brown);
 }
 
 .content-image-wrapper {

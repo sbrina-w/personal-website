@@ -16,6 +16,13 @@ interface MenuItem {
 
 const heroMenuItems: MenuItem[] = [
   {
+    id: 'about',
+    title: 'About',
+    subtitle: 'Strawberry Tart',
+    description: 'Get to know me\nbetter',
+    image: '/illustrations/strawberry-tart-cropped.png',
+  },
+  {
     id: 'experience',
     title: 'Experience',
     subtitle: 'Fig Cake',
@@ -28,13 +35,6 @@ const heroMenuItems: MenuItem[] = [
     subtitle: 'Raspberry Roll Cake',
     description: 'Work and creations\nI\'m proud of',
     image: '/illustrations/roll-cake-cropped.png',
-  },
-  {
-    id: 'about',
-    title: 'About',
-    subtitle: 'Strawberry Tart',
-    description: 'Get to know me\nbetter',
-    image: '/illustrations/strawberry-tart-cropped.png',
   },
   {
     id: 'art',

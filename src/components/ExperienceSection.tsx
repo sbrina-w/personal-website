@@ -42,7 +42,7 @@ const experiences: Experience[] = [
     company: 'Frontend Software Developer',
     role: 'BrainRidge Consulting',
     period: 'May 2024 - Aug 2024',
-    description: 'Joined BrainRidge Consulting as a frontend developer for OneDashboard, an internal monitoring platform for BMO US. Despite having no prior experience with Angular or NestJS, I quickly ramped up and took ownership of the entire frontend, designing and implementing the UI/UX from the ground up.',
+    description: 'Joined BrainRidge Consulting as a frontend developer for OneDashboard, an internal monitoring platform for BMO US. Despite having no prior experience with Angular or NestJS, I quickly ramped up and took ownership of the frontend, designing and implementing the UI/UX from the ground up.',
     accomplishments: [
       'Designed and implemented the frontend architecture using Angular and TypeScript, creating an intuitive dashboard that monitors health checks, database connections, cache status, and 50+ microservice APIs across BMO US lower environments',
       'Earned AWS Cloud Practitioner certification in three days through self-directed learning, demonstrating rapid technical adaptability and commitment to expanding cloud infrastructure knowledge'

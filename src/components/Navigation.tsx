@@ -18,7 +18,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onNavigate, isMuted, onT
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['experience', 'projects', 'about', 'art', 'contact'];
+      const sections = ['about', 'experience', 'projects', 'art', 'contact'];
       let current = '';
 
       for (const sectionId of sections) {
@@ -66,9 +66,9 @@ export const Navigation: React.FC<NavigationProps> = ({ onNavigate, isMuted, onT
   }, [isOpen]);
 
   const navItems = [
+    { id: 'about', label: 'About' },
     { id: 'experience', label: 'Experience' },
     { id: 'projects', label: 'Projects' },
-    { id: 'about', label: 'About' },
     { id: 'art', label: 'Art' },
     { id: 'contact', label: 'Contact' },
   ];

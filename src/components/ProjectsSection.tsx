@@ -53,7 +53,7 @@ const projects: Project[] = [
     ]
   },
   {
-    name: 'PokePlants',
+    name: 'PokéPlants',
     year: '2024',
     description: 'Interactive mixed-reality hackathon project bridging web, hardware, and AI to create a Pokémon-style plant care game. Won 1st place at Hack the 6ix 2024, Toronto\'s largest summer hackathon.',
     fullDescription: 'An interactive mixed-reality hackathon project that bridges web, hardware, and AI to create a Pokémon-style plant care game. Players interact through a polished React frontend while physical Arduino sensors and computer vision influence game state in real-time. Our team of four won **1st place** at Hack the 6ix 2024, Toronto\'s largest summer hackathon.',

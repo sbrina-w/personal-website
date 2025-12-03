@@ -448,7 +448,8 @@
 }
 
 [data-theme='dark'] .receipt-paper {
-  background: transparent;
+  background: #1a1a1aa0;
+  backdrop-filter: blur(2px);
   border: 1px solid var(--accent-light);
   box-shadow: 
     0 2px 10px rgba(0, 0, 0, 0.3),

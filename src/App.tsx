@@ -6,10 +6,9 @@ import { ThemeProvider, useTheme } from './context/ThemeContext';
 import { BackgroundMusic } from './components/BackgroundMusic';
 import { Navigation } from './components/Navigation';
 import { Hero } from './components/Hero';
-import { Menu } from './components/Menu';
 import { ExperienceSection } from './components/ExperienceSection';
 import { ProjectsSection } from './components/ProjectsSection';
-import { ContentSections } from './components/ContentSections';
+import { ContentSections, aboutSection, artSection } from './components/ContentSections';
 import { Receipt } from './components/Receipt';
 import Gl from './gl';
 import Blob from './gl/Blob';
@@ -80,9 +79,10 @@ function AppContent() {
         onToggleTheme={toggleTheme}
       />
       <Hero onScroll={handleHeroScroll} onMenuItemClick={handleMenuItemClick} />
+      <ContentSections sections={aboutSection} />
       <ExperienceSection />
       <ProjectsSection />
-      <ContentSections />
+      <ContentSections sections={artSection} />
       <Receipt />
     </div>
   );
