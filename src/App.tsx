@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import './App.css';
 import './styles/global.css';
 
@@ -92,6 +93,7 @@ function App() {
   return (
     <ThemeProvider>
       <AppContent />
+      <Analytics />
     </ThemeProvider>
   );
 }
