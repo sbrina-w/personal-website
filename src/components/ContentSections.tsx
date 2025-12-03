@@ -160,15 +160,31 @@ const ContentSection: React.FC<SectionProps> = ({ section, index }) => {
                   </div>
                 </div>
                 <div className="about-bottom">
-                  <p className="about-divider">⟢ ⟢ ⟢ ⟢ ⟢ ⟢</p>
-                  <p className="about-section-title">Outside of coding, you'll find me:</p>
-                  <ul className="about-list">
-                    <li>drawing and painting (watercolor is my favorite medium)</li>
-                    <li>baking and recipe testing (recent favorites: cherry cheesecake tarts, strawberry mochi, pistachio macarons)</li>
-                    <li>cafe hopping and perfecting my home cafe setup</li>
-                    <li>reading historical fiction, fantasy, asian literature and manga</li>
-                    <li>planning my next travel adventure</li>
-                  </ul>
+                  <div className="about-bottom-text">
+                    <p className="about-divider">⟢ ⟢ ⟢ ⟢ ⟢ ⟢</p>
+                    <p className="about-section-title">Outside of coding, you'll find me:</p>
+                    <ul className="about-list">
+                      <li>drawing and painting (watercolor is my favorite medium)</li>
+                      <li>baking and recipe testing (recent favorites: cherry cheesecake tarts, strawberry mochi, pistachio macarons)</li>
+                      <li>cafe hopping and perfecting my home cafe setup</li>
+                      <li>reading historical fiction, fantasy, asian literature and manga</li>
+                      <li>planning my next travel adventure</li>
+                    </ul>
+                  </div>
+                  <div
+                    className="about-bottom-image"
+                    style={{ 
+                      transform: Math.abs(scrollY) > 1 ? `translateY(${scrollY * -0.15}px)` : 'translateY(0px)'
+                    }}
+                  >
+                    <div className="content-image-container">
+                      <PixelatedImage
+                        src={section.image}
+                        alt={section.title}
+                        className="content-image"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             ) : (
@@ -186,7 +202,9 @@ const ContentSection: React.FC<SectionProps> = ({ section, index }) => {
 
           <div
             className="content-image-wrapper"
-            style={{ transform: `translateY(${scrollY * -0.15}px)` }}
+            style={{ 
+              transform: Math.abs(scrollY) > 1 ? `translateY(${scrollY * -0.15}px)` : 'translateY(0px)'
+            }}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >

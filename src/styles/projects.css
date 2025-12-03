@@ -490,6 +490,13 @@
 }
 
 /* Responsive */
+@media (max-width: 1550px) {
+  .projects-section {
+    padding: 60px 100px;
+    padding-bottom: 0;
+  }
+}
+
 @media (max-width: 1200px) {
   .projects-grid {
     grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
@@ -497,6 +504,10 @@
 }
 
 @media (max-width: 1024px) {
+  .projects-section {
+    padding: 20px 20px;
+  }
+
   .projects-grid {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1.5rem;

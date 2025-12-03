@@ -337,6 +337,35 @@
   }
 }
 
+@media (max-width: 1550px) {
+  .hero-wrapper {
+    grid-template-columns: 20% 1fr 17%;
+    padding: 50px 40px 20px 40px;
+  }
+
+  .hero-menu-divider {
+    width: 400px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .hero-menu-card-image img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+  }
+
+  .hero-menu-card {
+    gap: 0rem;
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .hero-menu-divider {
+    width: 400px;
+  }
+}
+
 @media (max-width: 768px) {
   .hero {
     padding: 10px;

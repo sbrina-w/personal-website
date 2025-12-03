@@ -102,6 +102,17 @@ export const Navigation: React.FC<NavigationProps> = ({ onNavigate, isMuted, onT
       >
         <div className="nav-left">
           <button
+            ref={toggleRef}
+            className="nav-toggle"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle navigation"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+          <button
             className="theme-toggle"
             onClick={onToggleTheme}
             aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
@@ -128,17 +139,6 @@ export const Navigation: React.FC<NavigationProps> = ({ onNavigate, isMuted, onT
         </div>
         
         <div className="nav-right">
-          <button
-            ref={toggleRef}
-            className="nav-toggle"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle navigation"
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-
           <ul className={`nav-menu ${isOpen ? 'active' : ''}`}>
             {navItems.map((item) => (
               <li key={item.id}>

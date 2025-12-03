@@ -304,7 +304,29 @@
 }
 
 /* Responsive */
+
+@media (max-width: 1550px) {
+  .experience-section {
+    padding: 60px 100px;
+  }
+
+  .experiences-list {
+    gap: 4rem;
+  }
+}
+
+@media (max-width: 1350px) {
+  .experience-section {
+    padding-top: 0;
+    margin-top: 0;
+  }
+}
+
 @media (max-width: 1024px) {
+  .experience-section {
+    padding: 20px 20px;
+  }
+
   .experience-content {
     grid-template-columns: 60px 1fr;
     gap: 2rem;
@@ -318,29 +340,29 @@
     font-size: 1.5rem;
   }
 
-  .experiences-list {
-    gap: 6rem;
+  .experience-card {
+    padding: 1.5rem;
   }
+
+  .experiences-list {
+    gap: 2rem;
+  }
+
 }
 
 @media (max-width: 768px) {
   .experience-section {
-    padding: 80px 20px;
     min-height: auto;
   }
 
   .experience-content {
     grid-template-columns: 40px 1fr;
-    gap: 1.5rem;
+    gap: 2.5rem;
   }
 
   .experience-section-title {
     font-size: 2rem;
     margin-bottom: 3rem;
-  }
-
-  .timeline-wrapper {
-    top: 120px;
   }
 
   .timeline-circle {
@@ -386,11 +408,11 @@
   }
 
   .experiences-list {
-    gap: 4rem;
+    gap: 3rem;
   }
 
   .dessert-decoration {
-    width: 120px;
+    width: 150px;
   }
 
   .dessert-left {

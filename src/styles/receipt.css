@@ -390,13 +390,15 @@
   letter-spacing: 0.3px;
 }
 
+@media(max-width: 1200px) {
+  .receipt-section {
+    margin-top: 0;
+  }
+}
+
 @media (max-width: 768px) {
   .receipt-section {
     padding: 80px 15px;
-  }
-
-  .receipt-container {
-    max-width: 100%;
   }
 
   .receipt-paper {

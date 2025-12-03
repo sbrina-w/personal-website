@@ -42,7 +42,7 @@ export const InfiniteCarousel: React.FC<InfiniteCarouselProps> = ({ images }) =>
       lastTimeRef.current = now;
 
       // Speed: pixels per second (adjust base speed here)
-      const baseSpeed = totalWidth / 80; // 40 seconds for full scroll
+      const baseSpeed = totalWidth / 80; // 80 seconds for full scroll
       const speed = isHoveredRef.current ? baseSpeed / 2 : baseSpeed;
       
       positionRef.current -= (speed * delta) / 1000;

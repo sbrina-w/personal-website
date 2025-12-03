@@ -77,8 +77,17 @@ interface ExperienceCardProps {
 
 const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience, index, isVisible, cardRef }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const showExpandButton = experience.accomplishments.length > 2;
-  const displayedAccomplishments = isExpanded ? experience.accomplishments : experience.accomplishments.slice(0, 2);
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const isMobile = windowWidth < 1100;
+  const showExpandButton = experience.accomplishments.length > 2 || isMobile;
+  const displayedAccomplishments = isExpanded ? experience.accomplishments : (isMobile ? [] : experience.accomplishments.slice(0, 2));
 
   return (
     <div 
@@ -227,8 +236,8 @@ export const ExperienceSection: React.FC = () => {
         className="dessert-decoration"
         style={{ 
           position: 'absolute', 
-          width: '400px', 
-          height: '400px', 
+          width: `${Math.min(400, window.innerWidth * 0.35)}px`, 
+          height: `${Math.min(400, window.innerWidth * 0.35)}px`, 
           right: '5%', 
           bottom: '20%', 
           transform: `rotate(15deg) translate(${scrollY * 30}px, ${scrollY * -180}px)`,
@@ -242,8 +251,8 @@ export const ExperienceSection: React.FC = () => {
         className="dessert-decoration"
         style={{ 
           position: 'absolute', 
-          width: '600px', 
-          height: '600px', 
+          width: `${Math.min(600, window.innerWidth * 0.5)}px`, 
+          height: `${Math.min(600, window.innerWidth * 0.5)}px`, 
           left: '0%', 
           top: '20%', 
           transform: `rotate(-8deg) translate(${scrollY * -30}px, ${scrollY * -200}px)`,
@@ -263,8 +272,8 @@ export const ExperienceSection: React.FC = () => {
                 left: '50%',
                 transform: 'translateX(-50%)',
                 width: '2px',
-                height: '200px',
-                top: `${firstCardCenter - 210}px`,
+                height: `${Math.min(10 * window.innerHeight / 100, 200)}px`,
+                top: `${firstCardCenter - Math.min(10 * window.innerHeight / 100, 200) - 10}px`,
                 background: 'linear-gradient(to top, #d4a574, rgba(255, 255, 255, 0))',
                 pointerEvents: 'none',
                 zIndex: -1,
@@ -329,7 +338,7 @@ export const ExperienceSection: React.FC = () => {
                 left: '50%',
                 transform: 'translateX(-50%)',
                 width: '2px',
-                height: '200px',
+                height:  `${Math.min(10 * window.innerHeight / 100, 200)}px`,
                 top: `${lastCardCenter + 10}px`,
                 background: 'linear-gradient(to bottom, #d4a574, rgba(224, 213, 199, 0))',
                 pointerEvents: 'none',

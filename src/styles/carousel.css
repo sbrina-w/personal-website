@@ -64,11 +64,11 @@
 @media (max-width: 768px) {
   .carousel-item-infinite {
     width: 200px;
-    height: 200px;
+    height: 130px;
   }
 
   .carousel-scroller-inner {
     gap: 1rem;
-    animation: scroll 30s linear infinite;
+    animation: scroll 80s linear infinite;
   }
 }
