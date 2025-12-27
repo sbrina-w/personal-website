@@ -6,3 +6,9 @@ Built with react + vite, three.js, glsl and framer motion (still learning, lots 
 
 
 The design is still a work in progress but I wanted to theme it like a café since I love baking, café hopping and trying all sorts of sweets around the world (also just an excuse for me to draw more desserts). 
+
+To dos:
+- [ ] add a cat
+- [ ] make it so you can pet the cat
+- [ ] fix animations for projects section
+- [ ] dark mode improvement
