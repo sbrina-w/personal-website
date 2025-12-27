@@ -400,6 +400,11 @@
   border-top: 1px solid var(--border-color);
   opacity: 0.7;
   cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.collapse-hint:hover {
+  opacity: 1;
 }
 
 .project-card-header {

@@ -278,7 +278,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, isExpanded, o
     if ((e.target as HTMLElement).closest('a')) {
       return;
     }
-    onToggleExpand();
+    // Only expand if card is not expanded, don't collapse on click
+    if (!isExpanded) {
+      onToggleExpand();
+    }
   };
 
   const handlePrevImage = (e: React.MouseEvent) => {
@@ -561,7 +564,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, isExpanded, o
                 ))}
               </div>
               
-              <div className="collapse-hint">Click to collapse</div>
+              <div className="collapse-hint" onClick={(e) => {
+                e.stopPropagation();
+                onToggleExpand();
+              }}>Click to collapse</div>
             </div>
           </motion.div>
         )}
@@ -591,6 +597,23 @@ export const ProjectsSection: React.FC = () => {
   const handleToggleExpand = (index: number) => {
     setExpandedIndex(expandedIndex === index ? null : index);
   };
+
+  // Click outside handler to collapse expanded project
+  useEffect(() => {
+    if (expandedIndex === null) return;
+
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const expandedCard = document.querySelector('.project-card.expanded');
+      
+      if (expandedCard && !expandedCard.contains(target)) {
+        setExpandedIndex(null);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [expandedIndex]);
 
   useEffect(() => {
     const section = sectionRef.current;
