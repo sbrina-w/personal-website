@@ -10,9 +10,23 @@ export const Receipt: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    alert('Thanks for your message! I\'ll get back to you soon.');
-    setFormData({ name: '', email: '', message: '' });
+    
+    // Create mailto link with form data
+    const subject = encodeURIComponent(`Portfolio Contact: Message from ${formData.name}`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\n` +
+      `Email: ${formData.email}\n\n` +
+      `Message:\n${formData.message}`
+    );
+    const mailtoLink = `mailto:sabrina.wang1@uwaterloo.ca?subject=${subject}&body=${body}`;
+    
+    // Open email client
+    window.location.href = mailtoLink;
+    
+    // Reset form after a short delay
+    setTimeout(() => {
+      setFormData({ name: '', email: '', message: '' });
+    }, 100);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
