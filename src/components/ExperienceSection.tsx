@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
 import '../styles/experience.css';
 import { PixelatedImage } from './PixelatedImage';
 
@@ -86,11 +87,14 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience, index, isVi
   }, []);
 
   const isMobile = windowWidth < 1100;
-  const showExpandButton = experience.accomplishments.length > 2 || isMobile;
-  const displayedAccomplishments = isExpanded ? experience.accomplishments : (isMobile ? [] : experience.accomplishments.slice(0, 2));
+  // Always-visible items: first 2 on desktop, none on mobile
+  const alwaysVisible = isMobile ? [] : experience.accomplishments.slice(0, 2);
+  // Items that animate in/out
+  const collapsible = isMobile ? experience.accomplishments : experience.accomplishments.slice(2);
+  const showExpandButton = collapsible.length > 0;
 
   return (
-    <div 
+    <div
       ref={cardRef}
       className={`experience-card ${isVisible ? 'visible' : ''}`}
       style={{ animationDelay: `${index * 0.1}s` }}
@@ -102,27 +106,53 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience, index, isVi
         </div>
         <span className="experience-period">{experience.period}</span>
       </div>
-      
+
       <p className="experience-description">{experience.description}</p>
-      
-      <ul className="experience-accomplishments">
-        {displayedAccomplishments.map((item, i) => (
-          <li key={i}>{item}</li>
-        ))}
-      </ul>
-      
+
+      {alwaysVisible.length > 0 && (
+        <ul className="experience-accomplishments">
+          {alwaysVisible.map((item, i) => (
+            <li key={i}>{item}</li>
+          ))}
+        </ul>
+      )}
+
       {showExpandButton && (
-        <button 
+        <motion.div
+          initial={false}
+          animate={{
+            height: isExpanded ? 'auto' : 0,
+            opacity: isExpanded ? 1 : 0,
+          }}
+          transition={{
+            height: { duration: 0.35, ease: [0.4, 0, 0.2, 1] },
+            opacity: { duration: 0.25, ease: 'easeInOut' },
+          }}
+          style={{ overflow: 'hidden' }}
+        >
+          <ul
+            className="experience-accomplishments"
+            style={{ paddingTop: alwaysVisible.length > 0 ? '0.8rem' : 0 }}
+          >
+            {collapsible.map((item, i) => (
+              <li key={i}>{item}</li>
+            ))}
+          </ul>
+        </motion.div>
+      )}
+
+      {showExpandButton && (
+        <button
           className="expand-button"
           onClick={() => setIsExpanded(!isExpanded)}
           aria-label={isExpanded ? "Show less" : "Show more"}
         >
-          <svg 
-            width="20" 
-            height="20" 
-            viewBox="0 0 24 24" 
-            fill="none" 
-            stroke="currentColor" 
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
             strokeWidth="2"
             className={isExpanded ? 'rotated' : ''}
           >
