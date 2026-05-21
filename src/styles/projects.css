@@ -70,31 +70,30 @@
   flex-direction: column;
   transform-origin: center;
   min-height: 400px;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-.project-card:hover:not(.expanded) {
+.project-card:hover {
   transform: translateY(-5px);
   border-color: var(--accent-light);
   box-shadow: var(--shadow);
 }
 
-.project-card.expanded {
+/* Full-width expansion panel — lives in the grid as a separate row */
+.project-expanded-panel {
   grid-column: 1 / -1;
-  cursor: default;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
 }
 
-.card-inner,
-.collapsed-wrapper {
-  display: flex;
-  flex-direction: column;
-  height: 100%;  
-  min-height: 0;  
-}
-
-.project-content{
+.project-content {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
+  flex: 1;
 }
 
 .expand-hint {
