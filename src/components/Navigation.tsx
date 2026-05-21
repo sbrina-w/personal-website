@@ -135,7 +135,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onNavigate, isMuted, onT
               </svg>
             )}
           </button>
-          {/* <div className="nav-logo">sabrina wang</div> */}
+          <div className="nav-logo">sabrina wang</div>
         </div>
         
         <div className="nav-right">

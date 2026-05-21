@@ -316,7 +316,7 @@
 .form-group input,
 .form-group textarea {
   font-family: 'Fake Receipt', monospace;
-  font-size: 10px;
+  font-size: 16px; /* 16px prevents iOS auto-zoom on focus */
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 2px;
@@ -404,7 +404,7 @@
   }
 
   .receipt-paper {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .receipt-header {
@@ -427,10 +427,43 @@
     font-size: 36px;
   }
 
+  /* Raise all receipt body text to 14px minimum */
+  .receipt-item-name,
+  .receipt-item-price {
+    font-size: 14px;
+  }
+
+  .receipt-contact-label,
+  .receipt-contact-value {
+    font-size: 14px;
+  }
+
+  .receipt-section-title {
+    font-size: 15px;
+  }
+
+  .form-group label {
+    font-size: 12px;
+  }
+
   .form-group input,
   .form-group textarea {
-    font-size: 11px;
-    padding: 8px;
+    font-size: 16px; /* keep 16px to prevent iOS zoom */
+    padding: 10px;
+  }
+
+  .receipt-submit-btn {
+    font-size: 14px;
+    min-height: 44px;
+    padding: 12px 24px;
+  }
+
+  .receipt-thank-you {
+    font-size: 14px;
+  }
+
+  .receipt-tagline {
+    font-size: 13px;
   }
 }
 
@@ -439,9 +472,23 @@
     padding-top: 0;
   }
 
+  /* Allow item name to shrink so the price (section name) stays visible */
+  .receipt-item-name {
+    flex: 1 1 auto;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .receipt-item-dots {
+    flex: 0 0 12px;
+    min-width: 12px;
+  }
+
   .receipt-item-price {
-    text-align: left;
-    margin-left: 10px;
+    flex-shrink: 0;
+    text-align: right;
   }
 
   .receipt-contact-item {

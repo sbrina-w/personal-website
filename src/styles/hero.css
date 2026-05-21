@@ -370,6 +370,7 @@
   .hero {
     padding: 10px;
     margin-bottom: 10px;
+    min-height: auto;
   }
 
   .hero-wrapper {

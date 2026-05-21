@@ -378,6 +378,17 @@
     gap: 2rem;
   }
 
+  /* Override the 1024px specificity win for #art at this breakpoint */
+  #art .content-container {
+    grid-template-columns: 1fr;
+    direction: ltr;
+    gap: 2rem;
+  }
+
+  #art .content-text {
+    direction: ltr;
+  }
+
   .content-title {
     font-size: 1.8rem;
     margin-bottom: 1rem;

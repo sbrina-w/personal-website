@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//tmp/screenshots/**)",
+      "Read(//private/tmp/screenshots/**)"
+    ]
+  }
+}
