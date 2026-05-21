@@ -476,6 +476,7 @@ export const ProjectsSection: React.FC = () => {
   const cardEls = useRef<Record<number, HTMLDivElement | null>>({});
   const panelEl = useRef<HTMLDivElement | null>(null);
   const collapsingIndexRef = useRef<number | null>(null);
+  const collapseTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= 768);
@@ -484,42 +485,49 @@ export const ProjectsSection: React.FC = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  const cancelCollapse = useCallback(() => {
+    if (collapseTimerRef.current) {
+      clearTimeout(collapseTimerRef.current);
+      collapseTimerRef.current = null;
+    }
+    setIsCollapsing(false);
+    collapsingIndexRef.current = null;
+  }, []);
+
   const doCollapse = useCallback((index: number) => {
     collapsingIndexRef.current = index;
     setIsCollapsing(true);
-    setTimeout(() => {
+    collapseTimerRef.current = setTimeout(() => {
       setIsCollapsing(false);
       setExpandedIndex(null);
       collapsingIndexRef.current = null;
-      // Cards have now snapped back — scroll to the original card
+      collapseTimerRef.current = null;
       setTimeout(() => {
         cardEls.current[index]?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }, 50);
     }, 420);
   }, []);
 
+  const scrollToPanel = useCallback(() => {
+    setTimeout(() => {
+      panelEl.current?.scrollIntoView({
+        behavior: 'smooth',
+        block: isMobile ? 'nearest' : 'start',
+      });
+    }, 250);
+  }, [isMobile]);
+
   const handleToggleExpand = useCallback((index: number) => {
-    if (isCollapsing) return;
-    if (expandedIndex === index) {
+    if (expandedIndex === index && !isCollapsing) {
+      // Same card — close it
       doCollapse(index);
-    } else if (expandedIndex !== null) {
-      // Switch: collapse current first, then open new one
-      const prev = expandedIndex;
-      doCollapse(prev);
-      setTimeout(() => {
-        setExpandedIndex(index);
-        setTimeout(() => {
-          panelEl.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }, 300);
-      }, 450);
-    } else {
+    } else if (expandedIndex !== index) {
+      // Different card (or none open) — cancel any in-flight collapse and open directly
+      cancelCollapse();
       setExpandedIndex(index);
-      // Scroll to the panel partway through its open animation
-      setTimeout(() => {
-        panelEl.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }, 250);
+      scrollToPanel();
     }
-  }, [expandedIndex, isCollapsing, doCollapse]);
+  }, [expandedIndex, isCollapsing, doCollapse, cancelCollapse, scrollToPanel]);
 
   // Click outside to collapse
   useEffect(() => {
