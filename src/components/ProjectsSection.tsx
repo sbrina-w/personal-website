@@ -566,7 +566,7 @@ export const ProjectsSection: React.FC = () => {
     collapsingIndexRef.current = null;
   }, []);
 
-  const doCollapse = useCallback((index: number) => {
+  const doCollapse = useCallback((index: number, scrollBack = true) => {
     collapsingIndexRef.current = index;
     setIsCollapsing(true);
     collapseTimerRef.current = setTimeout(() => {
@@ -574,9 +574,11 @@ export const ProjectsSection: React.FC = () => {
       setExpandedIndex(null);
       collapsingIndexRef.current = null;
       collapseTimerRef.current = null;
-      setTimeout(() => {
-        cardEls.current[index]?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }, 50);
+      if (scrollBack) {
+        setTimeout(() => {
+          cardEls.current[index]?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 50);
+      }
     }, 420);
   }, []);
 
@@ -607,7 +609,8 @@ export const ProjectsSection: React.FC = () => {
     const handleClickOutside = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       if (panelEl.current && !panelEl.current.contains(target)) {
-        doCollapse(expandedIndex);
+        const insideSection = sectionRef.current?.contains(target) ?? false;
+        doCollapse(expandedIndex, insideSection);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
