@@ -23,14 +23,63 @@ interface Project {
   github?: string;
   devpost?: string;
   liveLink?: string;
+  report?: string;
   image?: string;
   images?: string[];
 }
 
 const projects: Project[] = [
   {
+    name: 'Disaster Tweet Classifier',
+    year: '2026',
+    description: 'Multimodal late-fusion model classifying disaster-related social media posts by combining DistilBERT text and ResNet50 vision encoders, achieving 89.80% accuracy and 0.9491 ROC-AUC with 312 fewer missed disaster tweets than unimodal baselines.',
+    fullDescription: 'A multimodal binary classifier that determines whether a tweet (text + image) is disaster-informative. A late-fusion MLP combines a fine-tuned DistilBERT text encoder and a fine-tuned ResNet50 vision encoder, achieving 89.80% validation accuracy and 0.9491 ROC-AUC. Deployed as a Streamlit app supporting text-only, image-only, or joint inference. Group project with Sondre Kristiansen, Rasmus Tuokko, and Brian Zhang.',
+    detailedAccomplishments: [
+      'Designed a late-fusion MLP architecture combining DistilBERT (768-dim) and ResNet50 (2048-dim) features into a 2816-dim concatenation projected through a 512-dim hidden layer (ReLU + 0.5 dropout) to a binary output, with encoders frozen during fusion training',
+      'Achieved 89.80% validation accuracy and 0.9491 ROC-AUC with the fusion model vs. 80.01%/0.8749 for text-only and 83.02%/0.9059 for vision-only, reducing false negatives from 541 to 229 (312 fewer missed real disaster tweets)',
+      'Addressed class imbalance with weighted cross-entropy and OR-labeling logic across datasets; used F1-macro checkpoint selection instead of validation loss, which proved critical for accurate classification under class imbalance',
+      'Trained on a combined 15,652-sample text dataset (Kaggle NLP with Disaster Tweets + CrisisMMD text) for the text branch and 18,082 CrisisMMD v2.0 multimodal samples for the vision and fusion branches; deployed Streamlit app supporting text-only, image-only, and multimodal inference with placeholder image handling'
+    ],
+    techStack: ['PyTorch', 'DistilBERT', 'ResNet50', 'HuggingFace Transformers', 'Streamlit', 'Python', 'scikit-learn'],
+    github: 'https://github.com/brian-w-zhang/Data-Science-Project',
+    report: 'https://github.com/brian-w-zhang/Data-Science-Project/blob/main/report/report.pdf',
+    images: [
+      '/assets/project-visuals/cds1.png',
+      '/assets/project-visuals/cds2.png',
+      '/assets/project-visuals/cds3.png',
+      '/assets/project-visuals/cds4.png',
+      '/assets/project-visuals/cds5.png',
+      '/assets/project-visuals/cds6.png'
+    ]
+  },
+  {
+    name: 'LLM Jailbreak Detection',
+    year: '2026',
+    description: 'Activation-based anomaly detection for harmful and jailbreak prompts using linear probes trained on frozen Qwen2.5-1.5B hidden states, achieving 0.971 ROC-AUC and catching obfuscated attacks that keyword filters miss.',
+    fullDescription: 'A deep learning study investigating whether frozen LLM internal activations can detect harmful and jailbreak prompts without fine-tuning the LLM itself. Linear probes trained on hidden states from a frozen Qwen2.5-1.5B model are swept across all 28 transformer layers. The best mean-pool probe at layer 19 achieves 0.971 ROC-AUC on the internal test set and 0.889 on the external WildGuardTest holdout, substantially outperforming TF-IDF and one-class Mahalanobis baselines. Group project with Brian Zhang.',
+    detailedAccomplishments: [
+      'Trained linear probes and MLP probes across all 28 layers of a frozen Qwen2.5-1.5B model using weighted binary cross-entropy with early stopping on val PR-AUC; best mean-pool linear probe at layer 19 achieves ROC-AUC 0.971 and PR-AUC 0.887 on the internal test set',
+      'Compared last-token vs. mean pooling strategies across layers: mean pooling outperforms last-token by ~0.037 ROC-AUC at scale, with peak safety signal at mid-to-upper layers (15-26) and degradation at late layers (27-28)',
+      'Linear probes outperform MLP probes as the harmful/benign boundary is approximately linearly separable in activation space; activation probes catch obfuscated roleplay-wrapped jailbreaks where TF-IDF (0.877 AUC) fails due to keyword dilution',
+      'Scaled from 300 to 700 harmful training examples improved ROC-AUC from 0.934 to 0.971; generalization to the 1,699-example WildGuardTest external holdout held at 0.889 ROC-AUC, with the largest remaining gaps in "others" (recall 0.26) and stereotypes (recall 0.44)'
+    ],
+    techStack: ['PyTorch', 'Qwen2.5-1.5B', 'HuggingFace Transformers', 'scikit-learn', 'Python', 'pandas', 'matplotlib'],
+    github: 'https://github.com/brian-w-zhang/DL-Project',
+    report: 'https://github.com/brian-w-zhang/DL-Project/blob/main/report/report.pdf',
+    images: [
+      '/assets/project-visuals/dl01.png',
+      '/assets/project-visuals/dl02.png',
+      '/assets/project-visuals/dl03.png',
+      '/assets/project-visuals/dl04.png',
+      '/assets/project-visuals/dl05.png',
+      '/assets/project-visuals/dl06.png',
+      '/assets/project-visuals/dl07.png',
+      '/assets/project-visuals/dl08.png'
+    ]
+  },
+  {
     name: 'Yelp Analysis',
-    year: '2024',
+    year: '2025',
     description: 'Analytics platform transforming thousands of Yelp reviews into actionable business insights through a hybrid ML/LLM pipeline with semantic search, sentiment analysis, and automated topic clustering.',
     fullDescription: 'An analytics platform that transforms thousands of Yelp reviews into actionable business insights through a hybrid ML/LLM pipeline. The system processes review data end-to-end from ingestion and preprocessing to semantic search, sentiment analysis, and automated topic clustering, enabling restaurant owners to discover root causes, prioritize fixes, and monitor impact without reading every review manually.',
     detailedAccomplishments: [
@@ -96,7 +145,7 @@ const projects: Project[] = [
   },
   {
     name: 'Nudge',
-    year: '2024',
+    year: '2025',
     description: 'Chrome extension inspired by The Stanley Parable that gamifies productivity through an AI-powered narrator that monitors user activity, delivers witty spoken narration, and enforces focus through intelligent redirects.',
     fullDescription: 'A Chrome extension inspired by The Stanley Parable that gamifies productivity through an AI-powered narrator that monitors user activity, delivers witty spoken narration, and enforces focus through intelligent redirects. The system combines real-time behavior tracking, screenshot analysis via LLMs, and voice synthesis to create a compelling productivity experience with personality. Submission for UoftHacks 12.',
     detailedAccomplishments: [
@@ -115,24 +164,25 @@ const projects: Project[] = [
     ]
   },
   {
-    name: 'MoodMinder',
-    year: '2024',
-    description: 'Chrome extension that enhances Reddit browsing by filtering negative comments using NLP-based sentiment analysis. Published to Chrome Web Store with ~70% reduction in negative content exposure.',
-    fullDescription: 'A Chrome extension that enhances Reddit browsing by filtering negative comments using NLP-based sentiment analysis. The tool leverages VADER to evaluate emotional tone and offers flexible filtering modes (blur or hide), promoting healthier online interactions while prioritizing user privacy through local processing. Co-developed with a teammate.',
+    name: 'Toxic Comment Classifier',
+    year: '2026',
+    description: 'Real-time multi-label toxic comment detection for Reddit as a Chrome extension, powered by a fine-tuned RoBERTa model achieving 87.93% F1-micro, outperforming GPT-4o-mini by 27pp at 19x faster inference.',
+    fullDescription: 'A Chrome browser extension that detects and filters toxic Reddit comments in real-time using a locally fine-tuned RoBERTa-base model. Comments are classified across five toxicity categories (toxic, obscene, threat, insult, identity_hate) with per-category dynamic thresholds. The fine-tuned model substantially outperforms both out-of-the-box toxic-BERT and GPT-4o-mini while running in ~49ms per comment.',
     detailedAccomplishments: [
-      'Implemented real-time sentiment analysis using VADER library via Flask backend, scoring Reddit comments for toxicity and flagging negative content for user-configurable filtering',
-      'Built dynamic content monitoring system using MutationObserver to detect new comments as they load, extract text content, and apply filtering rules without page refreshes',
-      'Achieved ~70% reduction in negative content exposure based on sentiment threshold tuning, improving browsing experience for users seeking more mindful online engagement',
-      'Published to Chrome Web Store with Manifest V3 compliance, deployed Flask API on AWS for scalable sentiment processing, and maintained privacy-focused architecture with no external data sharing'
+      'Fine-tuned RoBERTa-base on a multi-label game-chat dataset (80/20 split) using AdamW (lr=2e-5) with early stopping, achieving 87.93% F1-micro and per-label F1 up to 96.42% (toxic), outperforming HF toxic-bert (57.76%) and GPT-4o-mini (60.95%)',
+      'Designed per-category dynamic inference thresholds (threat: 35%, obscene: 65%, toxic: 60%, insult: 70%, identity_hate: 85%) to balance precision and recall across imbalanced toxicity classes',
+      'Built Chrome extension with toggle filter and confidence score inspector, evaluating Reddit comments in real-time against a local Python/Uvicorn backend at ~49ms average latency, 19x faster than GPT-4o-mini (930ms)',
+      'Benchmarked four approaches (fine-tuned RoBERTa, HF toxic-bert, VADER sentiment, GPT-4o-mini) on F1-micro, exact match accuracy, recall, Hamming loss, and inference latency'
     ],
-    techStack: ['Python', 'JavaScript', 'HTML/CSS', 'Flask', 'VADER Sentiment', 'Chrome Extension API', 'AWS'],
-    github: 'https://github.com/rubylu-05/moodminder',
-    liveLink: 'https://chromewebstore.google.com/detail/moodminder/iobpegidgaikaooclpomdpplcffiablb',
+    techStack: ['Python', 'RoBERTa', 'HuggingFace Transformers', 'Uvicorn', 'Chrome Extension', 'JavaScript'],
+    github: 'https://github.com/sbrina-w/toxic-comment-classification',
+    report: 'https://canva.link/15v8525f1ieehoa',
     images: [
-      '/assets/project-visuals/moodminder-demo.mov',
-      '/assets/project-visuals/moodminder-blur.png',
-      '/assets/project-visuals/moodminder-hide.png',
-      '/assets/project-visuals/moodminder-off.png'
+      '/assets/project-visuals/ai1.png',
+      '/assets/project-visuals/ai2.png',
+      '/assets/project-visuals/ai3.png',
+      '/assets/project-visuals/ai4.png',
+      '/assets/project-visuals/ai5.png'
     ]
   },
   {
@@ -259,6 +309,17 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onToggleExpand, grad
                   <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                   <polyline points="15 3 21 3 21 9"></polyline>
                   <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+              </a>
+            )}
+            {project.report && (
+              <a href={project.report} target="_blank" rel="noopener noreferrer" className="project-link" aria-label="Report" onClick={(e) => e.stopPropagation()}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
                 </svg>
               </a>
             )}
@@ -429,6 +490,17 @@ const ExpandedPanel: React.FC<ExpandedPanelProps> = ({ project, onClose, panelRe
                     <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                     <polyline points="15 3 21 3 21 9"></polyline>
                     <line x1="10" y1="14" x2="21" y2="3"></line>
+                  </svg>
+                </a>
+              )}
+              {project.report && (
+                <a href={project.report} target="_blank" rel="noopener noreferrer" className="project-link-expanded" aria-label="Report">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
                   </svg>
                 </a>
               )}

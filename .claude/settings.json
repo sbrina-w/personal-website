@@ -2,7 +2,28 @@
   "permissions": {
     "allow": [
       "Read(//tmp/screenshots/**)",
-      "Read(//private/tmp/screenshots/**)"
+      "Read(//private/tmp/screenshots/**)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(gh api *)",
+      "Bash(python3 -c \"import json,sys; data=json.load\\(sys.stdin\\); [print\\(item['path']\\) for item in data.get\\('tree',[]\\) if item['type']=='blob']\")",
+      "WebFetch(domain:api.github.com)",
+      "Bash(curl -sL \"https://github.com/user-attachments/assets/f40eb148-ad68-43e2-a22f-363361036543\" -o \"toxic-reddit-ui.png\")",
+      "Bash(curl -sL \"https://github.com/user-attachments/assets/53e8a1a1-944e-429c-8cf0-23b0ebc96215\" -o \"toxic-extension-setup.png\")",
+      "Bash(curl -sL \"https://raw.githubusercontent.com/sbrina-w/toxic-comment-classification/main/multilabel_performance.png\" -o \"toxic-multilabel-performance.png\")",
+      "Bash(curl -sL \"https://raw.githubusercontent.com/sbrina-w/toxic-comment-classification/main/perlabel_f1_scores.png\" -o \"toxic-perlabel-f1.png\")",
+      "Bash(curl -sL \"https://raw.githubusercontent.com/sbrina-w/toxic-comment-classification/main/latency_comparison.png\" -o \"toxic-latency.png\")",
+      "Bash(curl -sL \"https://raw.githubusercontent.com/brian-w-zhang/Data-Science-Project/main/architecture.png\" -o \"disaster-tweet-architecture.png\")",
+      "Bash(curl -sL \"https://raw.githubusercontent.com/brian-w-zhang/Data-Science-Project/main/report/streamlit_multi.png\" -o \"disaster-tweet-streamlit-multi.png\")",
+      "Bash(curl -sL \"https://raw.githubusercontent.com/brian-w-zhang/Data-Science-Project/main/report/streamlit_text.png\" -o \"disaster-tweet-streamlit-text.png\")",
+      "Bash(curl -sL \"https://raw.githubusercontent.com/brian-w-zhang/Data-Science-Project/main/report/streamlit_img.png\" -o \"disaster-tweet-streamlit-img.png\")",
+      "Bash(curl -sL \"https://raw.githubusercontent.com/brian-w-zhang/Data-Science-Project/main/report/fusion-confmat.png\" -o \"disaster-tweet-fusion-confmat.png\")",
+      "Bash(curl -sL \"https://raw.githubusercontent.com/brian-w-zhang/DL-Project/main/outputs/figures/tsne_layer19.png\" -o \"jailbreak-tsne-layer19.png\")",
+      "Bash(curl -sL \"https://raw.githubusercontent.com/brian-w-zhang/DL-Project/main/outputs/figures/roc_all_configs.png\" -o \"jailbreak-roc-all-configs.png\")",
+      "Bash(curl -sL \"https://raw.githubusercontent.com/brian-w-zhang/DL-Project/main/outputs/figures/layer_sweep_all_configs.png\" -o \"jailbreak-layer-sweep.png\")",
+      "Bash(curl -sL \"https://raw.githubusercontent.com/brian-w-zhang/DL-Project/main/outputs/figures/confusion_layer19_linear.png\" -o \"jailbreak-confusion-matrix.png\")",
+      "Bash(curl -sL \"https://raw.githubusercontent.com/brian-w-zhang/DL-Project/main/outputs/figures/roc_pr_layer19_linear.png\" -o \"jailbreak-roc-pr.png\")",
+      "Bash(awk '{print $5, $9}')"
     ]
   }
 }
