@@ -70,13 +70,26 @@
   flex-direction: column;
   transform-origin: center;
   min-height: 400px;
-  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.45s var(--ease-out), transform 0.45s var(--ease-out), border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.project-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--accent-light);
-  box-shadow: var(--shadow);
+.project-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .project-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent-light);
+    box-shadow: var(--shadow);
+  }
+}
+
+.project-card:active {
+  transform: scale(0.99) !important;
 }
 
 /* Full-width expansion panel — lives in the grid as a separate row */
@@ -515,10 +528,12 @@
   font-weight: 500;
 }
 
-.tech-tag:hover {
-  background: var(--tech-tag-hover-bg);
-  border-color: var(--accent-light);
-  transform: translateY(-1px);
+@media (hover: hover) and (pointer: fine) {
+  .tech-tag:hover {
+    background: var(--tech-tag-hover-bg);
+    border-color: var(--accent-light);
+    transform: translateY(-1px);
+  }
 }
 
 /* Responsive */

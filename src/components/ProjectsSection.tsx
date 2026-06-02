@@ -244,7 +244,7 @@ interface ProjectCardProps {
   setCardEl: (el: HTMLDivElement | null) => void;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ project, onToggleExpand, gradient, setCardEl }) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onToggleExpand, gradient, setCardEl }) => {
   const [isVisible, setIsVisible] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -273,14 +273,17 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onToggleExpand, grad
       ref={setRef}
       className={`project-card ${isVisible ? 'visible' : ''}`}
       onClick={handleClick}
-      style={gradient ? {
-        backgroundImage: `radial-gradient(
-          circle 300px at ${gradient.x}% ${gradient.y}%,
-          var(--gradient-warm-1) 0%,
-          var(--gradient-warm-2) 40%,
-          var(--gradient-warm-3) 100%
-        )`
-      } : {}}
+      style={{
+        transitionDelay: `${index * 70}ms`,
+        ...(gradient ? {
+          backgroundImage: `radial-gradient(
+            circle 300px at ${gradient.x}% ${gradient.y}%,
+            var(--gradient-warm-1) 0%,
+            var(--gradient-warm-2) 40%,
+            var(--gradient-warm-3) 100%
+          )`
+        } : {})
+      }}
     >
       <div className="project-content">
         <div className="project-card-header">

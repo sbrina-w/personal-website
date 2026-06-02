@@ -176,19 +176,25 @@
   border: 1px solid var(--border-color);
   box-shadow: var(--shadow-sm);
   opacity: 0;
-  transform: translateX(-30px);
-  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  transform: translateY(16px);
+  transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out), border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .experience-card.visible {
   opacity: 1;
-  transform: translateX(0);
+  transform: translateY(0);
 }
 
-.experience-card:hover {
-  border-color: var(--accent-light);
-  box-shadow: var(--shadow);
-  transform: translateY(-4px);
+@media (hover: hover) and (pointer: fine) {
+  .experience-card:hover {
+    border-color: var(--accent-light);
+    box-shadow: var(--shadow);
+    transform: translateY(-3px);
+  }
+}
+
+.experience-card:active {
+  transform: scale(0.995) !important;
 }
 
 .experience-header {
@@ -282,12 +288,18 @@
   z-index: 10;
 }
 
-.expand-button:hover {
-  background: var(--accent-light);
-  border: 1px solid var(--accent-light);
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(139, 111, 71, 0.3);
+@media (hover: hover) and (pointer: fine) {
+  .expand-button:hover {
+    background: var(--accent-light);
+    border: 1px solid var(--accent-light);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(139, 111, 71, 0.3);
+  }
+}
+
+.expand-button:active {
+  transform: scale(0.9) !important;
 }
 
 .expand-button svg {
