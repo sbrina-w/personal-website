@@ -74,7 +74,7 @@ export const Receipt: React.FC = () => {
                 <span className="receipt-item-price">Art</span>
               </div>
               <div className="receipt-item">
-                <span className="receipt-item-name">1x Summer 2026 Internship</span>
+                <span className="receipt-item-name">1x Summer 2027 Internship</span>
                 <span className="receipt-item-dots"></span>
                 <span className="receipt-item-price">Seeking</span>
               </div>
