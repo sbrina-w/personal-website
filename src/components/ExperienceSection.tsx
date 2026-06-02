@@ -14,8 +14,18 @@ interface Experience {
 
 const experiences: Experience[] = [
   {
-    company: 'Data Scientist, Advanced Analytics Team',
-    role: 'Ontario Lottery and Gaming (OLG)',
+    company: 'Amazon Web Services',
+    role: 'SDE Intern, DynamoDB',
+    period: 'May 2026 - Present',
+    description: 'Working within AWS DynamoDB, designing and building an automated lifecycle management system for test clusters to reduce idle resource consumption and quota waste across engineering teams.',
+    accomplishments: [
+      'Built a system that proactively notifies engineers before their test clusters expire and automatically releases idle ones, eliminating resource waste from clusters that are never manually cleaned up',
+      'Designed smart usage detection to protect actively-used clusters from premature release, with safety controls enabling a phased, low-risk rollout to the production fleet'
+    ]
+  },
+  {
+    company: 'Ontario Lottery and Gaming (OLG)',
+    role: 'Data Scientist, Advanced Analytics Team',
     period: 'May 2025 - Aug 2025',
     description: 'Working on the Advanced Analytics team, developing machine learning models and GenAI applications to drive data-informed decision-making across OLG\'s operations.',
     accomplishments: [
@@ -27,8 +37,8 @@ const experiences: Experience[] = [
     ]
   },
   {
-    company: 'Full-Stack Software Developer',
-    role: 'BrainRidge Consulting',
+    company: 'BrainRidge Consulting',
+    role: 'Full-Stack Software Developer',
     period: 'Jan 2025 - Apr 2025',
     description: 'Returned to BrainRidge Consulting to expand my technical scope beyond frontend, taking on full-stack responsibilities for the OneDashboard project. Led feature development from requirements gathering through deployment, working with databases, caching layers, and backend services while continuing to refine the user experience.',
     accomplishments: [
@@ -40,8 +50,8 @@ const experiences: Experience[] = [
     ]
   },
   {
-    company: 'Frontend Software Developer',
-    role: 'BrainRidge Consulting',
+    company: 'BrainRidge Consulting',
+    role: 'Frontend Software Developer',
     period: 'May 2024 - Aug 2024',
     description: 'Joined BrainRidge Consulting as a frontend developer for OneDashboard, an internal monitoring platform for BMO US. Despite having no prior experience with Angular or NestJS, I quickly ramped up and took ownership of the frontend, designing and implementing the UI/UX from the ground up.',
     accomplishments: [
@@ -101,8 +111,8 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience, index, isVi
     >
       <div className="experience-header">
         <div className="experience-title-group">
-          <h3 className="experience-company">{experience.company}</h3>
-          <p className="experience-role">{experience.role}</p>
+          <h3 className="experience-company">{experience.role}</h3>
+          <p className="experience-role">{experience.company}</p>
         </div>
         <span className="experience-period">{experience.period}</span>
       </div>
