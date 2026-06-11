@@ -26,7 +26,7 @@ const experiences: Experience[] = [
   {
     company: 'Ontario Lottery and Gaming (OLG)',
     role: 'Data Scientist, Advanced Analytics Team',
-    period: 'May 2025 - Aug 2025',
+    period: 'Sept 2025 - Dec 2025',
     description: 'Working on the Advanced Analytics team, developing machine learning models and GenAI applications to drive data-informed decision-making across OLG\'s operations.',
     accomplishments: [
       'Developed retailer clustering models using K-means and spatial data analysis to segment 10,000+ retailers by sales performance, demographics, and location features, enabling dynamic commission models and targeted sales strategies',
